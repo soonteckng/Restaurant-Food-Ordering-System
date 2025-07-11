@@ -1,7 +1,7 @@
 package foodapp.register
 
 import javafx.fxml.FXML
-import javafx.scene.control.{Button, Label, PasswordField, TextField}
+import scalafx.scene.control.{Button, Label, PasswordField, TextField}
 import javafx.event.ActionEvent
 import scalafx.scene.control.Alert
 import scalafx.scene.control.Alert.AlertType
@@ -12,9 +12,6 @@ class RegisterOverviewController {
 
   @FXML
   private var usernameField: TextField = null
-
-  @FXML
-  private var emailField: TextField = null
 
   @FXML
   private var passwordField: PasswordField = null
@@ -48,7 +45,6 @@ class RegisterOverviewController {
   @FXML
   private def handleRegister(action: ActionEvent): Unit = {
     val username = usernameField.getText.trim
-    val email = emailField.getText.trim
     val password = passwordField.getText
     val confirmPassword = confirmPasswordField.getText
     val fridgeName = fridgeNameField.getText.trim
@@ -59,8 +55,7 @@ class RegisterOverviewController {
     }
 
     // Create user
-    val emailOption = if (email.isEmpty) None else Some(email)
-    val newUser = User(username, password, emailOption, fridgeName)
+    val newUser = User(username, password, fridgeName)
 
     // Attempt registration
     if (authService.registerUser(newUser)) {
@@ -110,14 +105,6 @@ class RegisterOverviewController {
       showAlert("Validation Error", "Fridge name is required.")
       return false
     }
-
-    // Check for valid email format if provided
-    val email = emailField.getText.trim
-    if (email.nonEmpty && !isValidEmail(email)) {
-      showAlert("Validation Error", "Please enter a valid email address.")
-      return false
-    }
-
     true
   }
 
@@ -142,16 +129,15 @@ class RegisterOverviewController {
   // Clear all input fields
   private def clearFields(): Unit = {
     usernameField.clear()
-    emailField.clear()
     passwordField.clear()
     confirmPasswordField.clear()
     fridgeNameField.setText("My Smart Fridge")
   }
 
   // Show error alert
-  /*private def showAlert(title: String, message: String): Unit = {
+  private def showAlert(alertTitle: String, message: String): Unit = {
     val alert = new Alert(AlertType.Error) {
-      this.title = title
+      this.title = alertTitle
       headerText = None
       contentText = message
     }
@@ -159,14 +145,14 @@ class RegisterOverviewController {
   }
 
   // Show success alert
-  private def showSuccessAlert(title: String, message: String): Unit = {
+  private def showSuccessAlert(alertTitle: String, message: String): Unit = {
     val alert = new Alert(AlertType.Information) {
-      this.title = title
+      this.title = alertTitle
       headerText = None
       contentText = message
     }
     alert.showAndWait()
-  }*/
+  }
 
   // Set main app reference (for scene switching)
   def setMainApp(mainApp: foodapp.MainApp.type): Unit = {

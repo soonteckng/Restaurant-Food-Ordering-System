@@ -23,7 +23,7 @@ object MainApp extends JFXApp3:
 
       stage = new PrimaryStage:
         title = "FoodApp - Login"
-        scene = new Scene(new AnchorPane(root))
+        scene = new Scene(root)
 
       stage.show()
 

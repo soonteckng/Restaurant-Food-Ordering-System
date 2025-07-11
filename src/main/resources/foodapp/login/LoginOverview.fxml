@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="foodapp.login.LoginOverviewController">
    <children>
       <HBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -31,12 +31,12 @@
                               <Font name="Rockwell Bold" size="30.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="216.0" promptText="Username" />
-                        <TextField promptText="Password" />
+                        <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="216.0" promptText="Username" />
+                        <TextField fx:id="passwordField" promptText="Password" />
                         <ButtonBar prefHeight="40.0" prefWidth="200.0">
                            <buttons>
-                              <Button mnemonicParsing="false" text="Register" />
-                              <Button mnemonicParsing="false" text="Login" />
+                              <Button fx:id="registerButton" mnemonicParsing="false" onAction="#handleRegister" text="Register" />
+                              <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
                            </buttons>
                         </ButtonBar>
                         <Label text="currently empty" />

@@ -152,8 +152,6 @@ class AuthenticationService {
   def getUserStats: Map[String, Int] = {
     Map(
       "totalUsers" -> users.size,
-      "usersWithEmail" -> users.values.count(_.hasEmail),
-      "usersWithoutEmail" -> users.values.count(!_.hasEmail)
-    )
+     )
   }
 }

@@ -18,7 +18,7 @@
                 <!-- Left panel for image/background (30% width) -->
                 <AnchorPane prefWidth="180.0" style="-fx-background-color: #e0f7fa; -fx-border-color: #cccccc; -fx-border-width: 0 1 0 0;" HBox.hgrow="SOMETIMES">
                     <children>
-                        <Label alignment="CENTER" layoutX="20.0" layoutY="200.0" prefHeight="100.0" prefWidth="140.0" text="Welcome to Smart Fridge!" textAlignment="CENTER" textFill="#006064" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0">
+                        <Label alignment="CENTER" layoutX="20.0" layoutY="200.0" prefHeight="100.0" prefWidth="140.0" textAlignment="CENTER" textFill="#006064" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0">
                             <font>
                                 <Font name="Arial Bold" size="16.0" />
                             </font>
@@ -47,8 +47,6 @@
                                 </Label>
 
                                 <TextField fx:id="usernameField" prefHeight="30.0" prefWidth="250.0" promptText="Username (required)" />
-
-                                <TextField fx:id="emailField" prefHeight="30.0" prefWidth="250.0" promptText="Email (optional)" />
 
                                 <PasswordField fx:id="passwordField" prefHeight="30.0" prefWidth="250.0" promptText="Password (required)" />
 

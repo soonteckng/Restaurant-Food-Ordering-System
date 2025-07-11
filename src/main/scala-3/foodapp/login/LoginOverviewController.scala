@@ -1,7 +1,7 @@
 package foodapp.login
 
 import javafx.fxml.FXML
-import javafx.scene.control.{Button, Label, TextField, PasswordField}
+import scalafx.scene.control.{Button, Label, TextField, PasswordField}
 import javafx.event.ActionEvent
 import scalafx.scene.control.Alert
 import scalafx.scene.control.Alert.AlertType
@@ -89,9 +89,9 @@ class LoginOverviewController {
   }
 
   // Show error alert
-  private def showAlert(title: String, message: String): Unit = {
+  private def showAlert(alertTitle: String, message: String): Unit = {
     val alert = new Alert(AlertType.Error) {
-      this.title = title
+      this.title = alertTitle
       headerText = None
       contentText = message
     }
@@ -99,9 +99,9 @@ class LoginOverviewController {
   }
 
   // Show success alert
-  private def showSuccessAlert(title: String, message: String): Unit = {
+  private def showSuccessAlert(alertTitle: String, message: String): Unit = {
     val alert = new Alert(AlertType.Information) {
-      this.title = title
+      this.title = alertTitle
       headerText = None
       contentText = message
     }
