@@ -1,11 +1,12 @@
 package foodapp.register
 
 import javafx.fxml.FXML
-import scalafx.scene.control.{Button, Label, PasswordField, TextField}
+import javafx.scene.control.{Button, Label, PasswordField, TextField}
 import javafx.event.ActionEvent
 import scalafx.scene.control.Alert
 import scalafx.scene.control.Alert.AlertType
 import foodapp.model.User
+import scalafx.Includes.*
 import foodapp.service.AuthenticationService
 
 class RegisterOverviewController {
@@ -35,7 +36,7 @@ class RegisterOverviewController {
   private val authService = new AuthenticationService()
 
   // Reference to main app (for scene switching)
-  private var mainApp: Option[foodapp.MainApp.type] = None
+  private var mainApp: Option[foodapp.Main.type] = None
 
   def initialize(): Unit = {
     statusLabel.setText("Fill in the details to create your account")
@@ -55,7 +56,7 @@ class RegisterOverviewController {
     }
 
     // Create user
-    val newUser = User(username, password, fridgeName)
+    val newUser = User(username, password)
 
     // Attempt registration
     if (authService.registerUser(newUser)) {
@@ -155,7 +156,7 @@ class RegisterOverviewController {
   }
 
   // Set main app reference (for scene switching)
-  def setMainApp(mainApp: foodapp.MainApp.type): Unit = {
+  def setMain(mainApp: foodapp.Main.type): Unit = {
     this.mainApp = Some(mainApp)
   }
 }

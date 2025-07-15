@@ -1,11 +1,12 @@
 package foodapp.login
 
+import foodapp.model.User
+import foodapp.service.AuthenticationService
 import javafx.fxml.FXML
-import scalafx.scene.control.{Button, Label, TextField, PasswordField}
+import javafx.scene.control.{Button, Label, PasswordField, TextField}
 import javafx.event.ActionEvent
 import scalafx.scene.control.Alert
 import scalafx.scene.control.Alert.AlertType
-import foodapp.service.AuthenticationService
 
 class LoginOverviewController {
 
@@ -15,29 +16,22 @@ class LoginOverviewController {
   @FXML
   private var passwordField: PasswordField = null
 
-  @FXML
-  private var loginButton: Button = null
-
-  @FXML
-  private var registerButton: Button = null
-
-  @FXML
-  private var statusLabel: Label = null
-
   // Service for authentication
   private val authService = new AuthenticationService()
 
   // Reference to main app (for scene switching)
-  private var mainApp: Option[foodapp.MainApp.type] = None
+  private var mainApp: Option[foodapp.Main.type] = None
 
   def initialize(): Unit = {
-    statusLabel.setText("Please enter your credentials to login")
-
     // Set default focus to username field
     if (usernameField != null) {
       usernameField.requestFocus()
     }
-  }
+
+    // Print available test users for debugging
+    println("=== Test Users Available ===")
+    println("Username: admin, Password: Admin123")
+    }
 
   // Handle login
   @FXML
@@ -48,27 +42,23 @@ class LoginOverviewController {
     // Validate input
     if (username.isEmpty || password.isEmpty) {
       showAlert("Login Error", "Please enter both username and password.")
-      statusLabel.setText("Please fill in all fields")
       return
     }
 
     // Attempt login
     if (authService.login(username, password)) {
       val user = authService.getCurrentUser.get
-      showSuccessAlert("Login Successful", s"Welcome back, ${user.displayName}!")
-      statusLabel.setText(s"Login successful! Welcome ${user.displayName}")
+      showSuccessAlert("Login Successful", s"Welcome back, ${user.getUsername}!")
 
       // Clear fields
       clearFields()
 
       // Navigate to main app
-      // In a real app, you would switch to the main application scene
-      println(s"Navigating to main app for user: ${user.username}")
-      // mainApp.foreach(_.showMainView())
+      println(s"Navigating to main app for user: ${user.getUsername}")
+    
 
     } else {
       showAlert("Login Failed", "Invalid username or password. Please try again.")
-      statusLabel.setText("Login failed. Please check your credentials.")
       passwordField.clear()
     }
   }
@@ -76,10 +66,7 @@ class LoginOverviewController {
   // Handle register button
   @FXML
   private def handleRegister(action: ActionEvent): Unit = {
-    statusLabel.setText("Redirecting to registration...")
-    // In a real implementation, you would switch to the registration scene
-    // mainApp.foreach(_.showRegisterView())
-    println("Navigating to registration screen...")
+    mainApp.foreach(_.showRegisterOverview())
   }
 
   // Clear all input fields
@@ -109,7 +96,7 @@ class LoginOverviewController {
   }
 
   // Set main app reference (for scene switching)
-  def setMainApp(mainApp: foodapp.MainApp.type): Unit = {
+  def setMainApp(mainApp: foodapp.Main.type): Unit = {
     this.mainApp = Some(mainApp)
   }
 

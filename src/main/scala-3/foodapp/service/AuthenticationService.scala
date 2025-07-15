@@ -8,17 +8,28 @@ class AuthenticationService {
   // In-memory storage for users (in a real app, this would be a database)
   private val users = mutable.Map[String, User]()
   private var currentUser: Option[User] = None
+
+  // Initialize with default users for testing
+  initializeDefaultUsers()
+
+  private def initializeDefaultUsers(): Unit = {
+    val defaultUser1 = new User("admin", "Admin123")
+    users += (defaultUser1.getUsername -> defaultUser1)
+   
+    println("Default users initialized: admin, user, test")
+  }
+
   /**
    * Register a new user
    * @param user The user to register
    * @return true if registration successful, false if username already exists
    */
   def registerUser(user: User): Boolean = {
-    if (users.contains(user.username)) {
+    if (users.contains(user.getUsername)) {
       false // Username already exists
     } else {
-      users += (user.username -> user)
-      println(s"User registered: ${user.username}")
+      users += (user.getUsername -> user)
+      println(s"User registered: ${user.getUsername}")
       true
     }
   }
@@ -36,7 +47,7 @@ class AuthenticationService {
         println(s"User authenticated: $username")
         Some(user)
       case _ =>
-        println(s"$username does not exist!")
+        println(s"Authentication failed for: $username")
         None
     }
   }
@@ -55,7 +66,7 @@ class AuthenticationService {
    * Logout the current user
    */
   def logout(): Unit = {
-    currentUser.foreach(user => println(s"You (${user.username}) had successfully logged out."))
+    currentUser.foreach(user => println(s"You (${user.getUsername}) had successfully logged out."))
     currentUser = None
   }
 
@@ -92,10 +103,10 @@ class AuthenticationService {
    * @return true if update successful, false otherwise
    */
   def updateUser(updatedUser: User): Boolean = {
-    users.get(updatedUser.username) match {
+    users.get(updatedUser.getUsername) match {
       case Some(_) =>
-        users += (updatedUser.username -> updatedUser)
-        if (currentUser.exists(_.username == updatedUser.username)) {
+        users += (updatedUser.getUsername -> updatedUser)
+        if (currentUser.exists(_.getUsername == updatedUser.getUsername)) {
           currentUser = Some(updatedUser)
         }
         true
@@ -111,7 +122,7 @@ class AuthenticationService {
   def deleteUser(username: String): Boolean = {
     users.remove(username) match {
       case Some(_) =>
-        if (currentUser.exists(_.username == username)) {
+        if (currentUser.exists(_.getUsername == username)) {
           currentUser = None
         }
         true
@@ -140,6 +151,12 @@ class AuthenticationService {
       errors += "Password cannot be empty"
     } else if (password.length < 6) {
       errors += "Password must be at least 6 characters long"
+    } else if (!password.matches(".*[A-Z].*")) {
+      errors += "Password must contain at least one uppercase letter"
+    } else if (!password.matches(".*[a-z].*")) {
+      errors += "Password must contain at least one lowercase letter"
+    } else if (!password.matches(".*\\d.*")) {
+      errors += "Password must contain at least one number"
     }
 
     errors.toList
@@ -152,6 +169,6 @@ class AuthenticationService {
   def getUserStats: Map[String, Int] = {
     Map(
       "totalUsers" -> users.size,
-     )
+    )
   }
 }

@@ -1,27 +1,19 @@
 package foodapp.model
 
-import scalafx.beans.property.{IntegerProperty, ObjectProperty, StringProperty}
-import java.time.LocalDateTime
+import scalafx.beans.property.StringProperty
 
-case class User(
-                 username: String,
-                 password: String, 
-                 fridgeName: String = "My Smart Fridge",
-                 createdAt: LocalDateTime = LocalDateTime.now(),
-                 id: Option[Int] = None
-               ) {
+class User(usernameS: String, passwordS: String):
+  var username = new StringProperty(usernameS)
+  var password = new StringProperty(passwordS)
 
-  // ScalaFX properties for UI binding if needed
-  def usernameProperty: StringProperty = StringProperty(username)
-  def fridgeNameProperty: StringProperty = StringProperty(fridgeName)
-
-  // Utility methods
-  def displayName: String = username
-
+  // Method required by AuthenticationService
   def isValidPassword(inputPassword: String): Boolean = {
-    // In a real app, you'd use proper password hashing
-    password == inputPassword
+    password.value == inputPassword
   }
+  
+  // Getter methods for easier access
+  def getUsername: String = username.value
+  def getPassword: String = password.value
 
-  override def toString: String = s"User($username, fridge=$fridgeName)"
-}
+  // Override toString for debugging
+  override def toString: String = s"User(username=${getUsername})"
