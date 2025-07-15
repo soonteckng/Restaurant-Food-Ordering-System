@@ -11,41 +11,39 @@ import scalafx.Includes.*
 
 object Main extends JFXApp3:
 
-  var roots: Option[scalafx.scene.layout.BorderPane] = None
+  var roots: Option[BorderPane] = None
 
-    override def start(): Unit =
+  override def start(): Unit =
+    // 🔧 Create a BorderPane manually instead of loading from FXML
+    val rootLayout = new BorderPane()
+    roots = Option(rootLayout)
 
-      val rootResource = getClass.getResource("/foodapp/RootLayout.fxml")
-      // initialize the loader object.
-      val loader = new FXMLLoader(rootResource)
-      // Load root layout from fxml file.
-      loader.load()
+    stage = new PrimaryStage():
+      title = "FridgeApp"
+      scene = new Scene(rootLayout, 800, 600)
 
-      roots = Option(loader.getRoot[jfxs.layout.BorderPane])
+    showLoginOverview()
 
-      stage = new PrimaryStage():
-        title = "FridgeApp"
-        scene = new Scene():
-          root = roots.get
+  def showLoginOverview(): Unit =
+    val resource = getClass.getResource("/foodapp/login/LoginOverview.fxml")
+    val loader = new FXMLLoader(resource)
+    val root = loader.load[jfxs.layout.AnchorPane]
 
-      showLoginOverview()
+    val controller = loader.getController[LoginOverviewController]
+    controller.setMainApp(this)
 
-    def showLoginOverview(): Unit =
-      val resource = getClass.getResource("/foodapp/login/LoginOverview.fxml")
-      val loader = new FXMLLoader(resource)
-      loader.load()
-      val loginRoot = loader.getRoot[jfxs.layout.AnchorPane]
-      this.roots.get.center = loginRoot
+    stage = new PrimaryStage():
+      title = "FridgeApp"
+      scene = new Scene(root)
 
-    def showRegisterOverview(): Unit =
-      val resource = getClass.getResource("/foodapp/register/RegisterOverview.fxml")
-      val loader = new FXMLLoader(resource)
-      loader.load()
-      val registerRoot = loader.getRoot[jfxs.layout.AnchorPane]
-  
-      // Set controller reference to Main
-      val controller = loader.getController[RegisterOverviewController]
-      controller.setMain(this)
-  
-      this.roots.get.center = registerRoot
+  def showRegisterOverview(): Unit =
+    val resource = getClass.getResource("/foodapp/register/RegisterOverview.fxml")
+    val loader = new FXMLLoader(resource)
+    val root = loader.load[jfxs.layout.AnchorPane]
+
+    val controller = loader.getController[RegisterOverviewController]
+    controller.setMain(this)
+
+    stage.scene = new Scene(root)
+
 
