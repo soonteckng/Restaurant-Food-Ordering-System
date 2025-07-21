@@ -8,6 +8,8 @@ import scalafx.scene.control.Alert.AlertType
 import foodapp.model.User
 import scalafx.Includes.*
 import foodapp.service.AuthenticationService
+import scalafx.stage.Stage
+import foodapp.alert.Alerts
 
 class RegisterOverviewController {
 
@@ -24,24 +26,13 @@ class RegisterOverviewController {
   private var fridgeNameField: TextField = null
 
   @FXML
-  private var registerButton: Button = null
-
-  @FXML
   private var backToLoginButton: Button = null
-
-  @FXML
-  private var statusLabel: Label = null
 
   // Service for authentication
   private val authService = new AuthenticationService()
-
-  // Reference to main app (for scene switching)
-  private var mainApp: Option[foodapp.Main.type] = None
-
-  def initialize(): Unit = {
-    statusLabel.setText("Fill in the details to create your account")
-  }
-
+  var alerts = new Alerts()
+  var isCreateAccountClicked = false
+  
   // Handle registration
   @FXML
   private def handleRegister(action: ActionEvent): Unit = {
@@ -50,18 +41,15 @@ class RegisterOverviewController {
     val confirmPassword = confirmPasswordField.getText
     val fridgeName = fridgeNameField.getText.trim
 
-    // Validation
-    if (!validateInput(username, password, confirmPassword, fridgeName)) {
-      return
-    }
+    // Check any empty fields
+    validateInput(username, password, confirmPassword, fridgeName)
 
     // Create user
     val newUser = User(username, password)
 
     // Attempt registration
     if (authService.registerUser(newUser)) {
-      showSuccessAlert("Registration Successful", s"Account created for $username! You can now login.")
-      statusLabel.setText("Registration successful! Redirecting to login...")
+      alerts.showSuccessAlert("Registration Successful", s"Account created for $username! You can now login.")
 
       // Clear fields
       clearFields()
@@ -70,59 +58,48 @@ class RegisterOverviewController {
       // In a real app, you might want to do this automatically
       handleBackToLogin(action)
     } else {
-      showAlert("Registration Failed", s"Username '$username' already exists. Please choose a different username.")
-      statusLabel.setText("Registration failed. Please try a different username.")
+      alerts.showErrorAlert("Registration Failed", s"Username '$username' already exists. Please choose a different username.")
     }
   }
 
   // Validate input fields
   private def validateInput(username: String, password: String, confirmPassword: String, fridgeName: String): Boolean = {
     if (username.isEmpty) {
-      showAlert("Validation Error", "Username is required.")
+      alerts.showErrorAlert("Validation Error", "Username is required.")
       return false
     }
 
     if (username.length < 3) {
-      showAlert("Validation Error", "Username must be at least 3 characters long.")
+      alerts.showErrorAlert("Validation Error", "Username must be at least 3 characters long.")
       return false
     }
 
     if (password.isEmpty) {
-      showAlert("Validation Error", "Password is required.")
+      alerts.showErrorAlert("Validation Error", "Password is required.")
       return false
     }
 
     if (password.length < 6) {
-      showAlert("Validation Error", "Password must be at least 6 characters long.")
+      alerts.showErrorAlert("Validation Error", "Password must be at least 6 characters long.")
       return false
     }
 
     if (password != confirmPassword) {
-      showAlert("Validation Error", "Passwords do not match.")
+      alerts.showErrorAlert("Validation Error", "Passwords do not match.")
       return false
     }
 
     if (fridgeName.isEmpty) {
-      showAlert("Validation Error", "Fridge name is required.")
+      alerts.showErrorAlert("Validation Error", "Fridge name is required.")
       return false
     }
     true
   }
-
-  // Simple email validation
-  private def isValidEmail(email: String): Boolean = {
-    val emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$".r
-    emailRegex.matches(email)
-  }
-
+  
   // Handle back to login
   @FXML
   private def handleBackToLogin(action: ActionEvent): Unit = {
-    // This would typically involve switching scenes back to login
-    // For now, we'll just show a message
-    statusLabel.setText("Redirecting to login...")
-
-    // In a real implementation, you would:
+        // In a real implementation, you would:
     // mainApp.foreach(_.showLoginView())
     println("Navigating back to login screen...")
   }
@@ -133,30 +110,5 @@ class RegisterOverviewController {
     passwordField.clear()
     confirmPasswordField.clear()
     fridgeNameField.setText("My Smart Fridge")
-  }
-
-  // Show error alert
-  private def showAlert(alertTitle: String, message: String): Unit = {
-    val alert = new Alert(AlertType.Error) {
-      this.title = alertTitle
-      headerText = None
-      contentText = message
-    }
-    alert.showAndWait()
-  }
-
-  // Show success alert
-  private def showSuccessAlert(alertTitle: String, message: String): Unit = {
-    val alert = new Alert(AlertType.Information) {
-      this.title = alertTitle
-      headerText = None
-      contentText = message
-    }
-    alert.showAndWait()
-  }
-
-  // Set main app reference (for scene switching)
-  def setMain(mainApp: foodapp.Main.type): Unit = {
-    this.mainApp = Some(mainApp)
   }
 }

@@ -4,46 +4,49 @@ import foodapp.register.RegisterOverviewController
 import scalafx.application.JFXApp3
 import scalafx.application.JFXApp3.PrimaryStage
 import scalafx.scene.Scene
-import scalafx.scene.layout.BorderPane
 import javafx.fxml.FXMLLoader
 import javafx.scene as jfxs
 import scalafx.Includes.*
+import scalafx.stage.{Modality, Stage}
 
 object Main extends JFXApp3:
 
-  var roots: Option[BorderPane] = None
+  var roots: Option[scalafx.scene.layout.BorderPane] = None
 
   override def start(): Unit =
-    // 🔧 Create a BorderPane manually instead of loading from FXML
-    val rootLayout = new BorderPane()
-    roots = Option(rootLayout)
+
+    val rootResource = getClass.getResource("/foodapp/RootLayout.fxml")
+    val loader = new FXMLLoader(rootResource)
+    loader.load()
+
+    roots = Option(loader.getRoot[jfxs.layout.BorderPane])
 
     stage = new PrimaryStage():
       title = "FridgeApp"
-      scene = new Scene(rootLayout, 800, 600)
+      scene = new Scene():
+        root = roots.get
 
     showLoginOverview()
 
   def showLoginOverview(): Unit =
     val resource = getClass.getResource("/foodapp/login/LoginOverview.fxml")
     val loader = new FXMLLoader(resource)
-    val root = loader.load[jfxs.layout.AnchorPane]
+    loader.load()
 
-    val controller = loader.getController[LoginOverviewController]
-    controller.setMainApp(this)
-
-    stage = new PrimaryStage():
-      title = "FridgeApp"
-      scene = new Scene(root)
+    val roots = loader.getRoot[jfxs.layout.AnchorPane]
+    this.roots.get.center = roots
 
   def showRegisterOverview(): Unit =
     val resource = getClass.getResource("/foodapp/register/RegisterOverview.fxml")
     val loader = new FXMLLoader(resource)
-    val root = loader.load[jfxs.layout.AnchorPane]
+    val roots2 = loader.getRoot[jfxs.Parent]
+    val control = loader.getController[RegisterOverviewController]
 
-    val controller = loader.getController[RegisterOverviewController]
-    controller.setMain(this)
+    val register = new Stage():
+      initModality(Modality.ApplicationModal)
+      initOwner(stage)
+      scene = new Scene:
+        root = roots2
 
-    stage.scene = new Scene(root)
 
 

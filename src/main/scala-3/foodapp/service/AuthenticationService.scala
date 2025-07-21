@@ -18,7 +18,8 @@ class AuthenticationService {
    
     println("Default users initialized: admin, user, test")
   }
-
+  
+  
   /**
    * Register a new user
    * @param user The user to register

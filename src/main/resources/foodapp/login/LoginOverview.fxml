@@ -11,12 +11,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="foodapp.login.LoginOverviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="foodapp.login.LoginOverviewController">
    <children>
       <HBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <!-- Left panel for image/background (30% width) -->
-            <AnchorPane prefWidth="180.0" style="-fx-background-color: #e0e0e0; -fx-border-color: #cccccc; -fx-border-width: 0 1 0 0;" HBox.hgrow="SOMETIMES">
+            <AnchorPane prefHeight="500.0" prefWidth="180.0" style="-fx-background-color: #e0e0e0; -fx-border-color: #cccccc; -fx-border-width: 0 1 0 0;" HBox.hgrow="SOMETIMES">
                <HBox.margin>
                   <Insets />
                </HBox.margin>

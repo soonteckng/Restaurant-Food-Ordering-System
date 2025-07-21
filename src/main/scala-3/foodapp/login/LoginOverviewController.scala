@@ -1,7 +1,9 @@
 package foodapp.login
 
+import foodapp.Main
 import foodapp.model.User
 import foodapp.service.AuthenticationService
+import foodapp.register.RegisterOverviewController
 import javafx.fxml.FXML
 import javafx.scene.control.{Button, Label, PasswordField, TextField}
 import javafx.event.ActionEvent
@@ -16,11 +18,10 @@ class LoginOverviewController {
   @FXML
   private var passwordField: PasswordField = null
 
+  var isRegisterClicked = false
+
   // Service for authentication
   private val authService = new AuthenticationService()
-
-  // Reference to main app (for scene switching)
-  private var mainApp: Option[foodapp.Main.type] = None
 
   def initialize(): Unit = {
     // Set default focus to username field
@@ -66,39 +67,16 @@ class LoginOverviewController {
   // Handle register button
   @FXML
   private def handleRegister(action: ActionEvent): Unit = {
-    mainApp.foreach(_.showRegisterOverview())
-  }
+    var registerClicked = Main.showRegisterOverview()
 
   // Clear all input fields
-  private def clearFields(): Unit = {
+  def clearFields(): Unit = {
     usernameField.clear()
     passwordField.clear()
   }
 
   // Show error alert
-  private def showAlert(alertTitle: String, message: String): Unit = {
-    val alert = new Alert(AlertType.Error) {
-      this.title = alertTitle
-      headerText = None
-      contentText = message
-    }
-    alert.showAndWait()
-  }
-
-  // Show success alert
-  private def showSuccessAlert(alertTitle: String, message: String): Unit = {
-    val alert = new Alert(AlertType.Information) {
-      this.title = alertTitle
-      headerText = None
-      contentText = message
-    }
-    alert.showAndWait()
-  }
-
-  // Set main app reference (for scene switching)
-  def setMainApp(mainApp: foodapp.Main.type): Unit = {
-    this.mainApp = Some(mainApp)
-  }
+  
 
   // Get current authentication service (for testing or external access)
   def getAuthService: AuthenticationService = authService
