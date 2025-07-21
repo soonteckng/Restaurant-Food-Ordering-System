@@ -1,21 +1,26 @@
+package foodapp.alert
+
 import scalafx.scene.control.Alert
 import scalafx.scene.control.Alert.AlertType
 
-private def showErrorAlert(alertTitle: String, message: String): Unit = {
-  val alert = new Alert(AlertType.Error) {
-    this.title = alertTitle
-    headerText = None
-    contentText = message
+class Alerts{
+  
+   def showErrorAlert(alertTitle: String, message: String): Unit = {
+    val alert = new Alert(AlertType.Error) {
+      this.title = alertTitle
+      headerText = None
+      contentText = message
+    }
+    alert.showAndWait()
   }
-  alert.showAndWait()
-}
-
-// Show success alert
-private def showSuccessAlert(alertTitle: String, message: String): Unit = {
-  val alert = new Alert(AlertType.Information) {
-    this.title = alertTitle
-    headerText = None
-    contentText = message
+  
+  // Show success alert
+   def showSuccessAlert(alertTitle: String, message: String): Unit = {
+    val alert = new Alert(AlertType.Information) {
+      this.title = alertTitle
+      headerText = None
+      contentText = message
+    }
+    alert.showAndWait()
   }
-  alert.showAndWait()
 }

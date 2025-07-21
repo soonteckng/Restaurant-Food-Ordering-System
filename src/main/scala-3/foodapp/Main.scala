@@ -39,6 +39,7 @@ object Main extends JFXApp3:
   def showRegisterOverview(): Unit =
     val resource = getClass.getResource("/foodapp/register/RegisterOverview.fxml")
     val loader = new FXMLLoader(resource)
+    loader.load()
     val roots2 = loader.getRoot[jfxs.Parent]
     val control = loader.getController[RegisterOverviewController]
 
@@ -47,6 +48,7 @@ object Main extends JFXApp3:
       initOwner(stage)
       scene = new Scene:
         root = roots2
+    register.showAndWait()
 
 
 

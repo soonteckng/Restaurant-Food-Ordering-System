@@ -7,8 +7,7 @@ import foodapp.register.RegisterOverviewController
 import javafx.fxml.FXML
 import javafx.scene.control.{Button, Label, PasswordField, TextField}
 import javafx.event.ActionEvent
-import scalafx.scene.control.Alert
-import scalafx.scene.control.Alert.AlertType
+import foodapp.alert.Alerts
 
 class LoginOverviewController {
 
@@ -19,6 +18,7 @@ class LoginOverviewController {
   private var passwordField: PasswordField = null
 
   var isRegisterClicked = false
+  var alerts = new Alerts()
 
   // Service for authentication
   private val authService = new AuthenticationService()
@@ -42,24 +42,20 @@ class LoginOverviewController {
 
     // Validate input
     if (username.isEmpty || password.isEmpty) {
-      showAlert("Login Error", "Please enter both username and password.")
+      alerts.showErrorAlert("Login Error", "Please enter both username and password.")
       return
     }
 
     // Attempt login
     if (authService.login(username, password)) {
       val user = authService.getCurrentUser.get
-      showSuccessAlert("Login Successful", s"Welcome back, ${user.getUsername}!")
+      alerts.showSuccessAlert("Login Successful", s"Welcome back, ${user.getUsername}!")
 
       // Clear fields
       clearFields()
 
-      // Navigate to main app
-      println(s"Navigating to main app for user: ${user.getUsername}")
-    
-
     } else {
-      showAlert("Login Failed", "Invalid username or password. Please try again.")
+      alerts.showErrorAlert("Login Failed", "Invalid username or password. Please try again.")
       passwordField.clear()
     }
   }
@@ -67,7 +63,9 @@ class LoginOverviewController {
   // Handle register button
   @FXML
   private def handleRegister(action: ActionEvent): Unit = {
-    var registerClicked = Main.showRegisterOverview()
+    Main.showRegisterOverview()
+  }
+
 
   // Clear all input fields
   def clearFields(): Unit = {
@@ -75,9 +73,7 @@ class LoginOverviewController {
     passwordField.clear()
   }
 
-  // Show error alert
-  
-
   // Get current authentication service (for testing or external access)
   def getAuthService: AuthenticationService = authService
 }
+

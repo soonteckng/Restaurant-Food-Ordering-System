@@ -3,13 +3,11 @@ package foodapp.register
 import javafx.fxml.FXML
 import javafx.scene.control.{Button, Label, PasswordField, TextField}
 import javafx.event.ActionEvent
-import scalafx.scene.control.Alert
-import scalafx.scene.control.Alert.AlertType
 import foodapp.model.User
 import scalafx.Includes.*
 import foodapp.service.AuthenticationService
-import scalafx.stage.Stage
 import foodapp.alert.Alerts
+import scalafx.stage.Stage
 
 class RegisterOverviewController {
 
@@ -103,7 +101,7 @@ class RegisterOverviewController {
     // mainApp.foreach(_.showLoginView())
     println("Navigating back to login screen...")
   }
-
+  
   // Clear all input fields
   private def clearFields(): Unit = {
     usernameField.clear()
