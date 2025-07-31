@@ -1,8 +1,10 @@
-package foodapp.model
+package soonteck.model
 
+import soonteck.util.Database
 import scalafx.beans.property.StringProperty
 
-class User(usernameS: String, passwordS: String):
+class User(usernameS: String, passwordS: String) extends Database:
+  def this()= this(null, null)
   var username = new StringProperty(usernameS)
   var password = new StringProperty(passwordS)
 

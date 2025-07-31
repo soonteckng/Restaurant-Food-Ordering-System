@@ -1,5 +1,5 @@
-package foodapp
-import foodapp.view.{LoginOverviewController, RegisterOverviewController}
+package soonteck
+import soonteck.view.{LoginOverviewController, RegisterOverviewController}
 import scalafx.application.JFXApp3
 import scalafx.application.JFXApp3.PrimaryStage
 import scalafx.scene.Scene
@@ -11,12 +11,12 @@ import scalafx.stage.{Modality, Stage}
 import java.net.URL
 
 object Main extends JFXApp3:
-
+  Database.setupDB()
   var roots: Option[jfxs.scene.layout.BorderPane] = None
 
   override def start(): Unit =
 
-    val rootResource: URL = getClass.getResource("/foodapp/RootLayout.fxml")
+    val rootResource: URL = getClass.getResource("/soonteck/view/RootLayout.fxml")
     val loader = new FXMLLoader(rootResource)
     loader.load()
 

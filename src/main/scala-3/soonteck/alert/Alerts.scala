@@ -1,4 +1,4 @@
-package foodapp.alert
+package soonteck.alert
 
 import scalafx.scene.control.Alert
 import scalafx.scene.control.Alert.AlertType

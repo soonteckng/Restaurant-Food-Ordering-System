@@ -1,8 +1,8 @@
-package foodapp.view
+package soonteck.view
 
-import foodapp.alert.Alerts
-import foodapp.model.User
-import foodapp.service.AuthenticationService
+import soonteck.alert.Alerts
+import soonteck.model.User
+import soonteck.service.AuthenticationService
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.scene.control.{Button, Label, PasswordField, TextField}

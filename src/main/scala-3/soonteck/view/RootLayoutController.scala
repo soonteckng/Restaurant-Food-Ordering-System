@@ -1,4 +1,4 @@
-package foodapp.view
+package soonteck.view
 
 import javafx.fxml.FXML
 import scalafx.event.ActionEvent

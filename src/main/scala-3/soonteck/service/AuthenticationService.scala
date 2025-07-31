@@ -1,6 +1,6 @@
-package foodapp.service
+package soonteck.service
 
-import foodapp.model.User
+import soonteck.model.User
 import scala.collection.mutable
 
 class AuthenticationService {
