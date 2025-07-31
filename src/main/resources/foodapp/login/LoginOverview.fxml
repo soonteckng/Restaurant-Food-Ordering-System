@@ -7,48 +7,34 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="foodapp.login.LoginOverviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="foodapp.view.LoginOverviewController">
    <children>
-      <HBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <!-- Left panel for image/background (30% width) -->
-            <AnchorPane prefHeight="500.0" prefWidth="180.0" style="-fx-background-color: #e0e0e0; -fx-border-color: #cccccc; -fx-border-width: 0 1 0 0;" HBox.hgrow="SOMETIMES">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </AnchorPane>
 
-            <!-- Right panel for login form (70% width) -->
-            <AnchorPane prefWidth="420.0" HBox.hgrow="SOMETIMES">
-               <children>
-                  <VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="5.0" maxWidth="Infinity" text="SMART FRIDGE" textAlignment="CENTER" textFill="#0619e9" wrapText="true">
-                           <font>
-                              <Font name="Rockwell Bold" size="30.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="216.0" promptText="Username" />
-                        <PasswordField fx:id="passwordField" promptText="Password" />
-                        <ButtonBar prefHeight="40.0" prefWidth="200.0">
-                           <buttons>
-                              <Button mnemonicParsing="false" onAction="#handleRegister" text="Register" />
-                              <Button mnemonicParsing="false" onAction="#handleLogin" text="Login" />
-                           </buttons>
-                        </ButtonBar>
-                        <Label text="currently empty" />
-                     </children>
-                     <padding>
-                        <Insets left="20.0" right="20.0" />
-                     </padding>
-                  </VBox>
-               </children>
-            </AnchorPane>
+      <!-- Right panel for login form (70% width) -->
+      <AnchorPane prefWidth="420.0" />
+      <VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="5.0" maxWidth="Infinity" text="SMART FRIDGE" textAlignment="CENTER" textFill="#0619e9" wrapText="true">
+               <font>
+                  <Font name="Rockwell Bold" size="30.0" />
+               </font>
+            </Label>
+            <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="216.0" promptText="Username" />
+            <PasswordField fx:id="passwordField" promptText="Password" />
+            <ButtonBar prefHeight="40.0" prefWidth="200.0">
+               <buttons>
+                  <Button mnemonicParsing="false" onAction="#handleRegister" text="Register" />
+                  <Button defaultButton="true" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
+               </buttons>
+            </ButtonBar>
+            <Label text="currently empty" />
          </children>
-      </HBox>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </VBox>
    </children>
 </AnchorPane>

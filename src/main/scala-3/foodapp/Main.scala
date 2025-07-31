@@ -1,6 +1,5 @@
 package foodapp
-import foodapp.login.LoginOverviewController
-import foodapp.register.RegisterOverviewController
+import foodapp.view.{LoginOverviewController, RegisterOverviewController}
 import scalafx.application.JFXApp3
 import scalafx.application.JFXApp3.PrimaryStage
 import scalafx.scene.Scene
@@ -9,13 +8,15 @@ import javafx.scene as jfxs
 import scalafx.Includes.*
 import scalafx.stage.{Modality, Stage}
 
+import java.net.URL
+
 object Main extends JFXApp3:
 
-  var roots: Option[scalafx.scene.layout.BorderPane] = None
+  var roots: Option[jfxs.scene.layout.BorderPane] = None
 
   override def start(): Unit =
 
-    val rootResource = getClass.getResource("/foodapp/RootLayout.fxml")
+    val rootResource: URL = getClass.getResource("/foodapp/RootLayout.fxml")
     val loader = new FXMLLoader(rootResource)
     loader.load()
 
@@ -25,7 +26,7 @@ object Main extends JFXApp3:
       title = "FridgeApp"
       scene = new Scene():
         root = roots.get
-
+/*
     showLoginOverview()
 
   def showLoginOverview(): Unit =
@@ -49,6 +50,6 @@ object Main extends JFXApp3:
       scene = new Scene:
         root = roots2
     register.showAndWait()
-
+*/
 
 

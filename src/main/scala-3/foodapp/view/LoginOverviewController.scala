@@ -1,14 +1,14 @@
-package foodapp.login
+package foodapp.view
 
 import foodapp.Main
+import foodapp.alert.Alerts
 import foodapp.model.User
 import foodapp.service.AuthenticationService
-import foodapp.register.RegisterOverviewController
+import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.scene.control.{Button, Label, PasswordField, TextField}
-import javafx.event.ActionEvent
-import foodapp.alert.Alerts
 
+@FXML
 class LoginOverviewController {
 
   @FXML
@@ -59,12 +59,12 @@ class LoginOverviewController {
       passwordField.clear()
     }
   }
-
+/*
   // Handle register button
   @FXML
   private def handleRegister(action: ActionEvent): Unit = {
     Main.showRegisterOverview()
-  }
+  }*/
 
 
   // Clear all input fields

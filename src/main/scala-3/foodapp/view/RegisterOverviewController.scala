@@ -1,14 +1,15 @@
-package foodapp.register
+package foodapp.view
 
+import foodapp.alert.Alerts
+import foodapp.model.User
+import foodapp.service.AuthenticationService
+import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.scene.control.{Button, Label, PasswordField, TextField}
-import javafx.event.ActionEvent
-import foodapp.model.User
 import scalafx.Includes.*
-import foodapp.service.AuthenticationService
-import foodapp.alert.Alerts
 import scalafx.stage.Stage
 
+@FXML
 class RegisterOverviewController {
 
   @FXML
