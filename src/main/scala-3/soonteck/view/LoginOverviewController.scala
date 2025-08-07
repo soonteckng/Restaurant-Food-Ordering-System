@@ -59,12 +59,12 @@ class LoginOverviewController {
       passwordField.clear()
     }
   }
-/*
+
   // Handle register button
   @FXML
   private def handleRegister(action: ActionEvent): Unit = {
     Main.showRegisterOverview()
-  }*/
+  }
 
 
   // Clear all input fields

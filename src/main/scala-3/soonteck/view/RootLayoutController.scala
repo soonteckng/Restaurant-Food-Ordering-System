@@ -1,10 +1,11 @@
 package soonteck.view
 
 import javafx.fxml.FXML
-import scalafx.event.ActionEvent
+import javafx.event.ActionEvent
+import soonteck.Main
 
 @FXML
 class RootLayoutController():
   @FXML
   def handleClose(action: ActionEvent): Unit =
-    System.exit(0)
+    Main.stage.close()

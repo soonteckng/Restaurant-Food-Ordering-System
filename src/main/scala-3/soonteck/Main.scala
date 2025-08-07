@@ -8,15 +8,13 @@ import javafx.scene as jfxs
 import scalafx.Includes.*
 import scalafx.stage.{Modality, Stage}
 
-import java.net.URL
-
 object Main extends JFXApp3:
-  Database.setupDB()
-  var roots: Option[jfxs.scene.layout.BorderPane] = None
+  //Database.setupDB()
+  var roots: Option[scalafx.scene.layout.BorderPane] = None
 
   override def start(): Unit =
 
-    val rootResource: URL = getClass.getResource("/soonteck/view/RootLayout.fxml")
+    val rootResource= getClass.getResource("/soonteck/view/RootLayout.fxml")
     val loader = new FXMLLoader(rootResource)
     loader.load()
 
@@ -26,28 +24,26 @@ object Main extends JFXApp3:
       title = "FridgeApp"
       scene = new Scene():
         root = roots.get
-/*
+
     showLoginOverview()
 
   def showLoginOverview(): Unit =
-    val resource = getClass.getResource("/foodapp/login/LoginOverview.fxml")
+    val resource = getClass.getResource("view/LoginOverview.fxml")
     val loader = new FXMLLoader(resource)
     loader.load()
-
     val roots = loader.getRoot[jfxs.layout.AnchorPane]
+    val ctrl = loader.getController[LoginOverviewController]
+
+
     this.roots.get.center = roots
 
   def showRegisterOverview(): Unit =
-    val resource = getClass.getResource("/foodapp/register/RegisterOverview.fxml")
+    val resource = getClass.getResource("view/RegisterOverview.fxml")
     val loader = new FXMLLoader(resource)
     loader.load()
-    val roots2 = loader.getRoot[jfxs.Parent]
-    val control = loader.getController[RegisterOverviewController]
+    val registerRoot = loader.getRoot[jfxs.layout.AnchorPane]
+    val controller = loader.getController[RegisterOverviewController]
 
-    val register = new Stage():
-      initModality(Modality.ApplicationModal)
-      initOwner(stage)
-      scene = new Scene:
-        root = roots2
-    register.showAndWait()
-*/
+    this.roots.get.center = registerRoot
+
+

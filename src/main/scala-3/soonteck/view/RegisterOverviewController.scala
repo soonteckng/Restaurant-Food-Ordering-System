@@ -8,6 +8,7 @@ import javafx.fxml.FXML
 import javafx.scene.control.{Button, Label, PasswordField, TextField}
 import scalafx.Includes.*
 import scalafx.stage.Stage
+import soonteck.Main
 
 @FXML
 class RegisterOverviewController {
@@ -97,12 +98,10 @@ class RegisterOverviewController {
   
   // Handle back to login
   @FXML
-  private def handleBackToLogin(action: ActionEvent): Unit = {
-        // In a real implementation, you would:
-    // mainApp.foreach(_.showLoginView())
-    println("Navigating back to login screen...")
-  }
-  
+  private def handleBackToLogin(action: ActionEvent): Unit =
+    Main.showLoginOverview()
+
+
   // Clear all input fields
   private def clearFields(): Unit = {
     usernameField.clear()

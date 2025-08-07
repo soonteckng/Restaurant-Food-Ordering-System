@@ -1,4 +1,4 @@
-package soonteck.util
+/*package soonteck.util
 import scalikejdbc.*
 import soonteck.model.User
 
@@ -18,4 +18,4 @@ object Database extends Database :
   def hasDBInitialize : Boolean =
     DB getTable "User" match
       case Some(x) => true
-      case None => false
+      case None => false*/
