@@ -14,7 +14,7 @@ object Main extends JFXApp3:
 
   override def start(): Unit =
 
-    val rootResource= getClass.getResource("/soonteck/view/RootLayout.fxml")
+    val rootResource= getClass.getResource("view/RootLayout.fxml")
     val loader = new FXMLLoader(rootResource)
     loader.load()
 

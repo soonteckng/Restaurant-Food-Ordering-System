@@ -41,8 +41,10 @@ class RegisterOverviewController {
     val confirmPassword = confirmPasswordField.getText
     val fridgeName = fridgeNameField.getText.trim
 
-    // Check any empty fields
-    validateInput(username, password, confirmPassword, fridgeName)
+    // Stop if validation fails
+    if (!validateInput(username, password, confirmPassword, fridgeName)) {
+      return
+    }
 
     // Create user
     val newUser = User(username, password)
