@@ -42,25 +42,17 @@ class RegisterOverviewController {
     val fridgeName = fridgeNameField.getText.trim
 
     // Stop if validation fails
-    if (!validateInput(username, password, confirmPassword, fridgeName)) {
-      return
-    }
+    if (!validateInput(username, password, confirmPassword, fridgeName)) return
 
     // Create user
     val newUser = User(username, password)
 
-    // Attempt registration
-    if (authService.registerUser(newUser)) {
+    if (authService.registerUser(newUser)) { // DB-backed registration
       alerts.showSuccessAlert("Registration Successful", s"Account created for $username! You can now login.")
-
-      // Clear fields
       clearFields()
-
-      // Navigate back to login after a brief delay
-      // In a real app, you might want to do this automatically
       handleBackToLogin(action)
     } else {
-      alerts.showErrorAlert("Registration Failed", s"Username '$username' already exists. Please choose a different username.")
+      alerts.showErrorAlert("Registration Failed", s"Username '$username' already exists.")
     }
   }
 

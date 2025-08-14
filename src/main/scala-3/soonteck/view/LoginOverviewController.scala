@@ -40,23 +40,11 @@ class LoginOverviewController {
     val username = usernameField.getText.trim
     val password = passwordField.getText
 
-    // Validate input
-    if (username.isEmpty || password.isEmpty) {
-      alerts.showErrorAlert("Login Error", "Please enter both username and password.")
-      return
-    }
-
-    // Attempt login
-    if (authService.login(username, password)) {
-      val user = authService.getCurrentUser.get
-      alerts.showSuccessAlert("Login Successful", s"Welcome back, ${user.getUsername}!")
-
-      // Clear fields
-      clearFields()
-
+    if (authService.validateLogin(username, password)) { // DB-backed login
+      alerts.showSuccessAlert("Login Successful", s"Welcome, $username!")
+      // navigate to next page
     } else {
-      alerts.showErrorAlert("Login Failed", "Invalid username or password. Please try again.")
-      passwordField.clear()
+      alerts.showErrorAlert("Login Failed", "Invalid username or password.")
     }
   }
 

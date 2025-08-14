@@ -7,12 +7,23 @@ import javafx.fxml.FXMLLoader
 import javafx.scene as jfxs
 import scalafx.Includes.*
 import scalafx.stage.{Modality, Stage}
+import soonteck.model.User
+import soonteck.util.Database
 
 object Main extends JFXApp3:
-  //Database.setupDB()
+  Database.setupDB()
   var roots: Option[scalafx.scene.layout.BorderPane] = None
 
   override def start(): Unit =
+    // Initialize database table FIRST
+    try {
+      User.initializeTable()
+      println("Database initialized successfully")
+    } catch {
+      case ex: Exception =>
+        println(s"Database initialization failed: ${ex.getMessage}")
+        ex.printStackTrace()
+    }
 
     val rootResource= getClass.getResource("view/RootLayout.fxml")
     val loader = new FXMLLoader(rootResource)
