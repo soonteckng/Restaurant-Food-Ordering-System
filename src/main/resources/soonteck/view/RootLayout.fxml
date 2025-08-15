@@ -19,26 +19,26 @@
                      </accelerator></MenuItem>
             </items>
                <accelerator>
-                  <KeyCodeCombination alt="UP" code="F" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                  <KeyCodeCombination alt="DOWN" code="F" control="UP" meta="UP" shift="UP" shortcut="UP" />
                </accelerator>
           </Menu>
           <Menu text="_Edit">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem text="Delete" />
             </items>
                <accelerator>
-                  <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                  <KeyCodeCombination alt="DOWN" code="E" control="UP" meta="UP" shift="UP" shortcut="UP" />
                </accelerator>
           </Menu>
           <Menu text="_Help">
             <items>
-              <MenuItem text="About">
+              <MenuItem onAction="#handleAbout" text="About">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
             </items>
                <accelerator>
-                  <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                  <KeyCodeCombination alt="DOWN" code="H" control="UP" meta="UP" shift="UP" shortcut="UP" />
                </accelerator>
           </Menu>
         </menus>
