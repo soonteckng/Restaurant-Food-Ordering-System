@@ -9,3 +9,6 @@ class RootLayoutController():
   @FXML
   def handleClose(action: ActionEvent): Unit =
     Main.stage.close()
+    
+  def handleAbout(action: ActionEvent): Unit =
+    Main.showAbout()

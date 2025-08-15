@@ -1,11 +1,12 @@
 package soonteck
-import soonteck.view.{LoginOverviewController, RegisterOverviewController}
+import soonteck.view.{LoginOverviewController, RegisterOverviewController, AboutOverviewController}
 import scalafx.application.JFXApp3
 import scalafx.application.JFXApp3.PrimaryStage
 import scalafx.scene.Scene
 import javafx.fxml.FXMLLoader
 import javafx.scene as jfxs
 import scalafx.Includes.*
+import scalafx.stage.Modality.ApplicationModal
 import scalafx.stage.{Modality, Stage}
 import soonteck.model.User
 import soonteck.util.Database
@@ -43,18 +44,37 @@ object Main extends JFXApp3:
     val loader = new FXMLLoader(resource)
     loader.load()
     val roots = loader.getRoot[jfxs.layout.AnchorPane]
-    val ctrl = loader.getController[LoginOverviewController]
-
-
+    val loginController = loader.getController[LoginOverviewController]
     this.roots.get.center = roots
+
+  def showAbout(): Boolean =
+    val about = getClass.getResource("view/About.fxml")
+    val loader = new FXMLLoader(about)
+    loader.load()
+    val pane = loader.getRoot[jfxs.layout.AnchorPane]
+    val mywindow = new Stage():
+      initOwner(stage)
+      initModality(ApplicationModal)
+      title = "About"
+      scene = new Scene():
+        root = pane
+    val aboutController = loader.getController[AboutOverviewController]
+    aboutController.stage = Option(mywindow)
+    mywindow.showAndWait()
+    aboutController.okClicked
 
   def showRegisterOverview(): Unit =
     val resource = getClass.getResource("view/RegisterOverview.fxml")
     val loader = new FXMLLoader(resource)
     loader.load()
     val registerRoot = loader.getRoot[jfxs.layout.AnchorPane]
-    val controller = loader.getController[RegisterOverviewController]
+    val registerController = loader.getController[RegisterOverviewController]
 
     this.roots.get.center = registerRoot
-
-
+/*
+  def showHomePageOverview(): Unit =
+    val resource = getClass.getResource("view/HomePageOverview.fxml")
+    val loader = new FXMLLoader(resource)
+    loader.load()
+    val homeRoot = loader.getRoot[jfxs.layout.AnchorPane]
+    val homePageController =loader.getController[HomePageOverviewController]*/

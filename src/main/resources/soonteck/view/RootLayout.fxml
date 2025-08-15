@@ -6,6 +6,7 @@
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
 
+<?import javafx.scene.layout.AnchorPane?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soonteck.view.RootLayoutController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
@@ -31,7 +32,10 @@
           </Menu>
           <Menu text="_Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem onAction="#handleAbout" text="About">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
             </items>
                <accelerator>
                   <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
@@ -40,4 +44,8 @@
         </menus>
       </MenuBar>
    </top>
+    <center>
+        <!-- Placeholder for other screens -->
+        <AnchorPane fx:id="contentArea" />
+    </center>
 </BorderPane>
