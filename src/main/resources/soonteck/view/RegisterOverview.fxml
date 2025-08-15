@@ -47,8 +47,6 @@
 
                         <PasswordField fx:id="confirmPasswordField" prefHeight="30.0" prefWidth="250.0" promptText="Confirm Password (required)" />
 
-                        <TextField fx:id="fridgeNameField" prefHeight="30.0" prefWidth="250.0" promptText="Fridge Name (e.g., Kitchen Fridge)" text="My Smart Fridge" />
-
                         <ButtonBar prefHeight="40.0" prefWidth="250.0">
                             <buttons>
                                 <Button fx:id="backToLoginButton" mnemonicParsing="false" onAction="#handleBackToLogin" text="Back to Login" />

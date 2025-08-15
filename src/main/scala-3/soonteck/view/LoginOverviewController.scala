@@ -42,7 +42,7 @@ class LoginOverviewController {
 
     if (authService.validateLogin(username, password)) { // DB-backed login
       alerts.showSuccessAlert("Login Successful", s"Welcome, $username!")
-      // navigate to next page
+      Main.showHomePageOverview()
     } else {
       alerts.showErrorAlert("Login Failed", "Invalid username or password.")
     }

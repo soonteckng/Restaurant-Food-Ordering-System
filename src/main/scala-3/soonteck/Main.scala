@@ -1,5 +1,5 @@
 package soonteck
-import soonteck.view.{LoginOverviewController, RegisterOverviewController, AboutOverviewController}
+import soonteck.view.{AboutOverviewController, HomePageOverviewController, LoginOverviewController, RegisterOverviewController}
 import scalafx.application.JFXApp3
 import scalafx.application.JFXApp3.PrimaryStage
 import scalafx.scene.Scene
@@ -18,7 +18,6 @@ object Main extends JFXApp3:
   override def start(): Unit =
     // Initialize database table FIRST
     try {
-      User.initializeTable()
       println("Database initialized successfully")
     } catch {
       case ex: Exception =>
@@ -71,10 +70,15 @@ object Main extends JFXApp3:
     val registerController = loader.getController[RegisterOverviewController]
 
     this.roots.get.center = registerRoot
-/*
+
   def showHomePageOverview(): Unit =
     val resource = getClass.getResource("view/HomePageOverview.fxml")
     val loader = new FXMLLoader(resource)
     loader.load()
     val homeRoot = loader.getRoot[jfxs.layout.AnchorPane]
-    val homePageController =loader.getController[HomePageOverviewController]*/
+    val homeController = loader.getController[HomePageOverviewController]
+
+    // Set the center of root layout to Home Page
+    this.roots.get.center = homeRoot
+    
+    
