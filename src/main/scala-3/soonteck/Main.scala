@@ -6,14 +6,21 @@ import scalafx.scene.Scene
 import javafx.fxml.FXMLLoader
 import javafx.scene as jfxs
 import scalafx.Includes.*
+import scalafx.collections.ObservableBuffer
 import scalafx.stage.Modality.ApplicationModal
 import scalafx.stage.{Modality, Stage}
-import soonteck.model.User
+import soonteck.model.{FoodType, User}
 import soonteck.util.Database
 
 object Main extends JFXApp3:
   Database.setupDB()
+  FoodType.initializeTable()
+  FoodType.resetDefaultFoods()
+  
   var roots: Option[scalafx.scene.layout.BorderPane] = None
+
+  val foodData = new ObservableBuffer[FoodType]()
+  foodData ++= FoodType.getAllFood
 
   override def start(): Unit =
     // Initialize database table FIRST
