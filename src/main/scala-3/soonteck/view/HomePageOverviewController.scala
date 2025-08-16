@@ -1,8 +1,7 @@
 package soonteck.view
 
 import scalafx.Includes.*
-import javafx.scene.control.{Alert, Button, ComboBox, Label, Spinner, TableColumn, TableRow, TableView, TextField, Tooltip}
-import javafx.scene.control.Alert.AlertType
+import javafx.scene.control.{ComboBox, Label, Spinner, TableColumn, TableRow, TableView, TextField, Tooltip}
 import javafx.scene.input.MouseEvent
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.stage.{Modality, Stage}
@@ -12,8 +11,7 @@ import javafx.collections.transformation.FilteredList
 import javafx.util.Callback
 import soonteck.Main
 import soonteck.model.{CartItem, FoodType}
-
-import scala.collection.mutable.ListBuffer
+import soonteck.alert.Alerts
 import javafx.beans.value.{ChangeListener, ObservableValue}
 
 @FXML
@@ -37,13 +35,13 @@ class HomePageOverviewController():
   @FXML
   private var quantitySpinner: Spinner[Int] = null
   @FXML
-  private var addToCartButton: Button = null
+  private var addToCartButton: javafx.scene.control.Button = null
   @FXML
   private var categoryComboBox: ComboBox[String] = null
   @FXML
   private var searchField: TextField = null
   @FXML
-  private var healthyFilterButton: Button = null
+  private var healthyFilterButton: javafx.scene.control.Button = null
   @FXML
   private var cartCountLabel: Label = null
 
@@ -57,13 +55,16 @@ class HomePageOverviewController():
   @FXML
   private var cartPriceColumn: TableColumn[CartItem, java.lang.Double] = null
   @FXML
-  private var clearCartButton: Button = null
+  private var clearCartButton: javafx.scene.control.Button = null
 
   // Data
   private val cartItems: ObservableList[CartItem] = FXCollections.observableArrayList()
   private var filteredFoodList: FilteredList[FoodType] = null
   private var selectedFood: FoodType = null
   private var isHealthyFilterActive = false
+
+  // Alert instance
+  private val alerts = new Alerts()
 
   def initialize(): Unit =
     initializeMenuTab()
@@ -165,9 +166,9 @@ class HomePageOverviewController():
         cartItems.add(new CartItem(selectedFood, quantity))
 
       updateCartCount()
-      showAlert("Success", s"Added ${selectedFood.name.value} to cart!", AlertType.INFORMATION)
+      alerts.showSuccessAlert("Success", s"Added ${selectedFood.name.value} to cart!")
     else
-      showAlert("No Selection", "Please select a food item first.", AlertType.WARNING)
+      alerts.showWarningAlert("No Selection", "Please select a food item first.")
 
   @FXML
   def addToCartFromDialog(food: FoodType, quantity: Int): Unit =
@@ -184,6 +185,7 @@ class HomePageOverviewController():
       cartItems.add(new CartItem(food, quantity))
 
     updateCartCount()
+
   @FXML
   def handleShowAll(): Unit =
     categoryComboBox.setValue("All")
@@ -197,17 +199,17 @@ class HomePageOverviewController():
     isHealthyFilterActive = !isHealthyFilterActive
     if isHealthyFilterActive then
       healthyFilterButton.setStyle("-fx-background-color: #dc3545; -fx-text-fill: white;")
-      healthyFilterButton.setText("Remove Filter")
+      healthyFilterButton.setText("Show All")
     else
       healthyFilterButton.setStyle("-fx-background-color: #28a745; -fx-text-fill: white;")
-      healthyFilterButton.setText("Healthy Options")
+      healthyFilterButton.setText("Healthier Options")
     applyFilters()
 
   @FXML
   def handleClearCart(): Unit =
     cartItems.clear()
     updateCartCount()
-    showAlert("Cart Cleared", "All items have been removed from your cart.", AlertType.INFORMATION)
+    alerts.showSuccessAlert("Cart Cleared", "All items have been removed from your cart.")
 
   @FXML
   def handleRemoveFromCart(): Unit =
@@ -215,9 +217,9 @@ class HomePageOverviewController():
     if selectedItem != null then
       cartItems.remove(selectedItem)
       updateCartCount()
-      showAlert("Removed", "Item removed from cart.", AlertType.INFORMATION)
+      alerts.showSuccessAlert("Removed", "Item removed from cart.")
     else
-      showAlert("No Selection", "Please select an item to remove.", AlertType.WARNING)
+      alerts.showWarningAlert("No Selection", "Please select an item to remove.")
 
   @FXML
   def handleCalculateCalories(): Unit =
@@ -230,14 +232,12 @@ class HomePageOverviewController():
       totalCalories += cartItems.get(i).getCalories
       totalPrice += cartItems.get(i).getTotalPrice
 
-    val message = s"""
-                     |Cart Summary:
-                     |Items: $itemCount
-                     |Total Calories: $totalCalories kcal
-                     |Total Price: RM ${"%.2f".format(totalPrice)}
-    """.stripMargin
+    val message = s"""Cart Summary:
+Items: $itemCount
+Total Calories: $totalCalories kcal
+Total Price: RM ${"%.2f".format(totalPrice)}"""
 
-    showAlert("Cart Summary", message, AlertType.INFORMATION)
+    alerts.showSuccessAlert("Cart Summary", message)
 
   private def applyFilters(): Unit =
     filteredFoodList.setPredicate { food =>
@@ -280,11 +280,4 @@ class HomePageOverviewController():
     catch
       case e: Exception =>
         e.printStackTrace()
-        showAlert("Error", "Could not load food details dialog.", AlertType.ERROR)
-
-  private def showAlert(title: String, message: String, alertType: AlertType): Unit =
-    val alert = new Alert(alertType)
-    alert.setTitle(title)
-    alert.setHeaderText(null)
-    alert.setContentText(message)
-    alert.showAndWait()
+        alerts.showErrorAlert("Error", "Could not load food details dialog.")
