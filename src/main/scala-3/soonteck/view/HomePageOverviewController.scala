@@ -18,26 +18,44 @@ import javafx.beans.value.{ChangeListener, ObservableValue}
 class HomePageOverviewController():
 
   // Menu Tab Controls
-  @FXML private var foodTable: TableView[FoodType] = null
-  @FXML private var nameColumn: TableColumn[FoodType, String] = null
-  @FXML private var categoryColumn: TableColumn[FoodType, String] = null
-  @FXML private var priceColumn: TableColumn[FoodType, java.lang.Double] = null
-  @FXML private var caloriesColumn: TableColumn[FoodType, java.lang.Integer] = null
-  @FXML private var descriptionColumn: TableColumn[FoodType, String] = null
-  @FXML private var selectedItemLabel: Label = null
-  @FXML private var quantitySpinner: Spinner[Int] = null
-  @FXML private var addToCartButton: Button = null
-  @FXML private var categoryComboBox: ComboBox[String] = null
-  @FXML private var searchField: TextField = null
-  @FXML private var healthyFilterButton: Button = null
-  @FXML private var cartCountLabel: Label = null
+  @FXML
+  private var foodTable: TableView[FoodType] = null
+  @FXML
+  private var nameColumn: TableColumn[FoodType, String] = null
+  @FXML
+  private var categoryColumn: TableColumn[FoodType, String] = null
+  @FXML
+  private var priceColumn: TableColumn[FoodType, java.lang.Double] = null
+  @FXML
+  private var caloriesColumn: TableColumn[FoodType, java.lang.Integer] = null
+  @FXML
+  private var descriptionColumn: TableColumn[FoodType, String] = null
+  @FXML
+  private var selectedItemLabel: Label = null
+  @FXML
+  private var quantitySpinner: Spinner[Int] = null
+  @FXML
+  private var addToCartButton: Button = null
+  @FXML
+  private var categoryComboBox: ComboBox[String] = null
+  @FXML
+  private var searchField: TextField = null
+  @FXML
+  private var healthyFilterButton: Button = null
+  @FXML
+  private var cartCountLabel: Label = null
 
   // Cart Tab Controls
-  @FXML private var cartTable: TableView[CartItem] = null
-  @FXML private var cartItemColumn: TableColumn[CartItem, String] = null
-  @FXML private var cartQuantityColumn: TableColumn[CartItem, java.lang.Integer] = null
-  @FXML private var cartPriceColumn: TableColumn[CartItem, java.lang.Double] = null
-  @FXML private var clearCartButton: Button = null
+  @FXML
+  private var cartTable: TableView[CartItem] = null
+  @FXML
+  private var cartItemColumn: TableColumn[CartItem, String] = null
+  @FXML
+  private var cartQuantityColumn: TableColumn[CartItem, java.lang.Integer] = null
+  @FXML
+  private var cartPriceColumn: TableColumn[CartItem, java.lang.Double] = null
+  @FXML
+  private var clearCartButton: Button = null
 
   // Data
   private val cartItems: ObservableList[CartItem] = FXCollections.observableArrayList()
@@ -200,12 +218,12 @@ class HomePageOverviewController():
     var itemCount = 0
     for i <- 0 until cartItems.size() do
       itemCount += cartItems.get(i).quantity.value
-    cartCountLabel.setText(s"Cart: $itemCount items")
+    cartCountLabel.setText(s"$itemCount item(s) in Cart")
 
   private def showFoodDetails(food: FoodType): Unit =
     try
       val loader = new FXMLLoader()
-      loader.setLocation(getClass.getResource("/soonteck/view/FoodDetailsDialog.fxml"))
+      loader.setLocation(getClass.getResource("/soonteck/view/FoodDetailsOverview.fxml"))
       val page: Parent = loader.load()
 
       val dialogStage = new Stage()
@@ -213,9 +231,9 @@ class HomePageOverviewController():
       dialogStage.initModality(Modality.WINDOW_MODAL)
       dialogStage.setScene(new Scene(page))
 
-      val controller = loader.getController[FoodDetailsOverviewController]
-      controller.setDialogStage(dialogStage)
-      controller.setFoodItem(food)
+      val foodDetailsController = loader.getController[FoodDetailsOverviewController]
+      foodDetailsController.setDialogStage(dialogStage)
+      foodDetailsController.setFoodItem(food)
 
       dialogStage.showAndWait()
     catch

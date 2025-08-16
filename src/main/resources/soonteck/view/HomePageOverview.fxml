@@ -97,7 +97,10 @@
                               <Spinner fx:id="quantitySpinner" editable="true" initialValue="1" max="10" min="1" prefWidth="70.0" />
                               <Button fx:id="addToCartButton" onAction="#handleAddToCart" style="-fx-background-color: #007bff; -fx-text-fill: white;" text="Add to Cart 🛒" />
                               <Region HBox.hgrow="ALWAYS" />
-                              <Label fx:id="cartCountLabel" text="Cart: 0 items" textFill="#666666" />
+                              <Label fx:id="cartCountLabel" prefHeight="21.0" prefWidth="103.0" text="0 item(s) in Cart" textFill="#666666">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
                            </children>
                         </HBox>
                      </children>

@@ -31,6 +31,7 @@ class LoginOverviewController {
 
     // Print available test users for debugging
     println("=== Test Users Available ===")
+    println("Username: abc, Password: 123456")
     println("Username: admin, Password: Admin123")
     }
 
