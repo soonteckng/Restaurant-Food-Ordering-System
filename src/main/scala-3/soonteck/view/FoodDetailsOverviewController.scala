@@ -21,9 +21,13 @@ class FoodDetailsOverviewController:
 
   private var dialogStage: Stage = null
   private var currentFood: FoodType = null
+  private var mainController: HomePageOverviewController = null  // Add this line
 
   def setDialogStage(dialogStage: Stage): Unit =
     this.dialogStage = dialogStage
+
+  def setMainController(mainController: HomePageOverviewController): Unit =
+    this.mainController = mainController
 
   def setFoodItem(foodItem: FoodType): Unit =
     currentFood = foodItem
@@ -78,11 +82,9 @@ class FoodDetailsOverviewController:
 
   @FXML
   def handleQuickAdd(): Unit =
-    if currentFood != null then
+    if currentFood != null && mainController != null then
       val quantity = quickQuantitySpinner.getValue
-      // Here you would call the main controller's add to cart method
-      // For now, we'll just close the dialog
-      println(s"Quick adding ${quantity} of ${currentFood.name.value} to cart")
+      mainController.addToCartFromDialog(currentFood, quantity)
       dialogStage.close()
 
   @FXML

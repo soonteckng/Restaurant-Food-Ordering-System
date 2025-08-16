@@ -145,6 +145,21 @@ class HomePageOverviewController():
       showAlert("No Selection", "Please select a food item first.", AlertType.WARNING)
 
   @FXML
+  def addToCartFromDialog(food: FoodType, quantity: Int): Unit =
+    var existingItem: CartItem = null
+
+    // Find existing item manually
+    for i <- 0 until cartItems.size() do
+      if cartItems.get(i).item.value == food.name.value then
+        existingItem = cartItems.get(i)
+
+    if existingItem != null then
+      existingItem.quantity.value = existingItem.quantity.value + quantity
+    else
+      cartItems.add(new CartItem(food, quantity))
+
+    updateCartCount()
+  @FXML
   def handleShowAll(): Unit =
     categoryComboBox.setValue("All")
     searchField.clear()
@@ -233,6 +248,7 @@ class HomePageOverviewController():
 
       val foodDetailsController = loader.getController[FoodDetailsOverviewController]
       foodDetailsController.setDialogStage(dialogStage)
+      foodDetailsController.setMainController(this)
       foodDetailsController.setFoodItem(food)
 
       dialogStage.showAndWait()
