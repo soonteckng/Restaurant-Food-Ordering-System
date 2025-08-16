@@ -107,7 +107,7 @@
                 <!-- Close Button -->
                 <HBox alignment="CENTER_RIGHT" spacing="10.0">
                     <children>
-                        <Button fx:id="closeButton" defaultButton="true" mnemonicParsing="false" onAction="#handleClose" style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-min-width: 80px;" text="Close" />
+                        <Button fx:id="closeButton" defaultButton="true" mnemonicParsing="false" onAction="#handleClose" style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-min-width: 80px;" text="OK" />
                     </children>
                 </HBox>
             </children>

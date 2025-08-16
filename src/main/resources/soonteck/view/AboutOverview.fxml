@@ -31,7 +31,7 @@
               </children>
           </GridPane>
 
-          <Button fx:id="closeButton" defaultButton="true" mnemonicParsing="false" onAction="#handleClose" style="-fx-background-color: #0619e9; -fx-text-fill: white; -fx-min-width: 80px;" text="Close" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+          <Button fx:id="closeButton" defaultButton="true" mnemonicParsing="false" onAction="#handleClose" style="-fx-background-color: #0619e9; -fx-text-fill: white; -fx-min-width: 80px;" text="OK" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
           <Label alignment="CENTER" text="About" textFill="#0619e9" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0">
               <font>
                   <Font name="Rockwell Bold" size="18.0" />
