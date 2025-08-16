@@ -21,7 +21,7 @@ class FoodDetailsOverviewController:
 
   private var dialogStage: Stage = null
   private var currentFood: FoodType = null
-  private var mainController: HomePageOverviewController = null  // Add this line
+  private var mainController: HomePageOverviewController = null
 
   def setDialogStage(dialogStage: Stage): Unit =
     this.dialogStage = dialogStage

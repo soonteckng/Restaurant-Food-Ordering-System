@@ -1,16 +1,18 @@
 package soonteck.view
 
 import scalafx.Includes.*
-import javafx.scene.control.{TableView, TableColumn, Label, Spinner, Button, ComboBox, TextField, Alert}
+import javafx.scene.control.{Alert, Button, ComboBox, Label, Spinner, TableColumn, TableRow, TableView, TextField, Tooltip}
 import javafx.scene.control.Alert.AlertType
 import javafx.scene.input.MouseEvent
 import javafx.fxml.{FXML, FXMLLoader}
-import javafx.stage.{Stage, Modality}
-import javafx.scene.{Scene, Parent}
-import javafx.collections.{ObservableList, FXCollections}
+import javafx.stage.{Modality, Stage}
+import javafx.scene.{Parent, Scene}
+import javafx.collections.{FXCollections, ObservableList}
 import javafx.collections.transformation.FilteredList
+import javafx.util.Callback
 import soonteck.Main
-import soonteck.model.{FoodType, CartItem}
+import soonteck.model.{CartItem, FoodType}
+
 import scala.collection.mutable.ListBuffer
 import javafx.beans.value.{ChangeListener, ObservableValue}
 
@@ -67,6 +69,7 @@ class HomePageOverviewController():
     initializeMenuTab()
     initializeCartTab()
     setupEventHandlers()
+    setupTableTooltip()
 
   private def initializeMenuTab(): Unit =
     // Setup food table
@@ -121,6 +124,28 @@ class HomePageOverviewController():
     categoryComboBox.valueProperty().addListener(new ChangeListener[String] {
       override def changed(observable: ObservableValue[_ <: String], oldValue: String, newValue: String): Unit =
         applyFilters()
+    })
+
+  private def setupTableTooltip(): Unit =
+    foodTable.setRowFactory(new Callback[TableView[FoodType], TableRow[FoodType]] {
+      override def call(tableView: TableView[FoodType]): TableRow[FoodType] = {
+        val row = new TableRow[FoodType]()
+
+        row.itemProperty().addListener(new ChangeListener[FoodType] {
+          override def changed(observable: ObservableValue[_ <: FoodType], oldValue: FoodType, newValue: FoodType): Unit = {
+            if (newValue != null) {
+              val tooltip = new Tooltip()
+              tooltip.setText("Double-click to view details")
+              tooltip.setStyle("-fx-font-size: 12px; -fx-background-color: #333333; -fx-text-fill: white; -fx-background-radius: 4px;")
+              row.setTooltip(tooltip)
+            } else {
+              row.setTooltip(null)
+            }
+          }
+        })
+
+        row
+      }
     })
 
   @FXML
