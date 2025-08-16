@@ -129,12 +129,86 @@
                            </children>
                         </HBox>
 
-                        <!-- Cart Items Table -->
-                        <TableView fx:id="cartTable" maxWidth="Infinity" prefHeight="229.0" prefWidth="589.0" VBox.vgrow="ALWAYS">
+                        <!-- Enhanced Cart Summary Statistics -->
+                        <VBox spacing="8.0" style="-fx-background-color: #ffffff; -fx-border-color: #dee2e6; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12;">
+                           <children>
+                              <Label text="Order Summary" textFill="#333333">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" spacing="30.0">
+                                 <children>
+                                    <VBox alignment="CENTER" spacing="2.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: bold;" text="Total Items" textFill="#666666">
+                                             <font>
+                                                <Font size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="cartSummaryItemsLabel" text="0" textFill="#333333">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" spacing="2.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: bold;" text="Total Calories" textFill="#666666">
+                                             <font>
+                                                <Font size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="cartSummaryCaloriesLabel" text="0 kcal" textFill="#333333">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" spacing="2.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: bold;" text="Total Price" textFill="#666666">
+                                             <font>
+                                                <Font size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="cartSummaryPriceLabel" text="RM 0.00" textFill="#28a745">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <VBox alignment="CENTER" spacing="2.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: bold;" text="Health Status" textFill="#666666">
+                                             <font>
+                                                <Font size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="cartHealthStatusLabel" text="🟢 Healthy" textFill="#28a745">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+
+                        <!-- Enhanced Cart Items Table -->
+                        <TableView fx:id="cartTable" maxWidth="Infinity" prefHeight="150.0" prefWidth="589.0" VBox.vgrow="ALWAYS">
                            <columns>
-                              <TableColumn fx:id="cartItemColumn" prefWidth="200.0" text="Item" />
-                              <TableColumn fx:id="cartQuantityColumn" text="Quantity" />
-                              <TableColumn fx:id="cartPriceColumn" prefWidth="100.0" text="Price (RM)" />
+                              <TableColumn fx:id="cartItemColumn" prefWidth="150.0" text="Food" />
+                              <TableColumn fx:id="cartQuantityColumn" prefWidth="70.0" text="Qty" />
+                              <TableColumn fx:id="cartUnitPriceColumn" prefWidth="90.0" text="Unit Price (RM)" />
+                              <TableColumn fx:id="cartCaloriesColumn" prefWidth="100.0" text="Total Calories" />
+                              <TableColumn fx:id="cartPriceColumn" prefWidth="100.0" text="Total Price (RM)" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -145,8 +219,8 @@
                         <HBox alignment="CENTER" prefHeight="101.0" prefWidth="589.0" spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-padding: 10;">
                            <children>
                               <Button onAction="#handleRemoveFromCart" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ffc107; -fx-text-fill: black;" text="Remove Selected Food" />
-                              <Button onAction="#handleCalculateCalories" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #17a2b8; -fx-text-fill: white;" text="Total Calories" />
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Checkout" />
+                              <Button onAction="#handleCalculateCalories" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #17a2b8; -fx-text-fill: white;" text="Detailed Summary" />
+                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #28a745; -fx-text-fill: white;" text="Checkout" />
                            </children>
                         </HBox>
                      </children>

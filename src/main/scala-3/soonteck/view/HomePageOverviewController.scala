@@ -1,5 +1,8 @@
 package soonteck.view
 
+import soonteck.Main
+import soonteck.model.{CartItem, FoodType}
+import soonteck.alert.Alerts
 import scalafx.Includes.*
 import javafx.scene.control.{ComboBox, Label, Spinner, TableColumn, TableRow, TableView, TextField, Tooltip}
 import javafx.scene.input.MouseEvent
@@ -9,9 +12,6 @@ import javafx.scene.{Parent, Scene}
 import javafx.collections.{FXCollections, ObservableList}
 import javafx.collections.transformation.FilteredList
 import javafx.util.Callback
-import soonteck.Main
-import soonteck.model.{CartItem, FoodType}
-import soonteck.alert.Alerts
 import javafx.beans.value.{ChangeListener, ObservableValue}
 
 @FXML
@@ -56,6 +56,18 @@ class HomePageOverviewController():
   private var cartPriceColumn: TableColumn[CartItem, java.lang.Double] = null
   @FXML
   private var clearCartButton: javafx.scene.control.Button = null
+  @FXML
+  private var cartUnitPriceColumn: TableColumn[CartItem, java.lang.Double] = null
+  @FXML
+  private var cartCaloriesColumn: TableColumn[CartItem, java.lang.Integer] = null
+  @FXML
+  private var cartSummaryItemsLabel: Label = null
+  @FXML
+  private var cartSummaryCaloriesLabel: Label = null
+  @FXML
+  private var cartSummaryPriceLabel: Label = null
+  @FXML
+  private var cartHealthStatusLabel: Label = null
 
   // Data
   private val cartItems: ObservableList[CartItem] = FXCollections.observableArrayList()
@@ -97,7 +109,19 @@ class HomePageOverviewController():
     cartTable.setItems(cartItems)
     cartItemColumn.cellValueFactory = { _.value.item }
     cartQuantityColumn.cellValueFactory = { c => c.value.quantity.delegate.asObject() }
-    cartPriceColumn.cellValueFactory = { c => c.value.price.delegate.asObject() }
+    cartUnitPriceColumn.cellValueFactory = { c =>
+      val unitPrice = c.value.foodItem.price.value
+      new javafx.beans.property.SimpleDoubleProperty(unitPrice).asObject()
+    }
+    cartCaloriesColumn.cellValueFactory = { c =>
+      val totalCalories = c.value.getCalories
+      new javafx.beans.property.SimpleIntegerProperty(totalCalories).asObject()
+    }
+    cartPriceColumn.cellValueFactory = { c =>
+      val totalPrice = c.value.getTotalPrice
+      new javafx.beans.property.SimpleDoubleProperty(totalPrice).asObject()
+    }
+
 
   private def setupEventHandlers(): Unit =
     // Food table selection
@@ -207,10 +231,18 @@ class HomePageOverviewController():
 
   @FXML
   def handleClearCart(): Unit =
-    cartItems.clear()
-    updateCartCount()
-    alerts.showSuccessAlert("Cart Cleared", "All items have been removed from your cart.")
-
+    if cartItems.isEmpty then
+      alerts.showInfoAlert("Nothing to Clear", "Your cart is already empty.")
+    else
+      val confirmed = alerts.showConfirmationAlert(
+        "Clear Cart",
+        "Are you sure you want to clear all items from your cart?",
+      )
+      if confirmed then
+        cartItems.clear()
+        updateCartCount()
+        alerts.showSuccessAlert("Cart Cleared", "All items have been removed from your cart.")
+  
   @FXML
   def handleRemoveFromCart(): Unit =
     val selectedItem = cartTable.getSelectionModel.getSelectedItem
@@ -223,21 +255,31 @@ class HomePageOverviewController():
 
   @FXML
   def handleCalculateCalories(): Unit =
-    var totalCalories = 0
-    var totalPrice = 0.0
-    val itemCount = cartItems.size()
+    if cartItems.isEmpty then
+      alerts.showWarningAlert("Empty Cart", "Your cart is empty. Add some items first!")
+    else
+      showCaloriesSummary()
 
-    // Calculate totals manually
-    for i <- 0 until cartItems.size() do
-      totalCalories += cartItems.get(i).getCalories
-      totalPrice += cartItems.get(i).getTotalPrice
+  private def showCaloriesSummary(): Unit =
+    try
+      val loader = new FXMLLoader()
+      loader.setLocation(getClass.getResource("/soonteck/view/TotalCaloriesOverview.fxml"))
+      val page: Parent = loader.load()
 
-    val message = s"""Cart Summary:
-Items: $itemCount
-Total Calories: $totalCalories kcal
-Total Price: RM ${"%.2f".format(totalPrice)}"""
+      val dialogStage = new Stage()
+      dialogStage.setTitle("Cart Summary")
+      dialogStage.initModality(Modality.WINDOW_MODAL)
+      dialogStage.setScene(new Scene(page))
 
-    alerts.showSuccessAlert("Cart Summary", message)
+      val caloriesController = loader.getController[TotalCaloriesOverviewController]
+      caloriesController.setDialogStage(dialogStage)
+      caloriesController.setCartItems(cartItems)
+
+      dialogStage.showAndWait()
+    catch
+      case e: Exception =>
+        e.printStackTrace()
+        alerts.showErrorAlert("Error", "Could not load cart summary dialog.")
 
   private def applyFilters(): Unit =
     filteredFoodList.setPredicate { food =>
@@ -256,9 +298,32 @@ Total Price: RM ${"%.2f".format(totalPrice)}"""
 
   private def updateCartCount(): Unit =
     var itemCount = 0
+    var totalCalories = 0
+    var totalPrice = 0.0
+    
     for i <- 0 until cartItems.size() do
+      val item = cartItems.get(i)
       itemCount += cartItems.get(i).quantity.value
+      totalCalories += item.getCalories
+      totalPrice += item.getTotalPrice
     cartCountLabel.setText(s"$itemCount item(s) in Cart")
+    cartSummaryItemsLabel.setText(itemCount.toString)
+    cartSummaryCaloriesLabel.setText(s"$totalCalories kcal")
+    cartSummaryPriceLabel.setText(f"RM $totalPrice%.2f")
+
+    val averageCalories = if itemCount > 0 then totalCalories.toDouble / itemCount else 0.0
+    updateHealthStatus(averageCalories)
+
+  private def updateHealthStatus(averageCalories: Double): Unit =
+    val (status, style) = averageCalories match
+      case avg if avg == 0 => ("No Items", "-fx-text-fill: #6c757d; -fx-font-weight: bold;")
+      case avg if avg < 250 => ("🟢 Very Healthy", "-fx-text-fill: #28a745; -fx-font-weight: bold;")
+      case avg if avg < 400 => ("🟡 Moderately Healthy", "-fx-text-fill: #ffc107; -fx-font-weight: bold;")
+      case avg if avg < 600 => ("🟠 High Calorie", "-fx-text-fill: #fd7e14; -fx-font-weight: bold;")
+      case _ => ("🔴 Very High Calorie", "-fx-text-fill: #dc3545; -fx-font-weight: bold;")
+
+    cartHealthStatusLabel.setText(status)
+    cartHealthStatusLabel.setStyle(style)
 
   private def showFoodDetails(food: FoodType): Unit =
     try

@@ -1,9 +1,9 @@
 package soonteck.view
 
+import soonteck.Main
 import javafx.fxml.FXML
 import javafx.event.ActionEvent
 import scalafx.stage.Stage
-import soonteck.Main
 
 @FXML
 class AboutOverviewController():

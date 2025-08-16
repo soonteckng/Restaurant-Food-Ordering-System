@@ -3,12 +3,12 @@ package soonteck.view
 import soonteck.alert.Alerts
 import soonteck.model.User
 import soonteck.service.AuthenticationService
+import soonteck.Main
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.scene.control.{Button, Label, PasswordField, TextField}
 import scalafx.Includes.*
 import scalafx.stage.Stage
-import soonteck.Main
 
 @FXML
 class RegisterOverviewController {

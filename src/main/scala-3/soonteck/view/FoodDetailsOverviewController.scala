@@ -1,10 +1,10 @@
 package soonteck.view
 
+import soonteck.model.FoodType
+import soonteck.Main
 import javafx.fxml.FXML
 import javafx.scene.control.{Label, Button, Spinner}
 import javafx.stage.Stage
-import soonteck.model.FoodType
-import soonteck.Main
 
 class FoodDetailsOverviewController:
   @FXML private var foodNameLabel: Label = null

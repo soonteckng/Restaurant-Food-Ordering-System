@@ -39,7 +39,7 @@ object Main extends JFXApp3:
     roots = Option(loader.getRoot[jfxs.layout.BorderPane])
 
     stage = new PrimaryStage():
-      title = "FridgeApp"
+      title = "LeanBites"
       scene = new Scene():
         root = roots.get
 
