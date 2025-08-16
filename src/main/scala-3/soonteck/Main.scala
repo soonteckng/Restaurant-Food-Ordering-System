@@ -54,7 +54,7 @@ object Main extends JFXApp3:
     this.roots.get.center = roots
 
   def showAbout(): Boolean =
-    val about = getClass.getResource("view/About.fxml")
+    val about = getClass.getResource("view/AboutOverview.fxml")
     val loader = new FXMLLoader(about)
     loader.load()
     val pane = loader.getRoot[jfxs.layout.AnchorPane]
