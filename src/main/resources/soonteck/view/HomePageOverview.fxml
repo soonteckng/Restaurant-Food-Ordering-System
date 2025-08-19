@@ -18,7 +18,6 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soonteck.view.HomePageOverviewController">
    <children>
-      <!-- Main Content Area - TabPane is now a child of AnchorPane -->
       <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
             <!-- MENU TAB -->
@@ -46,7 +45,8 @@
                                           <Region prefWidth="20.0">
                                              <padding>
                                                 <Insets top="20.0" />
-                                             </padding></Region>
+                                             </padding>
+                                          </Region>
                                           <Label minWidth="50.0" text="Search:" />
                                           <TextField fx:id="searchField" prefWidth="180.0" promptText="Search food..." />
                                        </children>
@@ -58,8 +58,9 @@
                                     <!-- Second Row: Filter Buttons -->
                                     <HBox alignment="CENTER" maxWidth="Infinity" spacing="15.0">
                                        <children>
-                                          <Region HBox.hgrow="ALWAYS" />
                                           <Button fx:id="healthyFilterButton" onAction="#handleHealthyFilter" prefWidth="120.0" style="-fx-background-color: #28a745; -fx-text-fill: white;" text="Healthy Options" />
+                                          <Region HBox.hgrow="ALWAYS" />
+                                          <Button fx:id="orderHistoryButton" prefWidth="120.0" style="-fx-background-color: #17a2b8; -fx-text-fill: white;" text="📋 Order History" />
                                        </children>
                                        <padding>
                                           <Insets bottom="-5.0" top="10.0" />
@@ -112,7 +113,8 @@
                                     <Label fx:id="cartCountLabel" prefHeight="21.0" prefWidth="103.0" text="0 item(s) in Cart" textFill="#666666">
                                        <font>
                                           <Font size="14.0" />
-                                       </font></Label>
+                                       </font>
+                                    </Label>
                                  </children>
                               </HBox>
                            </children>
@@ -126,9 +128,6 @@
                      </children>
                   </AnchorPane>
                </content>
-               <graphic>
-                  <Label text="Menu" />
-               </graphic>
             </Tab>
 
             <!-- CART TAB -->
@@ -240,7 +239,7 @@
                            <children>
                               <Button onAction="#handleRemoveFromCart" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ffc107; -fx-text-fill: black;" text="Remove Selected Food" />
                               <Button onAction="#handleCalculateCalories" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #17a2b8; -fx-text-fill: white;" text="Detailed Summary" />
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #28a745; -fx-text-fill: white;" text="Checkout" />
+                              <Button fx:id="checkoutButton" onAction="#handleCheckout" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #28a745; -fx-text-fill: white;" text="💳 Checkout" />
                            </children>
                         </HBox>
                      </children>

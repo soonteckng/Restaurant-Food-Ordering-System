@@ -74,7 +74,6 @@ class HomePageOverviewController():
   private var filteredFoodList: FilteredList[FoodType] = null
   private var selectedFood: FoodType = null
   private var isHealthyFilterActive = false
-
   // Alert instance
   private val alerts = new Alerts()
 
@@ -357,3 +356,38 @@ class HomePageOverviewController():
     if confirmed then
       alerts.showSuccessAlert("Logout Successful", "You have successfully logged out!")
       Main.showLoginOverview()
+
+  @FXML
+  def handleCheckout(): Unit =
+    if cartItems.isEmpty then
+      alerts.showWarningAlert("Empty Cart", "Your cart is empty. Add some items first!")
+    else
+      showCheckoutDialog()
+
+  private def showCheckoutDialog(): Unit =
+    try
+      val loader = new FXMLLoader()
+      loader.setLocation(getClass.getResource("/soonteck/view/CheckoutOverview.fxml"))
+      val page: Parent = loader.load()
+
+      val dialogStage = new Stage()
+      dialogStage.setTitle("Checkout")
+      dialogStage.initModality(Modality.WINDOW_MODAL)
+      dialogStage.setScene(new Scene(page))
+
+      val checkoutController = loader.getController[CheckoutOverviewController]
+      checkoutController.setDialogStage(dialogStage)
+      checkoutController.setMainController(this)
+      checkoutController.setCartItems(cartItems)
+
+      dialogStage.showAndWait()
+    catch
+      case e: Exception =>
+        e.printStackTrace()
+        alerts.showErrorAlert("Error", "Could not load checkout dialog.")
+
+  def clearCartAfterCheckout(): Unit =
+    cartItems.clear()
+    updateCartCount()
+    alerts.showSuccessAlert("Order Completed", "Your cart has been cleared after successful checkout.")
+  

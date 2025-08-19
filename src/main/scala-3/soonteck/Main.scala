@@ -87,5 +87,5 @@ object Main extends JFXApp3:
 
     // Set the center of root layout to Home Page
     this.roots.get.center = homeRoot
-    
+
     
