@@ -50,7 +50,7 @@
                            </padding>
                         </Label>
 
-                        <Button fx:id="homeNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showHomeView" prefHeight="45.0" text="🏠 Home">
+                        <Button fx:id="homeNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showHomeView" prefHeight="45.0" prefWidth="138.0" text="🏠 Home">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -69,15 +69,6 @@
                         </Button>
 
                         <Region prefHeight="20.0" />
-
-                        <Label text="ACCOUNT">
-                           <font>
-                              <Font size="10.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="8.0" left="12.0" top="5.0" />
-                           </padding>
-                        </Label>
 
                         <Region VBox.vgrow="ALWAYS" />
 

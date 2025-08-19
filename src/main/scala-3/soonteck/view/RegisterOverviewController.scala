@@ -15,16 +15,10 @@ class RegisterOverviewController {
 
   @FXML
   private var usernameField: TextField = null
-
   @FXML
   private var passwordField: PasswordField = null
-
   @FXML
   private var confirmPasswordField: PasswordField = null
-
-  @FXML
-  private var fridgeNameField: TextField = null
-
   @FXML
   private var backToLoginButton: Button = null
 
@@ -39,10 +33,9 @@ class RegisterOverviewController {
     val username = usernameField.getText.trim
     val password = passwordField.getText
     val confirmPassword = confirmPasswordField.getText
-    val fridgeName = fridgeNameField.getText.trim
 
     // Stop if validation fails
-    if (!validateInput(username, password, confirmPassword, fridgeName)) return
+    if (!validateInput(username, password, confirmPassword)) return
 
     // Create user
     val newUser = User(username, password)
@@ -57,7 +50,7 @@ class RegisterOverviewController {
   }
 
   // Validate input fields
-  private def validateInput(username: String, password: String, confirmPassword: String, fridgeName: String): Boolean = {
+  private def validateInput(username: String, password: String, confirmPassword: String): Boolean = {
     if (username.isEmpty) {
       alerts.showErrorAlert("Validation Error", "Username is required.")
       return false
@@ -82,11 +75,6 @@ class RegisterOverviewController {
       alerts.showErrorAlert("Validation Error", "Passwords do not match.")
       return false
     }
-
-    if (fridgeName.isEmpty) {
-      alerts.showErrorAlert("Validation Error", "Fridge name is required.")
-      return false
-    }
     true
   }
   
@@ -101,6 +89,5 @@ class RegisterOverviewController {
     usernameField.clear()
     passwordField.clear()
     confirmPasswordField.clear()
-    fridgeNameField.setText("My Smart Fridge")
   }
 }
