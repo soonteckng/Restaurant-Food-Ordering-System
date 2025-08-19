@@ -5,138 +5,180 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soonteck.view.HomePageOverviewController">
    <children>
-      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <tabs>
-            <!-- MENU TAB -->
-            <Tab text="Home 🍽️">
-               <content>
-                  <AnchorPane>
+      <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+         <left>
+            <VBox minWidth="140.0" prefWidth="140.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="CENTER" spacing="5.0">
                      <children>
-                        <VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label text="🍽️ QuickDine">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Food Ordering System">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  <VBox spacing="3.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label text="NAVIGATION">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="8.0" left="12.0" top="5.0" />
+                           </padding>
+                        </Label>
+
+                        <Button fx:id="homeNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showHomeView" prefHeight="45.0" text="🏠 Home">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+
+                        <Button fx:id="cartNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showCartView" prefHeight="45.0" text="🛒 My Cart">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+
+                        <Button fx:id="orderHistoryNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showOrderHistoryView" prefHeight="45.0" text="📋 Order History">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+
+                        <Region prefHeight="20.0" />
+
+                        <Label text="ACCOUNT">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="8.0" left="12.0" top="5.0" />
+                           </padding>
+                        </Label>
+
+                        <Region VBox.vgrow="ALWAYS" />
+
+                        <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#handleLogout" prefHeight="40.0" text="🚪 Logout">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="15.0" left="10.0" right="10.0" top="0.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <StackPane BorderPane.alignment="CENTER">
+               <children>
+                  <VBox fx:id="homeView" alignment="CENTER" spacing="10.0">
+                     <children>
+                        <VBox alignment="CENTER" maxWidth="Infinity" prefHeight="69.0" spacing="8.0" style="-fx-background-color: #ffffff; -fx-border-color: #dee2e6; -fx-border-radius: 5; -fx-background-radius: 5;">
                            <children>
-                              <Label prefHeight="37.0" prefWidth="132.0" text="QuickDine" textFill="#0619e9">
-                                 <font>
-                                    <Font name="Candara Bold" size="30.0" />
-                                 </font>
-                              </Label>
-
-                              <!-- Filter and Search Section -->
-                              <VBox alignment="CENTER" maxWidth="Infinity" prefHeight="69.0" prefWidth="589.0" spacing="8.0" style="-fx-background-color: #ffffff; -fx-border-color: #dee2e6; -fx-border-radius: 5; -fx-background-radius: 5;">
+                              <HBox alignment="CENTER" maxWidth="Infinity" spacing="15.0">
                                  <children>
-                                    <!-- First Row: Category and Search -->
-                                    <HBox alignment="CENTER" maxWidth="Infinity" spacing="15.0">
-                                       <children>
-                                          <Label minWidth="60.0" text="Category:" />
-                                          <ComboBox fx:id="categoryComboBox" prefHeight="25.0" prefWidth="94.0" />
-                                          <Button onAction="#handleShowAll" prefWidth="80.0" style="-fx-background-color: #6c757d; -fx-text-fill: white;" text="Show All" />
-                                          <Region prefWidth="20.0">
-                                             <padding>
-                                                <Insets top="20.0" />
-                                             </padding>
-                                          </Region>
-                                          <Label minWidth="50.0" text="Search:" />
-                                          <TextField fx:id="searchField" prefWidth="180.0" promptText="Search food..." />
-                                       </children>
+                                    <Label minWidth="60.0" text="Category:" />
+                                    <ComboBox fx:id="categoryComboBox" prefHeight="25.0" prefWidth="94.0" />
+                                    <Button onAction="#handleShowAll" prefWidth="80.0" text="Show All" />
+                                    <Region prefWidth="20.0">
                                        <padding>
-                                          <Insets top="-5.0" />
+                                          <Insets top="20.0" />
                                        </padding>
-                                    </HBox>
-
-                                    <!-- Second Row: Filter Buttons -->
-                                    <HBox alignment="CENTER" maxWidth="Infinity" spacing="15.0">
-                                       <children>
-                                          <Button fx:id="healthyFilterButton" onAction="#handleHealthyFilter" prefWidth="120.0" style="-fx-background-color: #28a745; -fx-text-fill: white;" text="Healthy Options" />
-                                          <Region HBox.hgrow="ALWAYS" />
-                                          <Button fx:id="orderHistoryButton" prefWidth="120.0" style="-fx-background-color: #17a2b8; -fx-text-fill: white;" text="📋 Order History" />
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="-5.0" top="10.0" />
-                                       </padding>
-                                    </HBox>
+                                    </Region>
+                                    <Label minWidth="50.0" text="Search:" />
+                                    <TextField fx:id="searchField" prefWidth="180.0" promptText="Search food..." />
                                  </children>
                                  <padding>
-                                    <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
-                                 </padding>
-                              </VBox>
-
-                              <!-- Food Menu Label - Left Aligned -->
-                              <HBox maxWidth="Infinity" VBox.vgrow="NEVER">
-                                 <children>
-                                    <Label prefHeight="20.0" text="Food Menu" textAlignment="LEFT">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Region HBox.hgrow="ALWAYS" />
-                                 </children>
-                                 <padding>
-                                    <Insets left="15.0" />
+                                    <Insets top="-5.0" />
                                  </padding>
                               </HBox>
-
-                              <!-- Food Items Table -->
-                              <TableView fx:id="foodTable" maxWidth="Infinity" prefHeight="181.0" prefWidth="589.0" VBox.vgrow="ALWAYS">
-                                 <columns>
-                                    <TableColumn fx:id="nameColumn" prefWidth="119.33331048488617" text="Food" />
-                                    <TableColumn fx:id="categoryColumn" prefWidth="96.66663360595703" text="Category" />
-                                    <TableColumn fx:id="priceColumn" prefWidth="76.66667175292969" text="Price (RM)" />
-                                    <TableColumn fx:id="caloriesColumn" prefWidth="88.6666259765625" text="Calories" />
-                                    <TableColumn fx:id="descriptionColumn" prefWidth="121.33331298828125" text="Description" />
-                                 </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
-                              </TableView>
-
-                              <!-- Add to Cart Section -->
-                              <HBox alignment="CENTER" maxWidth="Infinity" spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-padding: 10;">
+                              <HBox alignment="CENTER" maxWidth="Infinity" spacing="15.0">
                                  <children>
-                                    <Label text="Selected Item:" />
-                                    <Label fx:id="selectedItemLabel" text="None selected" textFill="#666666" />
-                                    <Label text="Quantity:" />
-                                    <Spinner fx:id="quantitySpinner" editable="true" initialValue="1" max="10" min="1" prefWidth="70.0" />
-                                    <Button fx:id="addToCartButton" onAction="#handleAddToCart" style="-fx-background-color: #007bff; -fx-text-fill: white;" text="Add to Cart 🛒" />
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <Label fx:id="cartCountLabel" prefHeight="21.0" prefWidth="103.0" text="0 item(s) in Cart" textFill="#666666">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
+                                    <Button fx:id="healthyFilterButton" onAction="#handleHealthyFilter" prefWidth="120.0" text="Healthy Options" />
                                  </children>
+                                 <padding>
+                                    <Insets bottom="-5.0" top="10.0" />
+                                 </padding>
                               </HBox>
                            </children>
                            <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
                            </padding>
                         </VBox>
-
-                        <!-- Logout Button - Bottom Right -->
-                        <Button mnemonicParsing="false" onAction="#handleLogout" prefHeight="30.0" prefWidth="80.0" text="Logout" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                        <HBox maxWidth="Infinity" VBox.vgrow="NEVER">
+                           <children>
+                              <Label prefHeight="20.0" text="Food Menu" textAlignment="LEFT">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </HBox>
+                        <TableView fx:id="foodTable" maxWidth="Infinity" prefHeight="181.0" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="nameColumn" prefWidth="119.33331048488617" text="Food" />
+                              <TableColumn fx:id="categoryColumn" prefWidth="96.66663360595703" text="Category" />
+                              <TableColumn fx:id="priceColumn" prefWidth="76.66667175292969" text="Price (RM)" />
+                              <TableColumn fx:id="caloriesColumn" prefWidth="88.6666259765625" text="Calories" />
+                              <TableColumn fx:id="descriptionColumn" prefWidth="121.33331298828125" text="Description" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <HBox alignment="CENTER" maxWidth="Infinity" spacing="15.0">
+                           <children>
+                              <Label text="Selected Item:" />
+                              <Label fx:id="selectedItemLabel" text="None selected" textFill="#666666" />
+                              <Label text="Quantity:" />
+                              <Spinner fx:id="quantitySpinner" editable="true" initialValue="1" max="10" min="1" prefWidth="70.0" />
+                              <Button fx:id="addToCartButton" onAction="#handleAddToCart" text="Add to Cart 🛒" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label fx:id="cartCountLabel" prefHeight="21.0" prefWidth="103.0" text="0 item(s) in Cart" textFill="#666666">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
                      </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-
-            <!-- CART TAB -->
-            <Tab text="Cart 🛒">
-               <content>
-                  <VBox alignment="CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="cartView" alignment="CENTER" spacing="10.0" visible="false">
                      <children>
-                        <!-- Cart Header -->
-                        <HBox alignment="CENTER" maxWidth="Infinity" spacing="20.0" style="-fx-background-color: #f8f9fa; -fx-padding: 10;">
+                        <HBox alignment="CENTER" maxWidth="Infinity" spacing="20.0">
                            <children>
                               <Label text="🛒 MY CART" textFill="#0619e9">
                                  <font>
@@ -144,12 +186,10 @@
                                  </font>
                               </Label>
                               <Region HBox.hgrow="ALWAYS" />
-                              <Button fx:id="clearCartButton" onAction="#handleClearCart" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Clear Cart" />
+                              <Button fx:id="clearCartButton" onAction="#handleClearCart" text="Clear Cart" />
                            </children>
                         </HBox>
-
-                        <!-- Enhanced Cart Summary Statistics -->
-                        <VBox spacing="8.0" style="-fx-background-color: #ffffff; -fx-border-color: #dee2e6; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12;">
+                        <VBox spacing="8.0">
                            <children>
                               <Label text="Order Summary" textFill="#333333">
                                  <font>
@@ -160,7 +200,7 @@
                                  <children>
                                     <VBox alignment="CENTER" spacing="2.0">
                                        <children>
-                                          <Label style="-fx-font-weight: bold;" text="Total Items" textFill="#666666">
+                                          <Label text="Total Items" textFill="#666666">
                                              <font>
                                                 <Font size="12.0" />
                                              </font>
@@ -174,7 +214,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER" spacing="2.0">
                                        <children>
-                                          <Label style="-fx-font-weight: bold;" text="Total Calories" textFill="#666666">
+                                          <Label text="Total Calories" textFill="#666666">
                                              <font>
                                                 <Font size="12.0" />
                                              </font>
@@ -188,7 +228,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER" spacing="2.0">
                                        <children>
-                                          <Label style="-fx-font-weight: bold;" text="Total Price" textFill="#666666">
+                                          <Label text="Total Price" textFill="#666666">
                                              <font>
                                                 <Font size="12.0" />
                                              </font>
@@ -203,7 +243,7 @@
                                     <Region HBox.hgrow="ALWAYS" />
                                     <VBox alignment="CENTER" spacing="2.0">
                                        <children>
-                                          <Label style="-fx-font-weight: bold;" text="Health Status" textFill="#666666">
+                                          <Label text="Health Status" textFill="#666666">
                                              <font>
                                                 <Font size="12.0" />
                                              </font>
@@ -219,9 +259,7 @@
                               </HBox>
                            </children>
                         </VBox>
-
-                        <!-- Enhanced Cart Items Table -->
-                        <TableView fx:id="cartTable" maxWidth="Infinity" prefHeight="150.0" prefWidth="589.0" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="cartTable" maxWidth="Infinity" prefHeight="150.0" VBox.vgrow="ALWAYS">
                            <columns>
                               <TableColumn fx:id="cartItemColumn" prefWidth="150.0" text="Food" />
                               <TableColumn fx:id="cartQuantityColumn" prefWidth="70.0" text="Qty" />
@@ -233,13 +271,11 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-
-                        <!-- Cart Action Buttons -->
-                        <HBox alignment="CENTER" prefHeight="101.0" prefWidth="589.0" spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-padding: 10;">
+                        <HBox alignment="CENTER" prefHeight="101.0" spacing="15.0">
                            <children>
-                              <Button onAction="#handleRemoveFromCart" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ffc107; -fx-text-fill: black;" text="Remove Selected Food" />
-                              <Button onAction="#handleCalculateCalories" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #17a2b8; -fx-text-fill: white;" text="Detailed Summary" />
-                              <Button fx:id="checkoutButton" onAction="#handleCheckout" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #28a745; -fx-text-fill: white;" text="💳 Checkout" />
+                              <Button onAction="#handleRemoveFromCart" prefHeight="30.0" prefWidth="150.0" text="Remove Selected Food" />
+                              <Button onAction="#handleCalculateCalories" prefHeight="30.0" prefWidth="150.0" text="Detailed Summary" />
+                              <Button fx:id="checkoutButton" onAction="#handleCheckout" prefHeight="30.0" prefWidth="150.0" text="💳 Checkout" />
                            </children>
                         </HBox>
                      </children>
@@ -247,9 +283,53 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </VBox>
-               </content>
-            </Tab>
-         </tabs>
-      </TabPane>
+                  <VBox fx:id="orderHistoryView" alignment="CENTER" spacing="15.0" visible="false">
+                     <children>
+                        <VBox alignment="CENTER" spacing="5.0">
+                           <children>
+                              <Label text="📋 ORDER HISTORY">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="View your previous orders">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="CENTER" maxWidth="Infinity" spacing="10.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label text="Order History">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TableView fx:id="orderHistoryTable" maxWidth="Infinity" prefHeight="200.0" VBox.vgrow="ALWAYS">
+                                 <columns>
+                                    <TableColumn fx:id="orderDateColumn" prefWidth="120.0" text="Order Date" />
+                                    <TableColumn fx:id="orderItemsColumn" prefWidth="200.0" text="Items" />
+                                    <TableColumn fx:id="orderTotalColumn" prefWidth="100.0" text="Total (RM)" />
+                                    <TableColumn fx:id="orderStatusColumn" prefWidth="100.0" text="Status" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </StackPane>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>

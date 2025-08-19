@@ -9,12 +9,13 @@ import scalafx.Includes.*
 import scalafx.collections.ObservableBuffer
 import scalafx.stage.Modality.ApplicationModal
 import scalafx.stage.{Modality, Stage}
-import soonteck.model.{FoodType, User}
+import soonteck.model.{FoodType, User, OrderHistory}
 import soonteck.util.Database
 
 object Main extends JFXApp3:
   Database.setupDB()
   FoodType.initializeTable()
+  OrderHistory.initializeTable()
   FoodType.resetDefaultFoods()
   
   var roots: Option[scalafx.scene.layout.BorderPane] = None

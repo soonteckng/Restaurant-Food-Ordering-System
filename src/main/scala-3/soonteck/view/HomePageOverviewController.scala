@@ -1,7 +1,7 @@
 package soonteck.view
 
 import soonteck.Main
-import soonteck.model.{CartItem, FoodType}
+import soonteck.model.{CartItem, FoodType, OrderHistory}
 import soonteck.alert.Alerts
 import scalafx.Includes.*
 import javafx.scene.control.{ComboBox, Label, Spinner, TableColumn, TableRow, TableView, TextField, Tooltip}
@@ -13,6 +13,7 @@ import javafx.collections.{FXCollections, ObservableList}
 import javafx.collections.transformation.FilteredList
 import javafx.util.Callback
 import javafx.beans.value.{ChangeListener, ObservableValue}
+import scala.util.{Try, Success, Failure}
 
 @FXML
 class HomePageOverviewController():
@@ -69,19 +70,133 @@ class HomePageOverviewController():
   @FXML
   private var cartHealthStatusLabel: Label = null
 
+  // View Controls (Fixed - removed duplicates)
+  @FXML
+  private var homeView: javafx.scene.layout.VBox = null
+  @FXML
+  private var cartView: javafx.scene.layout.VBox = null
+  @FXML
+  private var orderHistoryView: javafx.scene.layout.VBox = null
+  @FXML
+  private var homeNavButton: javafx.scene.control.Button = null
+  @FXML
+  private var cartNavButton: javafx.scene.control.Button = null
+  @FXML
+  private var orderHistoryNavButton: javafx.scene.control.Button = null
+
+  // Order History Table Components
+  @FXML
+  private var orderHistoryTable: TableView[OrderHistory] = null
+  @FXML
+  private var orderDateColumn: TableColumn[OrderHistory, String] = null
+  @FXML
+  private var orderItemsColumn: TableColumn[OrderHistory, String] = null
+  @FXML
+  private var orderTotalColumn: TableColumn[OrderHistory, java.lang.Double] = null
+  @FXML
+  private var orderStatusColumn: TableColumn[OrderHistory, String] = null
+
   // Data
   private val cartItems: ObservableList[CartItem] = FXCollections.observableArrayList()
+  private val orderHistoryItems: ObservableList[OrderHistory] = FXCollections.observableArrayList()
   private var filteredFoodList: FilteredList[FoodType] = null
   private var selectedFood: FoodType = null
   private var isHealthyFilterActive = false
   // Alert instance
   private val alerts = new Alerts()
 
+  // Navigation Methods
+  @FXML
+  def showHomeView(): Unit = {
+    homeView.setVisible(true)
+    cartView.setVisible(false)
+    orderHistoryView.setVisible(false)
+  }
+
+  @FXML
+  def showCartView(): Unit = {
+    homeView.setVisible(false)
+    cartView.setVisible(true)
+    orderHistoryView.setVisible(false)
+  }
+
+  @FXML
+  def showOrderHistoryView(): Unit = {
+    homeView.setVisible(false)
+    cartView.setVisible(false)
+    orderHistoryView.setVisible(true)
+  }
+
+  // Order History Action Methods
+  @FXML
+  def handleRefreshOrderHistory(): Unit = {
+    loadOrderHistory()
+    alerts.showInfoAlert("Refresh", "Order history refreshed!")
+  }
+
+  private def loadOrderHistory(): Unit = {
+    try {
+      val orders = OrderHistory.getAllOrders
+      orderHistoryItems.clear()
+      orders.foreach(order => orderHistoryItems.add(order))
+    } catch {
+      case e: Exception =>
+        e.printStackTrace()
+        alerts.showErrorAlert("Error", "Could not load order history.")
+    }
+  }
+
+  private def saveOrderToHistory(): Unit = {
+    try {
+      // Create order from current cart
+      val order = OrderHistory.createOrderFromCart(cartItems)
+
+      // Save to database
+      order.save() match {
+        case Success(_) =>
+          // Add to current display list
+          orderHistoryItems.add(0, order) // Add at beginning for newest first
+        case Failure(e) =>
+          e.printStackTrace()
+          alerts.showErrorAlert("Error", "Could not save order to history.")
+      }
+    } catch {
+      case e: Exception =>
+        e.printStackTrace()
+        alerts.showErrorAlert("Error", "Could not create order record.")
+    }
+  }
+
+  @FXML
+  def handleViewOrderDetails(): Unit = {
+    // TODO: Implement view order details logic
+    val selectedOrder = orderHistoryTable.getSelectionModel.getSelectedItem
+    if (selectedOrder != null) {
+      alerts.showInfoAlert("Order Details", "Feature coming soon!")
+    } else {
+      alerts.showWarningAlert("No Selection", "Please select an order to view details.")
+    }
+  }
+
+  @FXML
+  def handleReorder(): Unit = {
+    // TODO: Implement reorder logic
+    val selectedOrder = orderHistoryTable.getSelectionModel.getSelectedItem
+    if (selectedOrder != null) {
+      alerts.showInfoAlert("Reorder", "Reorder feature coming soon!")
+    } else {
+      alerts.showWarningAlert("No Selection", "Please select an order to reorder.")
+    }
+  }
+
   def initialize(): Unit =
     initializeMenuTab()
     initializeCartTab()
+    initializeOrderHistoryTab()
     setupEventHandlers()
     setupTableTooltip()
+    // Initialize with Home view visible
+    showHomeView()
 
   private def initializeMenuTab(): Unit =
     // Setup food table
@@ -121,6 +236,16 @@ class HomePageOverviewController():
       new javafx.beans.property.SimpleDoubleProperty(totalPrice).asObject()
     }
 
+  private def initializeOrderHistoryTab(): Unit =
+    // Setup order history table
+    orderHistoryTable.setItems(orderHistoryItems)
+    orderDateColumn.cellValueFactory = { _.value.orderDate }
+    orderItemsColumn.cellValueFactory = { _.value.items }
+    orderTotalColumn.cellValueFactory = { c => c.value.total.delegate.asObject() }
+    orderStatusColumn.cellValueFactory = { _.value.status }
+
+    // Load existing order history
+    loadOrderHistory()
 
   private def setupEventHandlers(): Unit =
     // Food table selection
@@ -160,7 +285,7 @@ class HomePageOverviewController():
             if (newValue != null) {
               val tooltip = new Tooltip()
               tooltip.setText("Double-click to view details")
-              tooltip.setStyle("-fx-font-size: 12px; -fx-background-color: #333333; -fx-text-fill: white; -fx-background-radius: 4px;")
+              // Removed CSS styling since you want to handle it separately
               row.setTooltip(tooltip)
             } else {
               row.setTooltip(null)
@@ -214,18 +339,16 @@ class HomePageOverviewController():
     categoryComboBox.setValue("All")
     searchField.clear()
     isHealthyFilterActive = false
-    healthyFilterButton.setStyle("-fx-background-color: #28a745; -fx-text-fill: white;")
+    // Removed CSS styling since you want to handle it separately
     applyFilters()
 
   @FXML
   def handleHealthyFilter(): Unit =
     isHealthyFilterActive = !isHealthyFilterActive
     if isHealthyFilterActive then
-      healthyFilterButton.setStyle("-fx-background-color: #dc3545; -fx-text-fill: white;")
       healthyFilterButton.setText("Show All")
     else
-      healthyFilterButton.setStyle("-fx-background-color: #28a745; -fx-text-fill: white;")
-      healthyFilterButton.setText("Healthier Options")
+      healthyFilterButton.setText("Healthy Options")
     applyFilters()
 
   @FXML
@@ -315,14 +438,14 @@ class HomePageOverviewController():
 
   private def updateHealthStatus(averageCalories: Double): Unit =
     val (status, style) = averageCalories match
-      case avg if avg == 0 => ("No Items", "-fx-text-fill: #6c757d; -fx-font-weight: bold;")
-      case avg if avg < 250 => ("🟢 Very Healthy", "-fx-text-fill: #28a745; -fx-font-weight: bold;")
-      case avg if avg < 400 => ("🟡 Moderately Healthy", "-fx-text-fill: #ffc107; -fx-font-weight: bold;")
-      case avg if avg < 600 => ("🟠 High Calorie", "-fx-text-fill: #fd7e14; -fx-font-weight: bold;")
-      case _ => ("🔴 Very High Calorie", "-fx-text-fill: #dc3545; -fx-font-weight: bold;")
+      case avg if avg == 0 => ("No Items", "")
+      case avg if avg < 250 => ("🟢 Very Healthy", "")
+      case avg if avg < 400 => ("🟡 Moderately Healthy", "")
+      case avg if avg < 600 => ("🟠 High Calorie", "")
+      case _ => ("🔴 Very High Calorie", "")
 
     cartHealthStatusLabel.setText(status)
-    cartHealthStatusLabel.setStyle(style)
+  // Removed setStyle since you want to handle CSS separately
 
   private def showFoodDetails(food: FoodType): Unit =
     try
@@ -387,7 +510,9 @@ class HomePageOverviewController():
         alerts.showErrorAlert("Error", "Could not load checkout dialog.")
 
   def clearCartAfterCheckout(): Unit =
+    // Save current cart to order history before clearing
+    saveOrderToHistory()
+
     cartItems.clear()
     updateCartCount()
-    alerts.showSuccessAlert("Order Completed", "Your cart has been cleared after successful checkout.")
-  
+    alerts.showSuccessAlert("Order Completed", "Your order has been saved to history and cart cleared.")

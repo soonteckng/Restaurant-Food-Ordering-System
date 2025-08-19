@@ -71,7 +71,7 @@ class CheckoutOverviewController:
     val showCardFields = paymentMethod == "Credit Card" || paymentMethod == "Debit Card"
     if cardDetailsSection != null then
       cardDetailsSection.setVisible(showCardFields)
-      cardDetailsSection.setManaged(showCardFields) // This prevents it from taking up space when hidden
+      cardDetailsSection.setManaged(showCardFields) // Prevents empty space when hidden
 
   def setCartItems(cartItems: ObservableList[CartItem]): Unit =
     itemNameColumn.cellValueFactory = { _.value.item }
@@ -96,7 +96,7 @@ class CheckoutOverviewController:
       subtotal += item.getTotalPrice
       totalItems += item.quantity.value
 
-    val tax = subtotal * 0.06 //tax is 6%
+    val tax = subtotal * 0.06 // tax = 6%
     val totalAmount = subtotal + tax
 
     totalItemsLabel.setText(s"$totalItems")
@@ -114,13 +114,61 @@ class CheckoutOverviewController:
       return
 
     if paymentMethod != "E-Wallet" then
-      if cardNumberField.getText == null || cardNumberField.getText.trim.isEmpty then
-        alerts.showWarningAlert("Card Details Required", "Please enter your card number.")
+      val cardNumber = Option(cardNumberField.getText).getOrElse("").trim
+      val cardHolder = Option(cardHolderField.getText).getOrElse("").trim
+      val expiry = Option(expiryField.getText).getOrElse("").trim
+      val cvv = Option(cvvField.getText).getOrElse("").trim
+
+      // 🔴 Empty field checks
+      if cardNumber.isEmpty then
+        alerts.showWarningAlert("Missing Information", "Card number cannot be empty.")
         return
-      if cardHolderField.getText == null || cardHolderField.getText.trim.isEmpty then
-        alerts.showWarningAlert("Card Details Required", "Please enter the card holder name.")
+      if cardHolder.isEmpty then
+        alerts.showWarningAlert("Missing Information", "Card holder name cannot be empty.")
+        return
+      if expiry.isEmpty then
+        alerts.showWarningAlert("Missing Information", "Expiry date cannot be empty.")
+        return
+      if cvv.isEmpty then
+        alerts.showWarningAlert("Missing Information", "CVV cannot be empty.")
         return
 
+      // 🔒 Validate card number: 16 digits
+      if !cardNumber.matches("\\d{16}") then
+        alerts.showWarningAlert("Invalid Card Number", "Card number must be exactly 16 digits (numbers only).")
+        return
+
+      // 🔒 Validate card holder: only letters and spaces
+      if !cardHolder.matches("^[A-Za-z ]+$") then
+        alerts.showWarningAlert("Invalid Card Holder", "Card holder name must only contain letters and spaces.")
+        return
+
+      // 🔒 Validate expiry date (MM/YY), not expired, not more than 10 years into future
+      if !expiry.matches("^(0[1-9]|1[0-2])/\\d{2}$") then
+        alerts.showWarningAlert("Invalid Expiry Date", "Expiry date must be in MM/YY format (e.g., 05/27).")
+        return
+      else
+        import java.time.YearMonth
+        val parts = expiry.split("/")
+        val expMonth = parts(0).toInt
+        val expYear = 2000 + parts(1).toInt
+        val expiryDate = YearMonth.of(expYear, expMonth)
+        val currentDate = YearMonth.now()
+        val maxFutureDate = currentDate.plusYears(10)
+
+        if expiryDate.isBefore(currentDate) then
+          alerts.showWarningAlert("Card Expired", "The card expiry date has already passed.")
+          return
+        if expiryDate.isAfter(maxFutureDate) then
+          alerts.showWarningAlert("Invalid Expiry Date", "Expiry date cannot be more than 10 years in the future.")
+          return
+
+      // 🔒 Validate CVV: 3 digits
+      if !cvv.matches("\\d{3}") then
+        alerts.showWarningAlert("Invalid CVV", "CVV must be exactly 3 digits.")
+        return
+
+    // --- ✅ If validation passes, process order ---
     val orderNumber = s"QD${System.currentTimeMillis()}"
     val totalAmount = totalAmountLabel.getText
 
