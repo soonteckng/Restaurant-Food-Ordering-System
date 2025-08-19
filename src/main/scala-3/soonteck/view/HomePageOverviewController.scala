@@ -242,7 +242,7 @@ class HomePageOverviewController():
         cartItems.clear()
         updateCartCount()
         alerts.showSuccessAlert("Cart Cleared", "All items have been removed from your cart.")
-  
+
   @FXML
   def handleRemoveFromCart(): Unit =
     val selectedItem = cartTable.getSelectionModel.getSelectedItem
@@ -300,7 +300,7 @@ class HomePageOverviewController():
     var itemCount = 0
     var totalCalories = 0
     var totalPrice = 0.0
-    
+
     for i <- 0 until cartItems.size() do
       val item = cartItems.get(i)
       itemCount += cartItems.get(i).quantity.value
@@ -346,3 +346,14 @@ class HomePageOverviewController():
       case e: Exception =>
         e.printStackTrace()
         alerts.showErrorAlert("Error", "Could not load food details dialog.")
+
+  @FXML
+  def handleLogout(): Unit =
+    val confirmed = alerts.showConfirmationAlert(
+      "Logout Confirmation",
+      "Are you sure you want to logout?"
+    )
+
+    if confirmed then
+      alerts.showSuccessAlert("Logout Successful", "You have successfully logged out!")
+      Main.showLoginOverview()
