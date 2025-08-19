@@ -47,8 +47,9 @@ class Alerts{
       headerText = None
       contentText = message
     }
+    alert.getButtonTypes.setAll(ButtonType.Yes, ButtonType.No)
     val result = alert.showAndWait()
-    result.contains(ButtonType.OK)
+    result.contains(ButtonType.Yes)
   }
-  
+
 }
