@@ -79,13 +79,16 @@ object Main extends JFXApp3:
 
     this.roots.get.center = registerRoot
 
-  def showHomePageOverview(): Unit =
+  def showHomePageOverview(username: String = ""): Unit =
     val resource = getClass.getResource("view/HomePageOverview.fxml")
     val loader = new FXMLLoader(resource)
     loader.load()
     val homeRoot = loader.getRoot[jfxs.layout.AnchorPane]
     val homeController = loader.getController[HomePageOverviewController]
-
+    
+    if (username.nonEmpty) {
+      homeController.setCurrentUser(username)
+    }
     // Set the center of root layout to Home Page
     this.roots.get.center = homeRoot
 

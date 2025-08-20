@@ -9,6 +9,7 @@ import javafx.stage.Stage
 import javafx.collections.ObservableList
 import javafx.beans.value.{ChangeListener, ObservableValue}
 import javafx.scene.layout.VBox
+import java.time.YearMonth
 
 class CheckoutOverviewController:
   @FXML
@@ -119,7 +120,6 @@ class CheckoutOverviewController:
       val expiry = Option(expiryField.getText).getOrElse("").trim
       val cvv = Option(cvvField.getText).getOrElse("").trim
 
-      // 🔴 Empty field checks
       if cardNumber.isEmpty then
         alerts.showWarningAlert("Missing Information", "Card number cannot be empty.")
         return
@@ -132,23 +132,16 @@ class CheckoutOverviewController:
       if cvv.isEmpty then
         alerts.showWarningAlert("Missing Information", "CVV cannot be empty.")
         return
-
-      // 🔒 Validate card number: 16 digits
       if !cardNumber.matches("\\d{16}") then
         alerts.showWarningAlert("Invalid Card Number", "Card number must be exactly 16 digits (numbers only).")
         return
-
-      // 🔒 Validate card holder: only letters and spaces
       if !cardHolder.matches("^[A-Za-z ]+$") then
         alerts.showWarningAlert("Invalid Card Holder", "Card holder name must only contain letters and spaces.")
         return
-
-      // 🔒 Validate expiry date (MM/YY), not expired, not more than 10 years into future
       if !expiry.matches("^(0[1-9]|1[0-2])/\\d{2}$") then
         alerts.showWarningAlert("Invalid Expiry Date", "Expiry date must be in MM/YY format (e.g., 05/27).")
         return
       else
-        import java.time.YearMonth
         val parts = expiry.split("/")
         val expMonth = parts(0).toInt
         val expYear = 2000 + parts(1).toInt

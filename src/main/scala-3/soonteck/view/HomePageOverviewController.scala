@@ -18,7 +18,6 @@ import scala.util.{Try, Success, Failure}
 @FXML
 class HomePageOverviewController():
 
-  // Menu Tab Controls
   @FXML
   private var foodTable: TableView[FoodType] = null
   @FXML
@@ -45,8 +44,6 @@ class HomePageOverviewController():
   private var healthyFilterButton: javafx.scene.control.Button = null
   @FXML
   private var cartCountLabel: Label = null
-
-  // Cart Tab Controls
   @FXML
   private var cartTable: TableView[CartItem] = null
   @FXML
@@ -69,8 +66,6 @@ class HomePageOverviewController():
   private var cartSummaryPriceLabel: Label = null
   @FXML
   private var cartHealthStatusLabel: Label = null
-
-  // View Controls (Fixed - removed duplicates)
   @FXML
   private var homeView: javafx.scene.layout.VBox = null
   @FXML
@@ -83,8 +78,6 @@ class HomePageOverviewController():
   private var cartNavButton: javafx.scene.control.Button = null
   @FXML
   private var orderHistoryNavButton: javafx.scene.control.Button = null
-
-  // Order History Table Components
   @FXML
   private var orderHistoryTable: TableView[OrderHistory] = null
   @FXML
@@ -96,16 +89,14 @@ class HomePageOverviewController():
   @FXML
   private var orderStatusColumn: TableColumn[OrderHistory, String] = null
 
-  // Data
   private val cartItems: ObservableList[CartItem] = FXCollections.observableArrayList()
   private val orderHistoryItems: ObservableList[OrderHistory] = FXCollections.observableArrayList()
   private var filteredFoodList: FilteredList[FoodType] = null
   private var selectedFood: FoodType = null
   private var isHealthyFilterActive = false
-  // Alert instance
   private val alerts = new Alerts()
+  private var currentUsername: String = ""
 
-  // Navigation Methods
   @FXML
   def showHomeView(): Unit = {
     homeView.setVisible(true)
@@ -134,9 +125,17 @@ class HomePageOverviewController():
     alerts.showInfoAlert("Refresh", "Order history refreshed!")
   }
 
+  def setCurrentUser(username: String): Unit =
+    currentUsername = username
+    loadOrderHistory()
+
   private def loadOrderHistory(): Unit = {
     try {
-      val orders = OrderHistory.getAllOrders
+      val orders = if (currentUsername.nonEmpty) {
+        OrderHistory.getOrdersForUser(currentUsername)
+      } else {
+        List.empty[OrderHistory] // No orders if no user is set
+      }
       orderHistoryItems.clear()
       orders.foreach(order => orderHistoryItems.add(order))
     } catch {
@@ -148,14 +147,16 @@ class HomePageOverviewController():
 
   private def saveOrderToHistory(): Unit = {
     try {
-      // Create order from current cart
-      val order = OrderHistory.createOrderFromCart(cartItems)
+      if (currentUsername.isEmpty) {
+        alerts.showErrorAlert("Error", "No user logged in.")
+        return
+      }
 
-      // Save to database
+      val order = OrderHistory.createOrderFromCart(cartItems, currentUsername)
+
       order.save() match {
         case Success(_) =>
-          // Add to current display list
-          orderHistoryItems.add(0, order) // Add at beginning for newest first
+          orderHistoryItems.add(0, order)
         case Failure(e) =>
           e.printStackTrace()
           alerts.showErrorAlert("Error", "Could not save order to history.")
@@ -169,7 +170,6 @@ class HomePageOverviewController():
 
   @FXML
   def handleViewOrderDetails(): Unit = {
-    // TODO: Implement view order details logic
     val selectedOrder = orderHistoryTable.getSelectionModel.getSelectedItem
     if (selectedOrder != null) {
       alerts.showInfoAlert("Order Details", "Feature coming soon!")
@@ -180,7 +180,6 @@ class HomePageOverviewController():
 
   @FXML
   def handleReorder(): Unit = {
-    // TODO: Implement reorder logic
     val selectedOrder = orderHistoryTable.getSelectionModel.getSelectedItem
     if (selectedOrder != null) {
       alerts.showInfoAlert("Reorder", "Reorder feature coming soon!")
@@ -210,13 +209,11 @@ class HomePageOverviewController():
     caloriesColumn.cellValueFactory = { c => c.value.calories.delegate.asObject() }
     descriptionColumn.cellValueFactory = { _.value.description }
 
-    // Setup category combo box
     val categories = Main.foodData.map(_.category.value).distinct.sorted
     categoryComboBox.getItems.add("All")
     categories.foreach(category => categoryComboBox.getItems.add(category))
     categoryComboBox.setValue("All")
 
-    // Initialize cart count
     updateCartCount()
 
   private def initializeCartTab(): Unit =
@@ -413,7 +410,9 @@ class HomePageOverviewController():
       val matchesCategory = categoryComboBox.getValue == "All" ||
         food.category.value == categoryComboBox.getValue
 
-      val matchesHealthy = !isHealthyFilterActive || food.calories.value < 400
+      val matchesHealthy = !isHealthyFilterActive || (food.calories.value < 500 &&
+        !food.category.value.contains("Fast Food") &&
+        !food.name.value.toLowerCase.contains("fried"))
 
       matchesSearch && matchesCategory && matchesHealthy
     }
@@ -516,3 +515,4 @@ class HomePageOverviewController():
     cartItems.clear()
     updateCartCount()
     alerts.showSuccessAlert("Order Completed", "Your order has been saved to history and cart cleared.")
+

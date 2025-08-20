@@ -41,11 +41,21 @@ class LoginOverviewController {
     val username = usernameField.getText.trim
     val password = passwordField.getText
 
-    if (authService.validateLogin(username, password)) { // DB-backed login
-      alerts.showSuccessAlert("Login Successful", s"Welcome, $username!")
-      Main.showHomePageOverview()
-    } else {
-      alerts.showErrorAlert("Login Failed", "Invalid username or password.")
+    User.getUserByUsername(username) match {
+      case Some(user) if user.password.value == password =>
+        // Login successful
+        alerts.showSuccessAlert("Login Successful", s"Welcome back, ${user.username.value}!")
+
+        // Show home page and set current user by username
+        Main.showHomePageOverview(user.username.value) // Pass username
+
+      case Some(user) =>
+        // Wrong password
+        alerts.showErrorAlert("Login Failed", "Incorrect password. Please try again.")
+
+      case None =>
+        // User doesn't exist
+        alerts.showErrorAlert("Login Failed", "Username not found. Please check your username or register a new account.")
     }
   }
 

@@ -25,7 +25,7 @@
                   <Label style="-fx-font-weight: bold;" text="Product:" />
                   <Label style="-fx-font-weight: bold;" text="Version:" GridPane.rowIndex="1" />
                   <Label style="-fx-font-weight: bold;" text="Author:" GridPane.rowIndex="2" />
-                  <Label text="Smart Fridge System" GridPane.columnIndex="1" />
+                  <Label text="LeanBites" GridPane.columnIndex="1" />
                   <Label text="1.1.1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Soon Teck" GridPane.columnIndex="1" GridPane.rowIndex="2" />
               </children>
