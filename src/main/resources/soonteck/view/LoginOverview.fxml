@@ -29,7 +29,7 @@
             <children>
                 <VBox alignment="CENTER" prefHeight="300.0" prefWidth="461.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="5.0" maxWidth="Infinity" prefHeight="58.0" prefWidth="452.0" styleClass="login-label-header" text="WELCOME TO LeanBites!" textAlignment="CENTER" textFill="#60dd77" wrapText="true">
+                        <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="5.0" maxWidth="Infinity" prefHeight="58.0" prefWidth="452.0" styleClass="login-label-header" text="WELCOME TO LEANBITES!" textAlignment="CENTER" textFill="#60dd77" wrapText="true">
                             <font>
                                 <Font name="Rockwell Bold" size="30.0" />
                             </font>

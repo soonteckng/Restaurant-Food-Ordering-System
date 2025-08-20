@@ -37,30 +37,36 @@
     -fx-text-fill: #6e0808
 }
 
-/* Navigation Sidebar - Enhanced */
+/* Navigation Sidebar - Enhanced and Aligned */
 .nav-sidebarVBox{
     -fx-background-color: #dd6d6d;
     -fx-alignment: center;
-    -fx-padding: 15 10 15 10;
+    -fx-padding: 8 2 8 2;
 }
 
 .nav-sidebarTitleLabel{
-    -fx-font-size: 18pt !important;
+    -fx-font-size: 13pt !important;
     -fx-font-family: "Bauhaus 93", "Arial Bold", sans-serif;
     -fx-text-fill: #ffffff !important;
     -fx-font-weight: bold;
     -fx-alignment: center;
     -fx-text-alignment: center;
+    -fx-wrap-text: true;
+    -fx-max-width: 130;
+    -fx-pref-width: 130;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 2, 0.0, 1, 1);
 }
 
 .nav-sidebarTitleLabelTwo{
-    -fx-font-size: 11pt !important;
+    -fx-font-size: 8pt !important;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
     -fx-text-fill: #ffffff !important;
     -fx-alignment: center;
     -fx-text-alignment: center;
     -fx-font-style: italic;
+    -fx-wrap-text: true;
+    -fx-max-width: 130;
+    -fx-pref-width: 130;
 }
 
 .nav-sidebar {
@@ -215,10 +221,38 @@
     -fx-font-size: 9pt;
     -fx-background-color: #a83b3b;
     -fx-text-fill: white;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
 }
 
 .filter-button:hover {
     -fx-background-color: #ed6b6b;
+}
+
+/* Special Healthy Options Button - Eye-catching green theme */
+#healthyFilterButton {
+    -fx-background-color: linear-gradient(to bottom, #28a745, #20903a) !important;
+    -fx-text-fill: white !important;
+    -fx-font-weight: bold;
+    -fx-border-color: #1e7e34;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 6 10 6 10;
+    -fx-font-size: 9pt;
+    -fx-effect: dropshadow(gaussian, rgba(40,167,69,0.4), 4, 0.0, 0, 2);
+}
+
+#healthyFilterButton:hover {
+    -fx-background-color: linear-gradient(to bottom, #34ce57, #28a745) !important;
+    -fx-effect: dropshadow(gaussian, rgba(40,167,69,0.6), 6, 0.0, 0, 3);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+#healthyFilterButton:pressed {
+    -fx-background-color: #1e7e34 !important;
+    -fx-effect: dropshadow(gaussian, rgba(40,167,69,0.3), 2, 0.0, 0, 1);
 }
 
 /* Cart action buttons */
@@ -496,4 +530,161 @@
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
     -fx-text-fill: #28a745;
+}
+
+/* Food Details Dialog Styling */
+.food-details-container {
+    -fx-background-color: #f4d1d1;
+}
+
+.food-details-container .label {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-text-fill: #495057;
+}
+
+.food-details-container .scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: #dee2e6;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.food-details-container .grid-pane {
+    -fx-background-color: white;
+    -fx-border-color: #dee2e6;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 15;
+}
+
+/* Food Details Title */
+.food-details-title {
+    -fx-font-size: 20pt !important;
+    -fx-font-family: "Bauhaus 93", "Arial Bold", sans-serif !important;
+    -fx-text-fill: #6e0808 !important;
+    -fx-font-weight: bold;
+}
+
+/* Food Details Labels */
+.food-details-label {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+}
+
+.food-details-value {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-text-fill: #495057;
+}
+
+/* Cart Summary Dialog Styling */
+.cart-summary-container {
+    -fx-background-color: #f4d1d1;
+}
+
+.cart-summary-title {
+    -fx-font-size: 20pt !important;
+    -fx-font-family: "Bauhaus 93", "Arial Bold", sans-serif !important;
+    -fx-text-fill: #0619e9 !important;
+    -fx-font-weight: bold;
+}
+
+.cart-summary-section {
+    -fx-background-color: white;
+    -fx-border-color: #dee2e6;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0.0, 0, 2);
+}
+
+.cart-summary-section .label {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-text-fill: #495057;
+}
+
+/* Summary Statistics Styling */
+.summary-stats-title {
+    -fx-font-size: 16pt !important;
+    -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif !important;
+    -fx-text-fill: #333333 !important;
+    -fx-font-weight: bold;
+}
+
+.summary-stats-label {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
+    -fx-text-fill: #666666;
+    -fx-font-weight: bold;
+}
+
+.summary-stats-value {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-text-fill: #333333;
+}
+
+/* Table styling for dialogs */
+.cart-summary-container .table-view {
+    -fx-background-color: white;
+    -fx-border-color: #dee2e6;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.cart-summary-container .table-view .column-header-background {
+    -fx-background-color: linear-gradient(to bottom, #d45f5f, #b84545);
+    -fx-border-color: #a83b3b;
+    -fx-border-width: 0 0 2 0;
+}
+
+.cart-summary-container .table-view .column-header .label {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.cart-summary-container .table-view .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: #f0f0f0;
+    -fx-border-width: 0 0 1 0;
+}
+
+.cart-summary-container .table-view .table-row-cell:odd {
+    -fx-background-color: #fdf8f8;
+}
+
+.cart-summary-container .table-view .table-cell {
+    -fx-text-fill: #495057;
+    -fx-font-size: 10pt;
+    -fx-padding: 8 8 8 8;
+}
+
+/* Dialog Buttons */
+.dialog-button {
+    -fx-background-color: #6c757d;
+    -fx-text-fill: white;
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-padding: 8 16 8 16;
+    -fx-min-width: 80;
+}
+
+.dialog-button:hover {
+    -fx-background-color: #5a6268;
+}
+
+.dialog-button:pressed {
+    -fx-background-color: #545b62;
 }

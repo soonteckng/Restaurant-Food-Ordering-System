@@ -23,7 +23,7 @@
                <children>
                   <VBox alignment="CENTER" spacing="5.0" styleClass="nav-sidebarVBox">
                      <children>
-                        <Label styleClass="nav-sidebarTitleLabel" text="🍽️ LeanBites" />
+                        <Label styleClass="nav-sidebarTitleLabel" text="🍽️ LEANBITES" />
                         <Label styleClass="nav-sidebarTitleLabelTwo" text="Food Ordering System" />
                      </children>
                      <padding>
@@ -32,17 +32,13 @@
                   </VBox>
                   <VBox spacing="3.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="33.0" prefWidth="108.0" text="Navigation" styleClass="label-bright">
-                           <padding>
-                              <Insets bottom="8.0" left="12.0" top="5.0" />
-                           </padding>
-                        </Label>
+                        <Region prefHeight="10.0" prefWidth="129.0" />
 
                         <Button fx:id="homeNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showHomeView" prefHeight="40.0" styleClass="nav-button" text="🏠 Home" />
 
                         <Button fx:id="cartNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showCartView" prefHeight="40.0" styleClass="nav-button" text="🛒 Cart" />
 
-                        <Button fx:id="orderHistoryNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showOrderHistoryView" prefHeight="40.0" styleClass="nav-button" text="📋 History" />
+                        <Button fx:id="orderHistoryNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showOrderHistoryView" prefHeight="40.0" styleClass="nav-button" text="📋 Order History" />
 
                         <Region prefHeight="20.0" />
                         <Region VBox.vgrow="ALWAYS" />
@@ -59,7 +55,7 @@
          <center>
             <StackPane BorderPane.alignment="CENTER">
                <children>
-                  <VBox fx:id="homeView" alignment="CENTER" spacing="10.0">
+                  <VBox fx:id="homeView" alignment="CENTER" spacing="10.0" visible="false">
                      <children>
                         <VBox alignment="CENTER" maxWidth="Infinity" prefHeight="80.0" spacing="8.0" style="-fx-background-color: #ffffff; -fx-border-color: #dee2e6; -fx-border-radius: 5; -fx-background-radius: 5;">
                            <children>
@@ -92,7 +88,7 @@
 
                         <HBox maxWidth="Infinity" VBox.vgrow="NEVER">
                            <children>
-                              <Label prefHeight="20.0" text="Food Menu" textAlignment="LEFT" styleClass="label-bright" />
+                              <Label prefHeight="20.0" styleClass="label-bright" text="Food Menu" textAlignment="LEFT" />
                               <Region HBox.hgrow="ALWAYS" />
                            </children>
                            <padding>
@@ -134,40 +130,40 @@
                      <children>
                         <HBox alignment="CENTER" maxWidth="Infinity" spacing="20.0">
                            <children>
-                              <Label text="🛒 MY CART" textFill="#6e0808" styleClass="login-label-header" />
+                              <Label styleClass="login-label-header" text="🛒 MY CART" textFill="#6e0808" />
                               <Region HBox.hgrow="ALWAYS" />
-                              <Button fx:id="clearCartButton" onAction="#handleClearCart" text="Clear Cart" styleClass="button-danger" />
+                              <Button fx:id="clearCartButton" onAction="#handleClearCart" styleClass="button-danger" text="Clear Cart" />
                            </children>
                         </HBox>
 
                         <VBox spacing="8.0" styleClass="content-card">
                            <children>
-                              <Label text="Order Summary" styleClass="label-bright" />
+                              <Label styleClass="label-bright" text="Order Summary" />
                               <HBox alignment="CENTER_LEFT" spacing="30.0">
                                  <children>
                                     <VBox alignment="CENTER" spacing="2.0">
                                        <children>
-                                          <Label text="Total Items" styleClass="summary-title" />
-                                          <Label fx:id="cartSummaryItemsLabel" text="0" styleClass="summary-value" />
+                                          <Label styleClass="summary-title" text="Total Items" />
+                                          <Label fx:id="cartSummaryItemsLabel" styleClass="summary-value" text="0" />
                                        </children>
                                     </VBox>
                                     <VBox alignment="CENTER" spacing="2.0">
                                        <children>
-                                          <Label text="Total Calories" styleClass="summary-title" />
-                                          <Label fx:id="cartSummaryCaloriesLabel" text="0 kcal" styleClass="summary-value" />
+                                          <Label styleClass="summary-title" text="Total Calories" />
+                                          <Label fx:id="cartSummaryCaloriesLabel" styleClass="summary-value" text="0 kcal" />
                                        </children>
                                     </VBox>
                                     <VBox alignment="CENTER" spacing="2.0">
                                        <children>
-                                          <Label text="Total Price" styleClass="summary-title" />
-                                          <Label fx:id="cartSummaryPriceLabel" text="RM 0.00" styleClass="summary-price" />
+                                          <Label styleClass="summary-title" text="Total Price" />
+                                          <Label fx:id="cartSummaryPriceLabel" styleClass="summary-price" text="RM 0.00" />
                                        </children>
                                     </VBox>
                                     <Region HBox.hgrow="ALWAYS" />
                                     <VBox alignment="CENTER" spacing="2.0">
                                        <children>
-                                          <Label text="Health Status" styleClass="summary-title" />
-                                          <Label fx:id="cartHealthStatusLabel" text="🟢 Healthy" styleClass="summary-health" />
+                                          <Label styleClass="summary-title" text="Health Status" />
+                                          <Label fx:id="cartHealthStatusLabel" styleClass="summary-health" text="🟢 Healthy" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -204,12 +200,12 @@
                      </padding>
                   </VBox>
 
-                  <VBox fx:id="orderHistoryView" alignment="CENTER" spacing="15.0" visible="false">
+                  <VBox fx:id="orderHistoryView" alignment="CENTER" spacing="15.0">
                      <children>
                         <VBox alignment="CENTER" spacing="5.0">
                            <children>
-                              <Label text="📋 ORDER HISTORY" styleClass="login-label-header" />
-                              <Label text="View your previous orders" styleClass="label-subheader" />
+                              <Label styleClass="login-label-header" text="📋 ORDER HISTORY" />
+                              <Label styleClass="label-subheader" text="View your previous orders" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" top="20.0" />
@@ -220,7 +216,7 @@
                            <children>
                               <HBox maxWidth="Infinity">
                                  <children>
-                                    <Label text="Order History" styleClass="label-bright" />
+                                    <Label styleClass="label-bright" text="Order History" />
                                     <Region HBox.hgrow="ALWAYS" />
                                  </children>
                                  <padding>
@@ -241,11 +237,6 @@
                               </TableView>
 
                               <HBox alignment="CENTER" spacing="15.0">
-                                 <children>
-                                    <Button onAction="#handleRefreshOrderHistory" prefWidth="120.0" styleClass="button-primary" text="Refresh" />
-                                    <Button onAction="#handleViewOrderDetails" prefWidth="140.0" styleClass="button" text="View Details" />
-                                    <Button onAction="#handleReorder" prefWidth="120.0" styleClass="button-success" text="Re-order" />
-                                 </children>
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>

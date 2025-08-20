@@ -1,7 +1,7 @@
 package soonteck.view
 
 import soonteck.Main
-import soonteck.model.{CartItem, FoodType, OrderHistory}
+import soonteck.model.{Cart, CartItem, FoodType, OrderHistory}
 import soonteck.alert.Alerts
 import scalafx.Includes.*
 import javafx.scene.control.{ComboBox, Label, Spinner, TableColumn, TableRow, TableView, TextField, Tooltip}
@@ -9,88 +9,52 @@ import javafx.scene.input.MouseEvent
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.stage.{Modality, Stage}
 import javafx.scene.{Parent, Scene}
-import javafx.collections.{FXCollections, ObservableList}
 import javafx.collections.transformation.FilteredList
 import javafx.util.Callback
 import javafx.beans.value.{ChangeListener, ObservableValue}
 import scala.util.{Try, Success, Failure}
 
 @FXML
-class HomePageOverviewController():
+class HomePageOverviewController:
 
-  @FXML
-  private var foodTable: TableView[FoodType] = null
-  @FXML
-  private var nameColumn: TableColumn[FoodType, String] = null
-  @FXML
-  private var categoryColumn: TableColumn[FoodType, String] = null
-  @FXML
-  private var priceColumn: TableColumn[FoodType, java.lang.Double] = null
-  @FXML
-  private var caloriesColumn: TableColumn[FoodType, java.lang.Integer] = null
-  @FXML
-  private var descriptionColumn: TableColumn[FoodType, String] = null
-  @FXML
-  private var selectedItemLabel: Label = null
-  @FXML
-  private var quantitySpinner: Spinner[Int] = null
-  @FXML
-  private var addToCartButton: javafx.scene.control.Button = null
-  @FXML
-  private var categoryComboBox: ComboBox[String] = null
-  @FXML
-  private var searchField: TextField = null
-  @FXML
-  private var healthyFilterButton: javafx.scene.control.Button = null
-  @FXML
-  private var cartCountLabel: Label = null
-  @FXML
-  private var cartTable: TableView[CartItem] = null
-  @FXML
-  private var cartItemColumn: TableColumn[CartItem, String] = null
-  @FXML
-  private var cartQuantityColumn: TableColumn[CartItem, java.lang.Integer] = null
-  @FXML
-  private var cartPriceColumn: TableColumn[CartItem, java.lang.Double] = null
-  @FXML
-  private var clearCartButton: javafx.scene.control.Button = null
-  @FXML
-  private var cartUnitPriceColumn: TableColumn[CartItem, java.lang.Double] = null
-  @FXML
-  private var cartCaloriesColumn: TableColumn[CartItem, java.lang.Integer] = null
-  @FXML
-  private var cartSummaryItemsLabel: Label = null
-  @FXML
-  private var cartSummaryCaloriesLabel: Label = null
-  @FXML
-  private var cartSummaryPriceLabel: Label = null
-  @FXML
-  private var cartHealthStatusLabel: Label = null
-  @FXML
-  private var homeView: javafx.scene.layout.VBox = null
-  @FXML
-  private var cartView: javafx.scene.layout.VBox = null
-  @FXML
-  private var orderHistoryView: javafx.scene.layout.VBox = null
-  @FXML
-  private var homeNavButton: javafx.scene.control.Button = null
-  @FXML
-  private var cartNavButton: javafx.scene.control.Button = null
-  @FXML
-  private var orderHistoryNavButton: javafx.scene.control.Button = null
-  @FXML
-  private var orderHistoryTable: TableView[OrderHistory] = null
-  @FXML
-  private var orderDateColumn: TableColumn[OrderHistory, String] = null
-  @FXML
-  private var orderItemsColumn: TableColumn[OrderHistory, String] = null
-  @FXML
-  private var orderTotalColumn: TableColumn[OrderHistory, java.lang.Double] = null
-  @FXML
-  private var orderStatusColumn: TableColumn[OrderHistory, String] = null
+  @FXML private var foodTable: TableView[FoodType] = null
+  @FXML private var nameColumn: TableColumn[FoodType, String] = null
+  @FXML private var categoryColumn: TableColumn[FoodType, String] = null
+  @FXML private var priceColumn: TableColumn[FoodType, java.lang.Double] = null
+  @FXML private var caloriesColumn: TableColumn[FoodType, java.lang.Integer] = null
+  @FXML private var descriptionColumn: TableColumn[FoodType, String] = null
+  @FXML private var selectedItemLabel: Label = null
+  @FXML private var quantitySpinner: Spinner[Int] = null
+  @FXML private var addToCartButton: javafx.scene.control.Button = null
+  @FXML private var categoryComboBox: ComboBox[String] = null
+  @FXML private var searchField: TextField = null
+  @FXML private var healthyFilterButton: javafx.scene.control.Button = null
+  @FXML private var cartCountLabel: Label = null
+  @FXML private var cartTable: TableView[CartItem] = null
+  @FXML private var cartItemColumn: TableColumn[CartItem, String] = null
+  @FXML private var cartQuantityColumn: TableColumn[CartItem, java.lang.Integer] = null
+  @FXML private var cartPriceColumn: TableColumn[CartItem, java.lang.Double] = null
+  @FXML private var clearCartButton: javafx.scene.control.Button = null
+  @FXML private var cartUnitPriceColumn: TableColumn[CartItem, java.lang.Double] = null
+  @FXML private var cartCaloriesColumn: TableColumn[CartItem, java.lang.Integer] = null
+  @FXML private var cartSummaryItemsLabel: Label = null
+  @FXML private var cartSummaryCaloriesLabel: Label = null
+  @FXML private var cartSummaryPriceLabel: Label = null
+  @FXML private var cartHealthStatusLabel: Label = null
+  @FXML private var homeView: javafx.scene.layout.VBox = null
+  @FXML private var cartView: javafx.scene.layout.VBox = null
+  @FXML private var orderHistoryView: javafx.scene.layout.VBox = null
+  @FXML private var homeNavButton: javafx.scene.control.Button = null
+  @FXML private var cartNavButton: javafx.scene.control.Button = null
+  @FXML private var orderHistoryNavButton: javafx.scene.control.Button = null
+  @FXML private var orderHistoryTable: TableView[OrderHistory] = null
+  @FXML private var orderDateColumn: TableColumn[OrderHistory, String] = null
+  @FXML private var orderItemsColumn: TableColumn[OrderHistory, String] = null
+  @FXML private var orderTotalColumn: TableColumn[OrderHistory, java.lang.Double] = null
+  @FXML private var orderStatusColumn: TableColumn[OrderHistory, String] = null
 
-  private val cartItems: ObservableList[CartItem] = FXCollections.observableArrayList()
-  private val orderHistoryItems: ObservableList[OrderHistory] = FXCollections.observableArrayList()
+  private val cart = new Cart()
+  private val orderHistoryItems: javafx.collections.ObservableList[OrderHistory] = javafx.collections.FXCollections.observableArrayList()
   private var filteredFoodList: FilteredList[FoodType] = null
   private var selectedFood: FoodType = null
   private var isHealthyFilterActive = false
@@ -118,23 +82,17 @@ class HomePageOverviewController():
     orderHistoryView.setVisible(true)
   }
 
-  // Order History Action Methods
-  @FXML
-  def handleRefreshOrderHistory(): Unit = {
-    loadOrderHistory()
-    alerts.showInfoAlert("Refresh", "Order history refreshed!")
-  }
-
-  def setCurrentUser(username: String): Unit =
+  def setCurrentUser(username: String): Unit = {
     currentUsername = username
     loadOrderHistory()
+  }
 
   private def loadOrderHistory(): Unit = {
     try {
       val orders = if (currentUsername.nonEmpty) {
         OrderHistory.getOrdersForUser(currentUsername)
       } else {
-        List.empty[OrderHistory] // No orders if no user is set
+        List.empty[OrderHistory]
       }
       orderHistoryItems.clear()
       orders.foreach(order => orderHistoryItems.add(order))
@@ -151,9 +109,7 @@ class HomePageOverviewController():
         alerts.showErrorAlert("Error", "No user logged in.")
         return
       }
-
-      val order = OrderHistory.createOrderFromCart(cartItems, currentUsername)
-
+      val order = cart.createOrder(currentUsername)
       order.save() match {
         case Success(_) =>
           orderHistoryItems.add(0, order)
@@ -168,37 +124,16 @@ class HomePageOverviewController():
     }
   }
 
-  @FXML
-  def handleViewOrderDetails(): Unit = {
-    val selectedOrder = orderHistoryTable.getSelectionModel.getSelectedItem
-    if (selectedOrder != null) {
-      alerts.showInfoAlert("Order Details", "Feature coming soon!")
-    } else {
-      alerts.showWarningAlert("No Selection", "Please select an order to view details.")
-    }
-  }
-
-  @FXML
-  def handleReorder(): Unit = {
-    val selectedOrder = orderHistoryTable.getSelectionModel.getSelectedItem
-    if (selectedOrder != null) {
-      alerts.showInfoAlert("Reorder", "Reorder feature coming soon!")
-    } else {
-      alerts.showWarningAlert("No Selection", "Please select an order to reorder.")
-    }
-  }
-
-  def initialize(): Unit =
+  def initialize(): Unit = {
     initializeMenuTab()
     initializeCartTab()
     initializeOrderHistoryTab()
     setupEventHandlers()
     setupTableTooltip()
-    // Initialize with Home view visible
     showHomeView()
+  }
 
-  private def initializeMenuTab(): Unit =
-    // Setup food table
+  private def initializeMenuTab(): Unit = {
     foodTable.items = Main.foodData
     filteredFoodList = new FilteredList[FoodType](Main.foodData)
     foodTable.setItems(filteredFoodList)
@@ -215,304 +150,245 @@ class HomePageOverviewController():
     categoryComboBox.setValue("All")
 
     updateCartCount()
+  }
 
-  private def initializeCartTab(): Unit =
-    cartTable.setItems(cartItems)
+  private def initializeCartTab(): Unit = {
+    cartTable.setItems(cart.getItems)
     cartItemColumn.cellValueFactory = { _.value.item }
     cartQuantityColumn.cellValueFactory = { c => c.value.quantity.delegate.asObject() }
     cartUnitPriceColumn.cellValueFactory = { c =>
-      val unitPrice = c.value.foodItem.price.value
-      new javafx.beans.property.SimpleDoubleProperty(unitPrice).asObject()
+      new javafx.beans.property.SimpleDoubleProperty(c.value.foodItem.price.value).asObject()
     }
     cartCaloriesColumn.cellValueFactory = { c =>
-      val totalCalories = c.value.getCalories
-      new javafx.beans.property.SimpleIntegerProperty(totalCalories).asObject()
+      new javafx.beans.property.SimpleIntegerProperty(c.value.getCalories).asObject()
     }
     cartPriceColumn.cellValueFactory = { c =>
-      val totalPrice = c.value.getTotalPrice
-      new javafx.beans.property.SimpleDoubleProperty(totalPrice).asObject()
+      new javafx.beans.property.SimpleDoubleProperty(c.value.getTotalPrice).asObject()
     }
+  }
 
-  private def initializeOrderHistoryTab(): Unit =
-    // Setup order history table
+  private def initializeOrderHistoryTab(): Unit = {
     orderHistoryTable.setItems(orderHistoryItems)
     orderDateColumn.cellValueFactory = { _.value.orderDate }
     orderItemsColumn.cellValueFactory = { _.value.items }
     orderTotalColumn.cellValueFactory = { c => c.value.total.delegate.asObject() }
     orderStatusColumn.cellValueFactory = { _.value.status }
-
-    // Load existing order history
     loadOrderHistory()
+  }
 
-  private def setupEventHandlers(): Unit =
-    // Food table selection
+  private def setupEventHandlers(): Unit = {
     foodTable.selectionModel().selectedItem.onChange { (_, _, newValue) =>
       selectedFood = newValue
-      if newValue != null then
-        selectedItemLabel.text = newValue.name.value
-      else
-        selectedItemLabel.text = "None selected"
+      selectedItemLabel.text = if (newValue != null) newValue.name.value else "None selected"
     }
 
-    // Double-click to show food details
     foodTable.setOnMouseClicked { (event: MouseEvent) =>
-      if event.getClickCount == 2 && selectedFood != null then
+      if (event.getClickCount == 2 && selectedFood != null) {
         showFoodDetails(selectedFood)
+      }
     }
 
-    // Search functionality
     searchField.textProperty().addListener(new ChangeListener[String] {
-      override def changed(observable: ObservableValue[_ <: String], oldValue: String, newValue: String): Unit =
+      override def changed(observable: ObservableValue[_ <: String], oldValue: String, newValue: String): Unit = {
         applyFilters()
-    })
-
-    // Category filter
-    categoryComboBox.valueProperty().addListener(new ChangeListener[String] {
-      override def changed(observable: ObservableValue[_ <: String], oldValue: String, newValue: String): Unit =
-        applyFilters()
-    })
-
-  private def setupTableTooltip(): Unit =
-    foodTable.setRowFactory(new Callback[TableView[FoodType], TableRow[FoodType]] {
-      override def call(tableView: TableView[FoodType]): TableRow[FoodType] = {
-        val row = new TableRow[FoodType]()
-
-        row.itemProperty().addListener(new ChangeListener[FoodType] {
-          override def changed(observable: ObservableValue[_ <: FoodType], oldValue: FoodType, newValue: FoodType): Unit = {
-            if (newValue != null) {
-              val tooltip = new Tooltip()
-              tooltip.setText("Double-click to view details")
-              // Removed CSS styling since you want to handle it separately
-              row.setTooltip(tooltip)
-            } else {
-              row.setTooltip(null)
-            }
-          }
-        })
-
-        row
       }
     })
 
+    categoryComboBox.valueProperty().addListener(new ChangeListener[String] {
+      override def changed(observable: ObservableValue[_ <: String], oldValue: String, newValue: String): Unit = {
+        applyFilters()
+      }
+    })
+  }
+
+  private def setupTableTooltip(): Unit = {
+    foodTable.setRowFactory(new Callback[TableView[FoodType], TableRow[FoodType]] {
+      override def call(tableView: TableView[FoodType]): TableRow[FoodType] = {
+        val row = new TableRow[FoodType]()
+        row.itemProperty().addListener(new ChangeListener[FoodType] {
+          override def changed(observable: ObservableValue[_ <: FoodType], oldValue: FoodType, newValue: FoodType): Unit = {
+            row.setTooltip(if (newValue != null) new Tooltip("Double-click to view details") else null)
+          }
+        })
+        row
+      }
+    })
+  }
+
   @FXML
-  def handleAddToCart(): Unit =
-    if selectedFood != null then
-      val quantity = quantitySpinner.getValue
-      var existingItem: CartItem = null
-
-      // Find existing item manually
-      for i <- 0 until cartItems.size() do
-        if cartItems.get(i).item.value == selectedFood.name.value then
-          existingItem = cartItems.get(i)
-
-      if existingItem != null then
-        existingItem.quantity.value = existingItem.quantity.value + quantity
-      else
-        cartItems.add(new CartItem(selectedFood, quantity))
-
-      updateCartCount()
-      alerts.showSuccessAlert("Success", s"Added ${selectedFood.name.value} to cart!")
-    else
+  def handleAddToCart(): Unit = {
+    if (selectedFood != null) {
+      try {
+        cart.addItem(selectedFood, quantitySpinner.getValue)
+        updateCartCount()
+        alerts.showSuccessAlert("Success", s"Added ${selectedFood.name.value} to cart!")
+      } catch {
+        case e: IllegalArgumentException =>
+          alerts.showWarningAlert("Invalid Quantity", e.getMessage)
+      }
+    } else {
       alerts.showWarningAlert("No Selection", "Please select a food item first.")
+    }
+  }
 
   @FXML
-  def addToCartFromDialog(food: FoodType, quantity: Int): Unit =
-    var existingItem: CartItem = null
-
-    // Find existing item manually
-    for i <- 0 until cartItems.size() do
-      if cartItems.get(i).item.value == food.name.value then
-        existingItem = cartItems.get(i)
-
-    if existingItem != null then
-      existingItem.quantity.value = existingItem.quantity.value + quantity
-    else
-      cartItems.add(new CartItem(food, quantity))
-
-    updateCartCount()
+  def addToCartFromDialog(food: FoodType, quantity: Int): Unit = {
+    try {
+      cart.addItem(food, quantity)
+      updateCartCount()
+    } catch {
+      case e: IllegalArgumentException =>
+        alerts.showWarningAlert("Invalid Quantity", e.getMessage)
+    }
+  }
 
   @FXML
-  def handleShowAll(): Unit =
+  def handleShowAll(): Unit = {
     categoryComboBox.setValue("All")
     searchField.clear()
     isHealthyFilterActive = false
-    // Removed CSS styling since you want to handle it separately
+    healthyFilterButton.setText("Healthy Options")
     applyFilters()
+  }
 
   @FXML
-  def handleHealthyFilter(): Unit =
+  def handleHealthyFilter(): Unit = {
     isHealthyFilterActive = !isHealthyFilterActive
-    if isHealthyFilterActive then
-      healthyFilterButton.setText("Show All")
-    else
-      healthyFilterButton.setText("Healthy Options")
+    healthyFilterButton.setText(if (isHealthyFilterActive) "Show All" else "Healthy Options")
     applyFilters()
+  }
 
   @FXML
-  def handleClearCart(): Unit =
-    if cartItems.isEmpty then
+  def handleClearCart(): Unit = {
+    if (cart.getItems.isEmpty) {
       alerts.showInfoAlert("Nothing to Clear", "Your cart is already empty.")
-    else
-      val confirmed = alerts.showConfirmationAlert(
-        "Clear Cart",
-        "Are you sure you want to clear all items from your cart?",
-      )
-      if confirmed then
-        cartItems.clear()
+    } else {
+      val confirmed = alerts.showConfirmationAlert("Clear Cart", "Are you sure you want to clear all items from your cart?")
+      if (confirmed) {
+        cart.clear()
         updateCartCount()
         alerts.showSuccessAlert("Cart Cleared", "All items have been removed from your cart.")
+      }
+    }
+  }
 
   @FXML
-  def handleRemoveFromCart(): Unit =
+  def handleRemoveFromCart(): Unit = {
     val selectedItem = cartTable.getSelectionModel.getSelectedItem
-    if selectedItem != null then
-      cartItems.remove(selectedItem)
+    if (selectedItem != null) {
+      cart.removeItem(selectedItem)
       updateCartCount()
       alerts.showSuccessAlert("Removed", "Item removed from cart.")
-    else
+    } else {
       alerts.showWarningAlert("No Selection", "Please select an item to remove.")
+    }
+  }
 
   @FXML
-  def handleCalculateCalories(): Unit =
-    if cartItems.isEmpty then
+  def handleCalculateCalories(): Unit = {
+    if (cart.getItems.isEmpty) {
       alerts.showWarningAlert("Empty Cart", "Your cart is empty. Add some items first!")
-    else
+    } else {
       showCaloriesSummary()
+    }
+  }
 
-  private def showCaloriesSummary(): Unit =
-    try
+  private def showCaloriesSummary(): Unit = {
+    try {
       val loader = new FXMLLoader()
       loader.setLocation(getClass.getResource("/soonteck/view/TotalCaloriesOverview.fxml"))
       val page: Parent = loader.load()
-
       val dialogStage = new Stage()
       dialogStage.setTitle("Cart Summary")
       dialogStage.initModality(Modality.WINDOW_MODAL)
       dialogStage.setScene(new Scene(page))
-
       val caloriesController = loader.getController[TotalCaloriesOverviewController]
       caloriesController.setDialogStage(dialogStage)
-      caloriesController.setCartItems(cartItems)
-
+      caloriesController.setCartItems(cart) // Pass Cart instead of ObservableList
       dialogStage.showAndWait()
-    catch
+    } catch {
       case e: Exception =>
         e.printStackTrace()
         alerts.showErrorAlert("Error", "Could not load cart summary dialog.")
-
-  private def applyFilters(): Unit =
-    filteredFoodList.setPredicate { food =>
-      val matchesSearch = searchField.getText == null ||
-        searchField.getText.isEmpty ||
-        food.name.value.toLowerCase.contains(searchField.getText.toLowerCase) ||
-        food.description.value.toLowerCase.contains(searchField.getText.toLowerCase)
-
-      val matchesCategory = categoryComboBox.getValue == "All" ||
-        food.category.value == categoryComboBox.getValue
-
-      val matchesHealthy = !isHealthyFilterActive || (food.calories.value < 500 &&
-        !food.category.value.contains("Fast Food") &&
-        !food.name.value.toLowerCase.contains("fried"))
-
-      matchesSearch && matchesCategory && matchesHealthy
     }
+  }
 
-  private def updateCartCount(): Unit =
-    var itemCount = 0
-    var totalCalories = 0
-    var totalPrice = 0.0
+  private def applyFilters(): Unit = {
+    filteredFoodList = FoodType.filterFoods(Main.foodData, searchField.getText, categoryComboBox.getValue, isHealthyFilterActive)
+    foodTable.setItems(filteredFoodList)
+  }
 
-    for i <- 0 until cartItems.size() do
-      val item = cartItems.get(i)
-      itemCount += cartItems.get(i).quantity.value
-      totalCalories += item.getCalories
-      totalPrice += item.getTotalPrice
-    cartCountLabel.setText(s"$itemCount item(s) in Cart")
-    cartSummaryItemsLabel.setText(itemCount.toString)
-    cartSummaryCaloriesLabel.setText(s"$totalCalories kcal")
-    cartSummaryPriceLabel.setText(f"RM $totalPrice%.2f")
+  private def updateCartCount(): Unit = {
+    cartCountLabel.setText(s"${cart.getTotalItems} item(s) in Cart")
+    cartSummaryItemsLabel.setText(cart.getTotalItems.toString)
+    cartSummaryCaloriesLabel.setText(s"${cart.getTotalCalories} kcal")
+    cartSummaryPriceLabel.setText(f"RM ${cart.getTotalPrice}%.2f")
+    cartHealthStatusLabel.setText(cart.getHealthStatus)
+  }
 
-    val averageCalories = if itemCount > 0 then totalCalories.toDouble / itemCount else 0.0
-    updateHealthStatus(averageCalories)
-
-  private def updateHealthStatus(averageCalories: Double): Unit =
-    val (status, style) = averageCalories match
-      case avg if avg == 0 => ("No Items", "")
-      case avg if avg < 250 => ("🟢 Very Healthy", "")
-      case avg if avg < 400 => ("🟡 Moderately Healthy", "")
-      case avg if avg < 600 => ("🟠 High Calorie", "")
-      case _ => ("🔴 Very High Calorie", "")
-
-    cartHealthStatusLabel.setText(status)
-  // Removed setStyle since you want to handle CSS separately
-
-  private def showFoodDetails(food: FoodType): Unit =
-    try
+  private def showFoodDetails(food: FoodType): Unit = {
+    try {
       val loader = new FXMLLoader()
       loader.setLocation(getClass.getResource("/soonteck/view/FoodDetailsOverview.fxml"))
       val page: Parent = loader.load()
-
       val dialogStage = new Stage()
       dialogStage.setTitle("Food Details")
       dialogStage.initModality(Modality.WINDOW_MODAL)
       dialogStage.setScene(new Scene(page))
-
       val foodDetailsController = loader.getController[FoodDetailsOverviewController]
       foodDetailsController.setDialogStage(dialogStage)
       foodDetailsController.setMainController(this)
       foodDetailsController.setFoodItem(food)
-
       dialogStage.showAndWait()
-    catch
+    } catch {
       case e: Exception =>
         e.printStackTrace()
         alerts.showErrorAlert("Error", "Could not load food details dialog.")
+    }
+  }
 
   @FXML
-  def handleLogout(): Unit =
-    val confirmed = alerts.showConfirmationAlert(
-      "Logout Confirmation",
-      "Are you sure you want to logout?"
-    )
-
-    if confirmed then
+  def handleLogout(): Unit = {
+    val confirmed = alerts.showConfirmationAlert("Logout Confirmation", "Are you sure you want to logout?")
+    if (confirmed) {
       alerts.showSuccessAlert("Logout Successful", "You have successfully logged out!")
       Main.showLoginOverview()
+    }
+  }
 
   @FXML
-  def handleCheckout(): Unit =
-    if cartItems.isEmpty then
+  def handleCheckout(): Unit = {
+    if (cart.getItems.isEmpty) {
       alerts.showWarningAlert("Empty Cart", "Your cart is empty. Add some items first!")
-    else
+    } else {
       showCheckoutDialog()
+    }
+  }
 
-  private def showCheckoutDialog(): Unit =
-    try
+  private def showCheckoutDialog(): Unit = {
+    try {
       val loader = new FXMLLoader()
       loader.setLocation(getClass.getResource("/soonteck/view/CheckoutOverview.fxml"))
       val page: Parent = loader.load()
-
       val dialogStage = new Stage()
       dialogStage.setTitle("Checkout")
       dialogStage.initModality(Modality.WINDOW_MODAL)
       dialogStage.setScene(new Scene(page))
-
       val checkoutController = loader.getController[CheckoutOverviewController]
       checkoutController.setDialogStage(dialogStage)
       checkoutController.setMainController(this)
-      checkoutController.setCartItems(cartItems)
-
+      checkoutController.setCartItems(cart) // Pass Cart instead of ObservableList
       dialogStage.showAndWait()
-    catch
+    } catch {
       case e: Exception =>
         e.printStackTrace()
         alerts.showErrorAlert("Error", "Could not load checkout dialog.")
+    }
+  }
 
-  def clearCartAfterCheckout(): Unit =
-    // Save current cart to order history before clearing
+  def clearCartAfterCheckout(): Unit = {
     saveOrderToHistory()
-
-    cartItems.clear()
+    cart.clear()
     updateCartCount()
     alerts.showSuccessAlert("Order Completed", "Your order has been saved to history and cart cleared.")
-
+  }

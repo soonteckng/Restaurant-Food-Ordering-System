@@ -1,9 +1,14 @@
 package soonteck.model
 
-import scalafx.beans.property.{StringProperty, DoubleProperty, IntegerProperty}
+import javafx.collections.transformation.FilteredList
+import scalafx.beans.property.{DoubleProperty, IntegerProperty, StringProperty}
 import scalikejdbc.*
 import soonteck.util.Database
-import scala.util.{Try, Success, Failure}
+
+import scala.util.{Failure, Success, Try}
+import javafx.collections.{FXCollections, ObservableList}
+
+import scala.jdk.CollectionConverters.*
 
 class FoodType(val nameS: String, val categoryS: String, val priceD: Double, val caloriesI: Int, val descriptionS: String) extends Database:
   var name        = new StringProperty(nameS)
@@ -19,6 +24,12 @@ class FoodType(val nameS: String, val categoryS: String, val priceD: Double, val
         values (${name.value}, ${category.value}, ${price.value}, ${calories.value}, ${description.value})
       """.update.apply()
     })
+
+  // Moved isHealthy to the class (instance method)
+  def isHealthy: Boolean =
+    calories.value < 500 &&
+      !category.value.contains("Fast Food") &&
+      !name.value.toLowerCase.contains("fried")
 
 object FoodType extends Database:
 
@@ -113,7 +124,6 @@ object FoodType extends Database:
       new FoodType("Grilled Chicken Breast", "Healthy", 22.00, 290, "Lean protein with herbs and spices")
     )
 
-
     DB autoCommit { implicit session =>
       sql"delete from foodtype".update.apply()  // Clear table
     }
@@ -132,3 +142,16 @@ object FoodType extends Database:
         ))
         .list.apply()
     }
+
+  // Static method to filter foods, adjusted for FilteredList compatibility
+  def filterFoods(foods: ObservableList[FoodType], search: String, category: String, healthyOnly: Boolean): FilteredList[FoodType] =
+    val filteredList = new FilteredList[FoodType](foods)
+    filteredList.setPredicate { food =>
+      val matchesSearch = search == null || search.isEmpty ||
+        food.name.value.toLowerCase.contains(search.toLowerCase) ||
+        food.description.value.toLowerCase.contains(search.toLowerCase)
+      val matchesCategory = category == "All" || food.category.value == category
+      val matchesHealthy = !healthyOnly || food.isHealthy
+      matchesSearch && matchesCategory && matchesHealthy
+    }
+    filteredList
