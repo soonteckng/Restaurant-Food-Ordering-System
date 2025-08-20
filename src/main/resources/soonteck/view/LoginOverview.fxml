@@ -43,7 +43,7 @@
                         <PasswordField fx:id="passwordField" prefHeight="30.0" prefWidth="250.0" promptText="Password" styleClass="password-field" />
                         <ButtonBar prefHeight="40.0" prefWidth="250.0">
                             <buttons>
-                                <Button mnemonicParsing="false" onAction="#handleRegister" prefHeight="25.0" prefWidth="80.0" styleClass="login-label-header" text="Register" textFill="#d95b42" />
+                                <Button mnemonicParsing="false" onAction="#handleRegister" prefHeight="25.0" prefWidth="80.0" styleClass="login-label-header" text="Register" textFill="#333232" />
                                 <Button defaultButton="true" mnemonicParsing="false" onAction="#handleLogin" prefHeight="25.0" prefWidth="80.0" styleClass="button-primary" stylesheets="@FoodTheme.css" text="Login" textFill="#ba4831" />
                             </buttons>
                         </ButtonBar>

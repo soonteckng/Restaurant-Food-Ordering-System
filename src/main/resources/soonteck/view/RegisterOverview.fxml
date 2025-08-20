@@ -29,13 +29,13 @@
             <children>
                 <VBox alignment="CENTER" prefHeight="340.0" prefWidth="461.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="5.0" maxWidth="Infinity" text="REGISTER YOUR ACCOUNT IN LEANBITES!" textAlignment="CENTER" textFill="#0619e9" wrapText="true">
+                        <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="5.0" maxWidth="Infinity" prefHeight="47.0" prefWidth="462.0" styleClass="register-label-header" text="REGISTER YOUR ACCOUNT IN LEANBITES!" textAlignment="CENTER" textFill="#0619e9" wrapText="true">
                             <font>
                                 <Font name="Rockwell Bold" size="18.0" />
                             </font>
                         </Label>
 
-                        <Label text="Healthy never tasted this good" textAlignment="CENTER" textFill="#0619e9" wrapText="true">
+                        <Label styleClass="label-subheader" text="Healthy never tasted this good" textAlignment="CENTER" textFill="#db9393" wrapText="true">
                             <font>
                                 <Font name="Rockwell" size="14.0" />
                             </font>

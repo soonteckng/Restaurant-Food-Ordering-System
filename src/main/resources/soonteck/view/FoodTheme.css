@@ -43,16 +43,17 @@
 }
 
 .nav-sidebarTitleLabel{
-    -fx-font-size: 14pt;
+    -fx-font-size: 14pt !important;
     -fx-font-family: "Monotype Corsiva", "Arial Bold", sans-serif;
-    -fx-text-fill: #6e0808;
+    -fx-text-fill: #6e0808 !important;
 }
 
 .nav-sidebarTitleLabelTwo{
-    -fx-font-size: 12pt;
+    -fx-font-size: 10pt !important;
     -fx-font-family: "Monotype Corsiva", "Arial Bold", sans-serif;
-    -fx-text-fill: #6e0808;
+    -fx-text-fill: #6e0808 !important;
 }
+
 .nav-sidebar {
     -fx-background-color: #f6baba;
     -fx-border-color: #dee2e6;
@@ -61,18 +62,18 @@
 
 .nav-button {
     -fx-background-color: transparent;
-    -fx-text-fill: #495057;
-    -fx-font-size: 7pt;
+    -fx-text-fill: #495057 !important;
+    -fx-font-size: 10pt !important;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
     -fx-background-radius: 8;
     -fx-border-radius: 8;
-    -fx-padding: 10 15 10 15;
+    -fx-padding: 8 10 8 10;
     -fx-alignment: CENTER;
 }
 
 .nav-button:hover {
     -fx-background-color: #d45f5f;
-    -fx-text-fill: #0619e9;
+    -fx-text-fill: #0619e9 !important;
 }
 
 .nav-button:pressed {
@@ -81,11 +82,28 @@
 
 .nav-button-active {
     -fx-background-color: #0619e9;
-    -fx-text-fill: white;
+    -fx-text-fill: white !important;
 }
 
 .nav-button-active:hover {
     -fx-background-color: #0514c7;
+}
+
+/* Special styling for logout button */
+.logout-button {
+    -fx-background-color: #dc3545;
+    -fx-text-fill: white !important;
+    -fx-font-size: 10pt !important;
+    -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 8 10 8 10;
+    -fx-alignment: CENTER;
+}
+
+.logout-button:hover {
+    -fx-background-color: #c82333;
+    -fx-text-fill: white !important;
 }
 
 /* Text Input Fields */
@@ -103,22 +121,22 @@
 }
 
 .text-field:focused, .password-field:focused {
-    -fx-border-color: #0619e9;
+    -fx-border-color: #000000;
     -fx-border-width: 2;
     -fx-background-color: white;
 }
 
 /* Buttons */
 .button {
-    -fx-padding: 8 16 8 16;
+    -fx-padding: 8 12 8 12;
     -fx-border-color: #ced4da;
     -fx-border-width: 1;
     -fx-background-radius: 6;
     -fx-border-radius: 6;
     -fx-background-color: #a83b3b;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
-    -fx-font-size: 9pt;
-    -fx-text-fill: #1F2937;
+    -fx-font-size: 10pt;
+    -fx-text-fill: #ffffff;
     -fx-cursor: hand;
 }
 
@@ -134,15 +152,15 @@
 
 /* Primary Button */
 .button-primary {
-    -fx-padding: 8 16 8 16;
+    -fx-padding: 8 12 8 12;
     -fx-border-color: #ced4da;
     -fx-border-width: 1;
     -fx-background-radius: 6;
     -fx-border-radius: 6;
     -fx-background-color: #913320;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
-    -fx-font-size: 9pt;
-    -fx-text-fill: #1F2937;
+    -fx-font-size: 10pt;
+    -fx-text-fill: #ffffff;
     -fx-cursor: hand;
 }
 
@@ -161,6 +179,7 @@
     -fx-background-color: #28a745;
     -fx-text-fill: white;
     -fx-border-color: #28a745;
+    -fx-font-size: 10pt;
 }
 
 .button-success:hover {
@@ -173,11 +192,36 @@
     -fx-background-color: #dc3545;
     -fx-text-fill: white;
     -fx-border-color: #dc3545;
+    -fx-font-size: 10pt;
 }
 
 .button-danger:hover {
     -fx-background-color: #c82333;
     -fx-border-color: #c82333;
+}
+
+/* Filter buttons */
+.filter-button {
+    -fx-padding: 6 10 6 10;
+    -fx-font-size: 9pt;
+    -fx-background-color: #a83b3b;
+    -fx-text-fill: white;
+}
+
+.filter-button:hover {
+    -fx-background-color: #ed6b6b;
+}
+
+/* Cart action buttons */
+.cart-action-button {
+    -fx-font-size: 9pt;
+    -fx-padding: 8 10 8 10;
+    -fx-background-color: #913320;
+    -fx-text-fill: white;
+}
+
+.cart-action-button:hover {
+    -fx-background-color: #ba4831;
 }
 
 /* Table View */
@@ -229,8 +273,8 @@
 
 .table-view .table-cell {
     -fx-text-fill: #495057;
-    -fx-font-size: 11pt;
-    -fx-padding: 8 12 8 12;
+    -fx-font-size: 10pt;
+    -fx-padding: 6 8 6 8;
 }
 
 /* ComboBox */
@@ -250,6 +294,7 @@
 .combo-box .list-cell {
     -fx-background-color: white;
     -fx-text-fill: #495057;
+    -fx-font-size: 10pt;
 }
 
 .combo-box .list-cell:hover {
@@ -274,23 +319,24 @@
     -fx-background-color: transparent;
     -fx-border-width: 0;
     -fx-text-fill: #495057;
+    -fx-font-size: 10pt;
 }
 
 /* Menu Bar */
 .menu-bar {
-    -fx-background-color: #16A34A;
+    -fx-background-color: #db9393;
     -fx-border-color: #dee2e6;
     -fx-border-width: 0 0 1 0;
 }
 
 .menu-bar .label {
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-family: "Book Antiqua", "Arial", sans-serif;
     -fx-text-fill: #ffffff;
 }
 
 .menu .context-menu {
-    -fx-background-color: white;
+    -fx-background-color: #a83b3b;
     -fx-border-color: #dee2e6;
     -fx-border-width: 1;
     -fx-background-radius: 6;
@@ -404,4 +450,29 @@
 
 .split-pane {
     -fx-padding: 0;
+}
+
+/* Summary labels styling */
+.summary-title {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
+    -fx-text-fill: #666666;
+}
+
+.summary-value {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
+    -fx-text-fill: #333333;
+}
+
+.summary-price {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
+    -fx-text-fill: #28a745;
+}
+
+.summary-health {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
+    -fx-text-fill: #28a745;
 }
