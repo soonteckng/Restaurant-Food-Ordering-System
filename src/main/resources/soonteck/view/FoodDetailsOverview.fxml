@@ -9,78 +9,81 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soonteck.view.FoodDetailsOverviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soonteck.view.FoodDetailsOverviewController">
     <children>
-        <!-- Food Name Title -->
-        <Label fx:id="foodNameLabel" alignment="CENTER" text="Food Name" textFill="#0619e9" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0">
+        <!-- Food Name Title (Fixed at top) -->
+        <Label fx:id="foodNameLabel" alignment="CENTER" text="Food Name" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0">
             <font>
                 <Font name="System Bold" size="20.0" />
             </font>
         </Label>
 
-        <!-- Enhanced Food Details Grid -->
-        <GridPane hgap="15.0" vgap="12.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="50.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="280.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-            </rowConstraints>
+        <!-- Main Scrollable Content Area -->
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="45.0">
+            <content>
+                <VBox>
+                    <children>
+                        <!-- Enhanced Food Details Grid -->
+                        <GridPane hgap="15.0" prefWidth="420.0" vgap="12.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="280.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                                <RowConstraints minHeight="10.0" vgrow="NEVER" />
+                                <RowConstraints minHeight="10.0" vgrow="NEVER" />
+                            </rowConstraints>
+                            <children>
+                                <!-- Basic Info -->
+                                <Label text="Category:" />
+                                <Label fx:id="categoryLabel" text="Category" GridPane.columnIndex="1" />
+
+                                <Label text="Price:" GridPane.rowIndex="1" />
+                                <Label fx:id="priceLabel" text="RM 0.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                                <Label text="Calories:" GridPane.rowIndex="2" />
+                                <Label fx:id="caloriesLabel" text="0 kcal" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                                <Label text="Health Rating:" GridPane.rowIndex="3" />
+                                <Label fx:id="healthRatingLabel" text="Healthy" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                                <Label text="Serving Size:" GridPane.rowIndex="4" />
+                                <Label fx:id="servingSizeLabel" text="1 serving" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                                <!-- Ingredients -->
+                                <Label text="Ingredients:" GridPane.rowIndex="5" />
+                                <Label fx:id="ingredientsLabel" text="Fresh ingredients" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                                <!-- Description -->
+                                <Label text="Description:" GridPane.rowIndex="6" />
+                                <Label fx:id="descriptionLabel" text="Description" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                            </children>
+                        </GridPane>
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+
+        <!-- Quick Add to Cart Section (Fixed position) -->
+        <HBox alignment="CENTER" spacing="15.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
             <children>
-                <!-- Basic Info -->
-                <Label style="-fx-font-weight: bold;" text="Category:" textFill="#666666" />
-                <Label fx:id="categoryLabel" text="Category" GridPane.columnIndex="1" />
-
-                <Label style="-fx-font-weight: bold;" text="Price:" textFill="#666666" GridPane.rowIndex="1" />
-                <Label fx:id="priceLabel" text="RM 0.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-                <Label style="-fx-font-weight: bold;" text="Calories:" textFill="#666666" GridPane.rowIndex="2" />
-                <Label fx:id="caloriesLabel" text="0 kcal" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-
-                <!-- Enhanced Info -->
-                <Label style="-fx-font-weight: bold;" text="Health Rating:" textFill="#666666" GridPane.rowIndex="3" />
-                <Label fx:id="healthRatingLabel" text="Healthy" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-
-                <Label style="-fx-font-weight: bold;" text="Serving Size:" textFill="#666666" GridPane.rowIndex="4" />
-                <Label fx:id="servingSizeLabel" text="1 serving" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-
-                <!-- Ingredients with ScrollPane for long text -->
-                <Label style="-fx-font-weight: bold;" text="Ingredients:" textFill="#666666" GridPane.rowIndex="5" />
-                <ScrollPane fitToWidth="true" maxHeight="50.0" prefHeight="50.0" style="-fx-background: transparent; -fx-border-color: #dee2e6; -fx-border-radius: 3;" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                    <content>
-                        <Label fx:id="ingredientsLabel" text="Fresh ingredients" wrapText="true" style="-fx-padding: 5;" />
-                    </content>
-                </ScrollPane>
-
-                <Label style="-fx-font-weight: bold;" text="Description:" textFill="#666666" GridPane.rowIndex="6" />
-                <Label fx:id="descriptionLabel" text="Description" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            </children>
-        </GridPane>
-
-        <!-- Quick Add to Cart Section -->
-        <HBox alignment="CENTER" spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10;" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="330.0">
-            <children>
-                <Label style="-fx-font-weight: bold;" text="Quick Add:" />
+                <Label text="Quick Add:" />
                 <Label text="Quantity:" />
                 <Spinner fx:id="quickQuantitySpinner" editable="true" initialValue="1" max="10" min="1" prefWidth="70.0" />
-                <Button fx:id="quickAddButton" onAction="#handleQuickAdd" style="-fx-background-color: #28a745; -fx-text-fill: white;" text="Add to Cart" />
+                <Button fx:id="quickAddButton" onAction="#handleQuickAdd" text="Add to Cart" />
             </children>
         </HBox>
 
-        <!-- Action Buttons -->
-        <HBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
-            <children>
-                <Button fx:id="closeButton" defaultButton="true" mnemonicParsing="false" onAction="#handleClose" style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-min-width: 80px;" text="OK" />
-            </children>
-        </HBox>
+        <!-- Action Buttons (Fixed position) -->
+        <HBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <Button fx:id="closeButton" defaultButton="true" layoutX="410.0" layoutY="364.0" mnemonicParsing="false" onAction="#handleClose" prefHeight="25.0" prefWidth="80.0" text="OK" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
     </children>
 </AnchorPane>

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soonteck.view.LoginOverviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@FoodTheme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soonteck.view.LoginOverviewController">
     <children>
         <GridPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
@@ -29,12 +29,12 @@
             <children>
                 <VBox alignment="CENTER" prefHeight="300.0" prefWidth="461.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="5.0" maxWidth="Infinity" text="WELCOME TO LEANBITES" textAlignment="CENTER" textFill="#0619e9" wrapText="true">
+                        <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="5.0" maxWidth="Infinity" styleClass="label-header" text="WELCOME TO LEANBITES" textAlignment="CENTER" textFill="#e84007" wrapText="true">
                             <font>
                                 <Font name="Rockwell Bold" size="30.0" />
                             </font>
                         </Label>
-                        <Label prefHeight="35.0" prefWidth="268.0" text="Healthy never tasted this good" textAlignment="CENTER" textFill="#0619e9" wrapText="true">
+                        <Label prefHeight="35.0" prefWidth="300.0" styleClass="label-subheader" text="Healthy never tasted this good" textAlignment="CENTER" textFill="#0619e9" wrapText="true">
                             <font>
                                 <Font name="Rockwell" size="19.0" />
                             </font>
@@ -43,11 +43,11 @@
                         <PasswordField fx:id="passwordField" prefHeight="30.0" prefWidth="250.0" promptText="Password" />
                         <ButtonBar prefHeight="40.0" prefWidth="250.0">
                             <buttons>
-                                <Button mnemonicParsing="false" onAction="#handleRegister" text="Register" />
-                                <Button defaultButton="true" mnemonicParsing="false" onAction="#handleLogin" style="-fx-background-color: #0619e9; -fx-text-fill: white;" text="Login" />
+                                <Button mnemonicParsing="false" onAction="#handleRegister" prefHeight="25.0" prefWidth="80.0" text="Register" textFill="#ff6600" />
+                                <Button defaultButton="true" mnemonicParsing="false" onAction="#handleLogin" prefHeight="25.0" prefWidth="80.0" styleClass="button-primary" stylesheets="@FoodTheme.css" text="Login" textFill="#ff2f00" />
                             </buttons>
                         </ButtonBar>
-                        <Label fx:id="statusLabel" text="Enter your credentials to continue" textFill="#666666" wrapText="true" />
+                        <Label fx:id="statusLabel" text="Please enter your credentials to continue" textFill="#666666" wrapText="true" />
                     </children>
                     <padding>
                         <Insets left="20.0" right="20.0" />
