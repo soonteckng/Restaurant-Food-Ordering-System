@@ -29,7 +29,7 @@
             <children>
                 <VBox alignment="CENTER" prefHeight="300.0" prefWidth="461.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="5.0" maxWidth="Infinity" styleClass="label-header" text="WELCOME TO LEANBITES" textAlignment="CENTER" textFill="#e84007" wrapText="true">
+                        <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="5.0" maxWidth="Infinity" prefHeight="58.0" prefWidth="452.0" styleClass="login-label-header" text="WELCOME TO LeanBites!" textAlignment="CENTER" textFill="#60dd77" wrapText="true">
                             <font>
                                 <Font name="Rockwell Bold" size="30.0" />
                             </font>
@@ -39,12 +39,12 @@
                                 <Font name="Rockwell" size="19.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="usernameField" prefHeight="30.0" prefWidth="250.0" promptText="Username" />
-                        <PasswordField fx:id="passwordField" prefHeight="30.0" prefWidth="250.0" promptText="Password" />
+                        <TextField fx:id="usernameField" prefHeight="30.0" prefWidth="250.0" promptText="Username" styleClass="text-field" />
+                        <PasswordField fx:id="passwordField" prefHeight="30.0" prefWidth="250.0" promptText="Password" styleClass="password-field" />
                         <ButtonBar prefHeight="40.0" prefWidth="250.0">
                             <buttons>
-                                <Button mnemonicParsing="false" onAction="#handleRegister" prefHeight="25.0" prefWidth="80.0" text="Register" textFill="#ff6600" />
-                                <Button defaultButton="true" mnemonicParsing="false" onAction="#handleLogin" prefHeight="25.0" prefWidth="80.0" styleClass="button-primary" stylesheets="@FoodTheme.css" text="Login" textFill="#ff2f00" />
+                                <Button mnemonicParsing="false" onAction="#handleRegister" prefHeight="25.0" prefWidth="80.0" styleClass="login-label-header" text="Register" textFill="#d95b42" />
+                                <Button defaultButton="true" mnemonicParsing="false" onAction="#handleLogin" prefHeight="25.0" prefWidth="80.0" styleClass="button-primary" stylesheets="@FoodTheme.css" text="Login" textFill="#ba4831" />
                             </buttons>
                         </ButtonBar>
                         <Label fx:id="statusLabel" text="Please enter your credentials to continue" textFill="#666666" wrapText="true" />

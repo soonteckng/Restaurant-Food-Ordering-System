@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soonteck.view.RegisterOverviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@FoodTheme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soonteck.view.RegisterOverviewController">
     <children>
         <GridPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
@@ -50,7 +50,7 @@
                         <ButtonBar prefHeight="40.0" prefWidth="250.0">
                             <buttons>
                                 <Button fx:id="backToLoginButton" mnemonicParsing="false" onAction="#handleBackToLogin" text="Back to Login" />
-                                <Button fx:id="registerButton" defaultButton="true" mnemonicParsing="false" onAction="#handleRegister" style="-fx-background-color: #0619e9; -fx-text-fill: white;" text="Create Account" />
+                                <Button fx:id="registerButton" defaultButton="true" mnemonicParsing="false" onAction="#handleRegister" styleClass="button-primary" text="Create Account" />
                             </buttons>
                         </ButtonBar>
 

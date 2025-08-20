@@ -16,20 +16,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soonteck.view.HomePageOverviewController">
+<AnchorPane stylesheets="@FoodTheme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soonteck.view.HomePageOverviewController">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
          <left>
-            <VBox minWidth="140.0" prefWidth="140.0" BorderPane.alignment="CENTER">
+            <VBox minWidth="140.0" prefWidth="140.0" styleClass="nav-sidebar" BorderPane.alignment="CENTER">
                <children>
-                  <VBox alignment="CENTER" spacing="5.0">
+                  <VBox alignment="CENTER" spacing="5.0" styleClass="nav-sidebarVBox">
                      <children>
-                        <Label text="🍽️ QuickDine">
+                        <Label styleClass="nav-sidebarTitleLabel" text="🍽️ LeanBites" textFill="#6e0808">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label text="Food Ordering System">
+                        <Label styleClass="nav-sidebarTitleLabelTwo" text="Food Ordering System">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -41,7 +41,7 @@
                   </VBox>
                   <VBox spacing="3.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label text="NAVIGATION">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="33.0" prefWidth="108.0" text="Navigations">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -50,23 +50,16 @@
                            </padding>
                         </Label>
 
-                        <Button fx:id="homeNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showHomeView" prefHeight="45.0" prefWidth="138.0" text="🏠 Home">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
+                        <Button fx:id="homeNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showHomeView" prefHeight="45.0" prefWidth="138.0" styleClass="nav-button" text="🏠 Home" textFill="#d45f5f">
                         </Button>
 
-                        <Button fx:id="cartNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showCartView" prefHeight="45.0" text="🛒 My Cart">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
+                        <Button fx:id="cartNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showCartView" prefHeight="45.0" styleClass="nav-button" text="🛒 My Cart" textFill="#e05e5e">
                         </Button>
 
-                        <Button fx:id="orderHistoryNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showOrderHistoryView" prefHeight="45.0" text="📋 Order History">
+                        <Button fx:id="orderHistoryNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showOrderHistoryView" prefHeight="45.0" styleClass="nav-button" text="📋 History">
                            <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Button>
+                              <Font size="8.0" />
+                           </font></Button>
 
                         <Region prefHeight="20.0" />
 
