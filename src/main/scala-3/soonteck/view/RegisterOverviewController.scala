@@ -24,7 +24,7 @@ class RegisterOverviewController {
 
   // Service for authentication
   private val authService = new AuthenticationService()
-  var alerts = new Alerts()
+  var alerts = new Alerts(Main.stage)
   var isCreateAccountClicked = false
   
   // Handle registration

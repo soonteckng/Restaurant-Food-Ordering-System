@@ -1,13 +1,15 @@
 package soonteck.view
 
+import soonteck.Main
 import soonteck.model.{Cart, CartItem}
 import soonteck.alert.Alerts
 import scalafx.Includes.*
 import javafx.fxml.FXML
-import javafx.scene.control.{Label, Button, TableView, TableColumn, ComboBox, TextField}
+import javafx.scene.control.{Button, ComboBox, Label, TableColumn, TableView, TextField}
 import javafx.stage.Stage
 import javafx.beans.value.{ChangeListener, ObservableValue}
 import javafx.scene.layout.VBox
+
 
 class CheckoutOverviewController:
   @FXML private var orderItemsTable: TableView[CartItem] = null
@@ -30,7 +32,7 @@ class CheckoutOverviewController:
 
   private var dialogStage: Stage = null
   private var mainController: HomePageOverviewController = null
-  private val alerts = new Alerts()
+  private val alerts = new Alerts(Main.stage)
 
   def setDialogStage(dialogStage: Stage): Unit = {
     this.dialogStage = dialogStage

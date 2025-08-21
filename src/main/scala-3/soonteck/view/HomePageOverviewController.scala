@@ -12,7 +12,9 @@ import javafx.scene.{Parent, Scene}
 import javafx.collections.transformation.FilteredList
 import javafx.util.Callback
 import javafx.beans.value.{ChangeListener, ObservableValue}
-import scala.util.{Try, Success, Failure}
+import scalafx.scene.image.Image
+
+import scala.util.{Failure, Success, Try}
 
 @FXML
 class HomePageOverviewController:
@@ -58,7 +60,7 @@ class HomePageOverviewController:
   private var filteredFoodList: FilteredList[FoodType] = null
   private var selectedFood: FoodType = null
   private var isHealthyFilterActive = false
-  private val alerts = new Alerts()
+  private val alerts = new Alerts(Main.stage)
   private var currentUsername: String = ""
 
   @FXML
@@ -236,6 +238,7 @@ class HomePageOverviewController:
     try {
       cart.addItem(food, quantity)
       updateCartCount()
+      alerts.showSuccessAlert("Success", s"Added ${selectedFood.name.value} to cart!")
     } catch {
       case e: IllegalArgumentException =>
         alerts.showWarningAlert("Invalid Quantity", e.getMessage)
@@ -299,8 +302,9 @@ class HomePageOverviewController:
       loader.setLocation(getClass.getResource("/soonteck/view/TotalCaloriesOverview.fxml"))
       val page: Parent = loader.load()
       val dialogStage = new Stage()
-      dialogStage.setTitle("Cart Summary")
+      dialogStage.setTitle("Calories Summary")
       dialogStage.initModality(Modality.WINDOW_MODAL)
+      dialogStage.getIcons.add(new Image(getClass.getResource("/images/calories.png").toExternalForm))
       dialogStage.setScene(new Scene(page))
       val caloriesController = loader.getController[TotalCaloriesOverviewController]
       caloriesController.setDialogStage(dialogStage)
@@ -334,6 +338,7 @@ class HomePageOverviewController:
       val dialogStage = new Stage()
       dialogStage.setTitle("Food Details")
       dialogStage.initModality(Modality.WINDOW_MODAL)
+      dialogStage.getIcons.add(new Image(getClass.getResource("/images/fooddetails.png").toExternalForm))
       dialogStage.setScene(new Scene(page))
       val foodDetailsController = loader.getController[FoodDetailsOverviewController]
       foodDetailsController.setDialogStage(dialogStage)
@@ -373,6 +378,7 @@ class HomePageOverviewController:
       val dialogStage = new Stage()
       dialogStage.setTitle("Checkout")
       dialogStage.initModality(Modality.WINDOW_MODAL)
+      dialogStage.getIcons.add(new Image(getClass.getResource("/images/checkout.webp").toExternalForm))
       dialogStage.setScene(new Scene(page))
       val checkoutController = loader.getController[CheckoutOverviewController]
       checkoutController.setDialogStage(dialogStage)
@@ -390,5 +396,5 @@ class HomePageOverviewController:
     saveOrderToHistory()
     cart.clear()
     updateCartCount()
-    alerts.showSuccessAlert("Order Completed", "Your order has been saved to history and cart cleared.")
+    alerts.showInfoAlert("Order Completed", "Your order has been saved to history and cart cleared.")
   }

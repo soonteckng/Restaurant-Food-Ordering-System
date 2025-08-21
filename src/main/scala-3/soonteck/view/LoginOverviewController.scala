@@ -18,7 +18,7 @@ class LoginOverviewController {
   private var passwordField: PasswordField = null
 
   var isRegisterClicked = false
-  var alerts = new Alerts()
+  var alerts = new Alerts(Main.stage)
 
   // Service for authentication
   private val authService = new AuthenticationService()
@@ -37,9 +37,6 @@ class LoginOverviewController {
 
     User.getUserByUsername(username) match {
       case Some(user) if user.password.value == password =>
-        // Login successful
-        alerts.showSuccessAlert("Login Successful", s"Welcome back, ${user.username.value}!")
-
         // Show home page and set current user by username
         Main.showHomePageOverview(user.username.value) // Pass username
 
