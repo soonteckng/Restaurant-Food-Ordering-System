@@ -77,7 +77,7 @@
 
 .nav-button {
     -fx-background-color: transparent;
-    -fx-text-fill: #495057 !important;
+    -fx-text-fill: white !important;
     -fx-font-size: 10pt !important;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
     -fx-background-radius: 8;
