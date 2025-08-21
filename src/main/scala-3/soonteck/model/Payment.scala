@@ -17,33 +17,24 @@ class Payment(
     }
 
     if (paymentMethod != "E-Wallet") {
-      // Prioritize format errors over empty field errors
-
-      // Card number validation - format check first if not empty
       if (cardNumber.trim.nonEmpty && !cardNumber.matches("\\d{16}")) {
         return Left(PaymentValidationError("Card number must be exactly 16 digits"))
       }
       if (cardNumber.trim.isEmpty) {
         return Left(PaymentValidationError("Card number cannot be empty"))
       }
-
-      // Card holder validation - format check first if not empty
       if (cardHolder.trim.nonEmpty && !cardHolder.matches("^[A-Za-z ]+$")) {
         return Left(PaymentValidationError("Card holder name must only contain letters and spaces"))
       }
       if (cardHolder.trim.isEmpty) {
         return Left(PaymentValidationError("Card holder name cannot be empty"))
       }
-
-      // Expiry validation - format check first if not empty
       if (expiry.trim.nonEmpty && !expiry.matches("^(0[1-9]|1[0-2])/\\d{2}$")) {
         return Left(PaymentValidationError("Expiry date must be in MM/YY format"))
       }
       if (expiry.trim.isEmpty) {
         return Left(PaymentValidationError("Expiry date cannot be empty"))
       }
-
-      // CVV validation - format check first if not empty
       if (cvv.trim.nonEmpty && !cvv.matches("\\d{3}")) {
         return Left(PaymentValidationError("CVV must be exactly 3 digits"))
       }

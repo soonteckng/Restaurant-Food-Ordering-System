@@ -714,10 +714,35 @@
     -fx-border-radius: 0;
 }
 
-/* Alert Dialog Styling */
+/* WARNING ALERT */
+.dialog-pane.warning {
+    -fx-background-color: #fff3cd !important;
+    -fx-border-color: transparent !important;
+}
 
-/* Base alert styling */
-/* Alert Dialog Styling */
+.dialog-pane.warning .header-panel {
+    -fx-background-color: #facc15 !important;
+}
+
+.dialog-pane.warning .header-panel .label {
+    -fx-text-fill: #92400e !important;
+    -fx-font-weight: bold;
+}
+
+.dialog-pane.warning .content {
+    -fx-background-color: #fff3cd !important;
+}
+
+/* FIXED: Warning alert content label */
+.dialog-pane.warning .content .label {
+    -fx-text-fill: #92400e !important;
+    -fx-wrap-text: true;
+    -fx-max-width: infinity;
+    -fx-pref-width: -1;
+    -fx-min-height: -1;
+    -fx-pref-height: -1;
+    -fx-max-height: infinity;
+}/* Alert Dialog Styling - Fixed text cutoff issues */
 
 /* Base alert styling */
 .alert {
@@ -743,10 +768,17 @@
     -fx-background-radius: 0 0 10px 10px;
 }
 
+/* FIXED: Content label styling - this is the main fix for text cutoff */
 .alert .content .label {
     -fx-font-size: 12pt;
     -fx-wrap-text: true;
     -fx-text-fill: #212529;
+    /* Remove any width/height constraints that cause cutoff */
+    -fx-max-width: infinity;
+    -fx-pref-width: -1;
+    -fx-min-height: -1;
+    -fx-pref-height: -1;
+    -fx-max-height: infinity;
 }
 
 /* SUCCESS ALERT - Light green, no borders */
@@ -768,11 +800,12 @@
     -fx-background-color: #c8f7c5 !important;
 }
 
+/* REMOVED the problematic styling - let it use default behavior like error alerts */
 .dialog-pane.success .content .label {
     -fx-text-fill: #15803d !important;
 }
 
-/* INFORMATION ALERT - Same light green (giving up on blue!) */
+/* INFORMATION ALERT - Same light green */
 .dialog-pane.information {
     -fx-background-color: #c8f7c5 !important;
     -fx-border-color: transparent !important;
@@ -791,19 +824,39 @@
     -fx-background-color: #c8f7c5 !important;
 }
 
+/* REMOVED the problematic styling - let it use default behavior like error alerts */
 .dialog-pane.information .content .label {
     -fx-text-fill: #15803d !important;
 }
 
 /* ERROR ALERT */
-.alert.error {
-    -fx-background-color: #fee2e2;
+.dialog-pane.error {
+    -fx-background-color: #fee2e2 !important;
+    -fx-border-color: transparent !important;
 }
-.alert.error .header-panel {
-    -fx-background-color: #ef4444;
+
+.dialog-pane.error .header-panel {
+    -fx-background-color: #ef4444 !important;
 }
-.alert.error .header-panel .label {
-    -fx-text-fill: white;
+
+.dialog-pane.error .header-panel .label {
+    -fx-text-fill: white !important;
+    -fx-font-weight: bold;
+}
+
+.dialog-pane.error .content {
+    -fx-background-color: #fee2e2 !important;
+}
+
+/* FIXED: Error alert content label */
+.dialog-pane.error .content .label {
+    -fx-text-fill: #dc2626 !important;
+    -fx-wrap-text: true;
+    -fx-max-width: infinity;
+    -fx-pref-width: -1;
+    -fx-min-height: -1;
+    -fx-pref-height: -1;
+    -fx-max-height: infinity;
 }
 
 /* WARNING ALERT */
@@ -826,10 +879,4 @@
 }
 .alert.confirmation .header-panel .label {
     -fx-text-fill: white;
-}
-
-.about{
-    -fx-font-size: 18pt;
-    -fx-font-family: "Bauhaus 93", "Arial", sans-serif;
-    -fx-text-fill: #6e0808;
 }

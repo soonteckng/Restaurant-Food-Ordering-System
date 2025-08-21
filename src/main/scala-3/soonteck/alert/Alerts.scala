@@ -1,9 +1,10 @@
 package soonteck.alert
 
-import scalafx.scene.control.{Alert, ButtonType}
+import scalafx.scene.control.{Alert, ButtonType, Label}
 import scalafx.scene.control.Alert.AlertType
 import scalafx.stage.Stage
 import scalafx.Includes._
+import scalafx.scene.layout.Region
 
 class Alerts(primaryStage: Stage) {
 
@@ -13,9 +14,10 @@ class Alerts(primaryStage: Stage) {
     alert.getDialogPane.getStyleClass.add(styleClass)
 
     alert.getDialogPane.setMinWidth(350)
-    alert.getDialogPane.setPrefWidth(400)
+    alert.getDialogPane.setPrefWidth(Region.USE_COMPUTED_SIZE)
     alert.getDialogPane.setMaxWidth(600)
     alert.getDialogPane.setMinHeight(120)
+    alert.getDialogPane.setPrefHeight(Region.USE_COMPUTED_SIZE)
 
     alert.delegate.setResizable(true)
   }
@@ -77,4 +79,6 @@ class Alerts(primaryStage: Stage) {
     val result = alert.showAndWait()
     result.contains(ButtonType.Yes)
   }
+
+
 }

@@ -40,8 +40,11 @@ class RegisterOverviewController {
     // Create user
     val newUser = User(username, password)
 
-    if (authService.registerUser(newUser)) { // DB-backed registration
-      alerts.showSuccessAlert("Registration Successful", s"Account created for $username! You can now login.")
+    if (authService.registerUser(newUser)) {
+      val confirmRegister = s"""Account created for $username!
+                               |You may login now.""".stripMargin
+    
+      alerts.showSuccessAlert("Registration Successful", confirmRegister)
       clearFields()
       handleBackToLogin(action)
     } else {
