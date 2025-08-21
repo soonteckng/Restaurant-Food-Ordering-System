@@ -15,42 +15,55 @@ class Payment(
     if (paymentMethod == null || paymentMethod.isEmpty) {
       return Left(PaymentValidationError("Payment method required"))
     }
+
     if (paymentMethod != "E-Wallet") {
+      // Prioritize format errors over empty field errors
+
+      // Card number validation - format check first if not empty
+      if (cardNumber.trim.nonEmpty && !cardNumber.matches("\\d{16}")) {
+        return Left(PaymentValidationError("Card number must be exactly 16 digits"))
+      }
       if (cardNumber.trim.isEmpty) {
         return Left(PaymentValidationError("Card number cannot be empty"))
+      }
+
+      // Card holder validation - format check first if not empty
+      if (cardHolder.trim.nonEmpty && !cardHolder.matches("^[A-Za-z ]+$")) {
+        return Left(PaymentValidationError("Card holder name must only contain letters and spaces"))
       }
       if (cardHolder.trim.isEmpty) {
         return Left(PaymentValidationError("Card holder name cannot be empty"))
       }
+
+      // Expiry validation - format check first if not empty
+      if (expiry.trim.nonEmpty && !expiry.matches("^(0[1-9]|1[0-2])/\\d{2}$")) {
+        return Left(PaymentValidationError("Expiry date must be in MM/YY format"))
+      }
       if (expiry.trim.isEmpty) {
         return Left(PaymentValidationError("Expiry date cannot be empty"))
+      }
+
+      // CVV validation - format check first if not empty
+      if (cvv.trim.nonEmpty && !cvv.matches("\\d{3}")) {
+        return Left(PaymentValidationError("CVV must be exactly 3 digits"))
       }
       if (cvv.trim.isEmpty) {
         return Left(PaymentValidationError("CVV cannot be empty"))
       }
-      if (!cardNumber.matches("\\d{16}")) {
-        return Left(PaymentValidationError("Card number must be exactly 16 digits"))
-      }
-      if (!cardHolder.matches("^[A-Za-z ]+$")) {
-        return Left(PaymentValidationError("Card holder name must only contain letters and spaces"))
-      }
-      if (!expiry.matches("^(0[1-9]|1[0-2])/\\d{2}$")) {
-        return Left(PaymentValidationError("Expiry date must be in MM/YY format"))
-      }
+
+      // Expiry date logic validation (only if format is correct)
       val parts = expiry.split("/")
       val expMonth = parts(0).toInt
       val expYear = 2000 + parts(1).toInt
       val expiryDate = YearMonth.of(expYear, expMonth)
       val currentDate = YearMonth.now()
       val maxFutureDate = currentDate.plusYears(10)
+
       if (expiryDate.isBefore(currentDate)) {
         return Left(PaymentValidationError("The card expiry date has already passed"))
       }
       if (expiryDate.isAfter(maxFutureDate)) {
         return Left(PaymentValidationError("Expiry date cannot be more than 10 years in the future"))
-      }
-      if (!cvv.matches("\\d{3}")) {
-        return Left(PaymentValidationError("CVV must be exactly 3 digits"))
       }
     }
     Right(())

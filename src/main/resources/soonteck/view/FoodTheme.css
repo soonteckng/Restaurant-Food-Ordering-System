@@ -827,3 +827,9 @@
 .alert.confirmation .header-panel .label {
     -fx-text-fill: white;
 }
+
+.about{
+    -fx-font-size: 18pt;
+    -fx-font-family: "Bauhaus 93", "Arial", sans-serif;
+    -fx-text-fill: #6e0808;
+}

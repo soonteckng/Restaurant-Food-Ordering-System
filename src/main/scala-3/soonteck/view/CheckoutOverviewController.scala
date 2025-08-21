@@ -32,10 +32,11 @@ class CheckoutOverviewController:
 
   private var dialogStage: Stage = null
   private var mainController: HomePageOverviewController = null
-  private val alerts = new Alerts(Main.stage)
+  private var alerts: Alerts = null
 
   def setDialogStage(dialogStage: Stage): Unit = {
     this.dialogStage = dialogStage
+    this.alerts = new Alerts(dialogStage)
   }
 
   def setMainController(controller: HomePageOverviewController): Unit = {

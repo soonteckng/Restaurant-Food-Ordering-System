@@ -67,9 +67,9 @@ object Main extends JFXApp3:
       initOwner(stage)
       initModality(ApplicationModal)
       title = "About LeanBites"
+      icons += new Image(getClass.getResource("/images/about.png").toExternalForm)
       scene = new Scene():
         root = pane
-        // Apply same CSS theme to dialog
         stylesheets = Seq(cssResource.toExternalForm)
 
     val aboutController = loader.getController[AboutOverviewController]

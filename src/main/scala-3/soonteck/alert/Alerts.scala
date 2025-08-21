@@ -7,6 +7,19 @@ import scalafx.Includes._
 
 class Alerts(primaryStage: Stage) {
 
+  private def configureDialog(alert: Alert, styleClass: String): Unit = {
+    alert.delegate.getDialogPane.getStylesheets.add(getClass.getResource("/soonteck/view/FoodTheme.css").toExternalForm)
+
+    alert.getDialogPane.getStyleClass.add(styleClass)
+
+    alert.getDialogPane.setMinWidth(350)
+    alert.getDialogPane.setPrefWidth(400)
+    alert.getDialogPane.setMaxWidth(600)
+    alert.getDialogPane.setMinHeight(120)
+
+    alert.delegate.setResizable(true)
+  }
+
   def showSuccessAlert(alertTitle: String, message: String): Unit = {
     val alert = new Alert(AlertType.Information) {
       initOwner(primaryStage)
@@ -15,8 +28,7 @@ class Alerts(primaryStage: Stage) {
       contentText = message
     }
     alert.getButtonTypes.setAll(ButtonType.OK)
-    alert.delegate.getDialogPane.getStylesheets.add(getClass.getResource("/soonteck/view/FoodTheme.css").toExternalForm)
-    alert.getDialogPane.getStyleClass.add("success")
+    configureDialog(alert, "success")
     alert.showAndWait()
   }
 
@@ -27,8 +39,7 @@ class Alerts(primaryStage: Stage) {
       headerText = None
       contentText = message
     }
-    alert.delegate.getDialogPane.getStylesheets.add(getClass.getResource("/soonteck/view/FoodTheme.css").toExternalForm)
-    alert.getDialogPane.getStyleClass.add("information")
+    configureDialog(alert, "information")
     alert.showAndWait()
   }
 
@@ -39,8 +50,7 @@ class Alerts(primaryStage: Stage) {
       headerText = None
       contentText = message
     }
-    alert.delegate.getDialogPane.getStylesheets.add(getClass.getResource("/soonteck/view/FoodTheme.css").toExternalForm)
-    alert.getDialogPane.getStyleClass.add("warning")
+    configureDialog(alert, "warning")
     alert.showAndWait()
   }
 
@@ -51,8 +61,7 @@ class Alerts(primaryStage: Stage) {
       headerText = None
       contentText = message
     }
-    alert.delegate.getDialogPane.getStylesheets.add(getClass.getResource("/soonteck/view/FoodTheme.css").toExternalForm)
-    alert.getDialogPane.getStyleClass.add("error")
+    configureDialog(alert, "error")
     alert.showAndWait()
   }
 
@@ -64,8 +73,7 @@ class Alerts(primaryStage: Stage) {
       contentText = message
     }
     alert.getButtonTypes.setAll(ButtonType.Yes, ButtonType.No)
-    alert.delegate.getDialogPane.getStylesheets.add(getClass.getResource("/soonteck/view/FoodTheme.css").toExternalForm)
-    alert.getDialogPane.getStyleClass.add("confirmation")
+    configureDialog(alert, "confirmation")
     val result = alert.showAndWait()
     result.contains(ButtonType.Yes)
   }

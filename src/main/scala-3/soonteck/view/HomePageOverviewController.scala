@@ -396,5 +396,5 @@ class HomePageOverviewController:
     saveOrderToHistory()
     cart.clear()
     updateCartCount()
-    alerts.showInfoAlert("Order Completed", "Your order has been saved to history and cart cleared.")
+    alerts.showInfoAlert("Order Completed", "You may view your order in order history.")
   }
