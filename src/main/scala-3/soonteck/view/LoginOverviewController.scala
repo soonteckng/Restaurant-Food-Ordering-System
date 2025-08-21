@@ -28,13 +28,8 @@ class LoginOverviewController {
     if (usernameField != null) {
       usernameField.requestFocus()
     }
+  }
 
-    // Print available test users for debugging
-    println("=== Test Users Available ===")
-    println("Username: admin, Password: Admin123")
-    }
-
-  // Handle login
   @FXML
   private def handleLogin(action: ActionEvent): Unit = {
     val username = usernameField.getText.trim

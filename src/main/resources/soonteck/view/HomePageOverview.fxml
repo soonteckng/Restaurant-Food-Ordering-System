@@ -23,7 +23,7 @@
                <children>
                   <VBox alignment="CENTER" spacing="5.0" styleClass="nav-sidebarVBox">
                      <children>
-                        <Label styleClass="nav-sidebarTitleLabel" text="🍽️ LEANBITES" />
+                        <Label styleClass="nav-sidebarTitleLabel" text="LEANBITES" />
                         <Label styleClass="nav-sidebarTitleLabelTwo" text="Food Ordering System" />
                      </children>
                      <padding>

@@ -17,7 +17,7 @@
         <VBox spacing="15.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
             <children>
                 <!-- Title -->
-                <Label alignment="CENTER" styleClass="cart-summary-title" text="🛒 CALORIES SUMMARY" VBox.vgrow="NEVER" />
+                <Label alignment="CENTER" styleClass="cart-summary-title" text="🔥 CALORIES SUMMARY" VBox.vgrow="NEVER" />
 
                 <Separator />
 
@@ -26,12 +26,12 @@
                     <children>
                         <Label styleClass="summary-stats-title" text="Summary" />
 
-                        <GridPane hgap="20.0" vgap="10.0">
+                        <GridPane hgap="15.0" vgap="10.0">
                             <columnConstraints>
+                                <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                                <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="110.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

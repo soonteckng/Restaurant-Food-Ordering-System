@@ -16,7 +16,7 @@
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="520.0" prefHeight="400.0" prefWidth="520.0" styleClass="food-details-container" stylesheets="@FoodTheme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soonteck.view.FoodDetailsOverviewController">
     <children>
         <!-- Food Name Title (Fixed at top) -->
-        <Label fx:id="foodNameLabel" alignment="CENTER" prefHeight="30.0" prefWidth="176.0" styleClass="food-details-title" text="🍽️ FOOD DETAILS" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="15.0" />
+        <Label fx:id="foodNameLabel" alignment="CENTER" prefHeight="30.0" prefWidth="176.0" styleClass="food-details-title" text="🍽 FOOD DETAILS" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="15.0" />
 
         <!-- Main Scrollable Content Area -->
         <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="55.0">
