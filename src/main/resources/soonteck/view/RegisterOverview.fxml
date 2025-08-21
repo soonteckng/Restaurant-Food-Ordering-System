@@ -29,7 +29,7 @@
             <children>
                 <VBox alignment="CENTER" prefHeight="340.0" prefWidth="461.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="5.0" maxWidth="Infinity" prefHeight="47.0" prefWidth="462.0" styleClass="register-label-header" text="REGISTER YOUR ACCOUNT IN LEANBITES!" textAlignment="CENTER" textFill="#0619e9" wrapText="true">
+                        <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="5.0" maxWidth="Infinity" prefHeight="44.0" prefWidth="447.0" styleClass="register-label-header" text="REGISTER YOUR ACCOUNT NOW!" textAlignment="CENTER" textFill="#0619e9" wrapText="true">
                             <font>
                                 <Font name="Rockwell Bold" size="18.0" />
                             </font>
@@ -61,6 +61,9 @@
                     </padding>
                 </VBox>
             </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
         </GridPane>
     </children>
 </AnchorPane>

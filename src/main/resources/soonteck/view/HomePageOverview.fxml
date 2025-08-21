@@ -36,7 +36,7 @@
 
                         <Button fx:id="homeNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showHomeView" prefHeight="40.0" styleClass="nav-button" text="🏠 Home" />
 
-                        <Button fx:id="cartNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showCartView" prefHeight="40.0" styleClass="nav-button" text="🛒 Cart" />
+                        <Button fx:id="cartNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showCartView" prefHeight="40.0" styleClass="nav-button" text="🛒 My Cart" />
 
                         <Button fx:id="orderHistoryNavButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#showOrderHistoryView" prefHeight="40.0" styleClass="nav-button" text="📋 Order History" />
 
@@ -126,7 +126,7 @@
                      </padding>
                   </VBox>
 
-                  <VBox fx:id="cartView" alignment="CENTER" spacing="10.0" visible="false">
+                  <VBox fx:id="cartView" alignment="CENTER" spacing="10.0">
                      <children>
                         <HBox alignment="CENTER" maxWidth="Infinity" spacing="20.0">
                            <children>
@@ -190,7 +190,7 @@
                         <HBox alignment="CENTER" prefHeight="50.0" spacing="15.0">
                            <children>
                               <Button onAction="#handleRemoveFromCart" prefHeight="35.0" prefWidth="150.0" styleClass="cart-action-button" text="Remove Selected" />
-                              <Button onAction="#handleCalculateCalories" prefHeight="35.0" prefWidth="150.0" styleClass="cart-action-button" text="Detail Summary" />
+                              <Button onAction="#handleCalculateCalories" prefHeight="35.0" prefWidth="150.0" styleClass="cart-action-button" text="Calories Summary" />
                               <Button fx:id="checkoutButton" onAction="#handleCheckout" prefHeight="35.0" prefWidth="130.0" styleClass="button-success" text="💳 Checkout" />
                            </children>
                         </HBox>
@@ -200,7 +200,7 @@
                      </padding>
                   </VBox>
 
-                  <VBox fx:id="orderHistoryView" alignment="CENTER" spacing="15.0">
+                  <VBox fx:id="orderHistoryView" alignment="CENTER" spacing="15.0" visible="false">
                      <children>
                         <VBox alignment="CENTER" spacing="5.0">
                            <children>

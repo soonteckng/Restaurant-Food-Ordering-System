@@ -20,13 +20,13 @@
 }
 
 .login-label-header {
-    -fx-font-size: 28pt;
+    -fx-font-size: 21pt;
     -fx-font-family: "Bauhaus 93", "Arial", sans-serif;
     -fx-text-fill: #6e0808;
 }
 
 .register-label-header{
-    -fx-font-size: 17pt;
+    -fx-font-size: 21pt;
     -fx-font-family: "Bauhaus 93", "Arial", sans-serif;
     -fx-text-fill: #6e0808;
 }
@@ -132,13 +132,14 @@
     -fx-background-radius: 6;
     -fx-padding: 8 12 8 12;
     -fx-text-fill: #333232;
-    -fx-prompt-text-fill: #333232;
+    -fx-prompt-text-fill: #999999;
 }
 
 .text-field:focused, .password-field:focused {
     -fx-border-color: #000000;
     -fx-border-width: 2;
     -fx-background-color: white;
+    -fx-prompt-text-fill: #aaaaaa;
 }
 
 /* Buttons */
@@ -590,7 +591,7 @@
 .cart-summary-title {
     -fx-font-size: 20pt !important;
     -fx-font-family: "Bauhaus 93", "Arial Bold", sans-serif !important;
-    -fx-text-fill: #0619e9 !important;
+    -fx-text-fill: #6e0808 !important;
     -fx-font-weight: bold;
 }
 
@@ -669,22 +670,56 @@
     -fx-padding: 8 8 8 8;
 }
 
-/* Dialog Buttons */
-.dialog-button {
-    -fx-background-color: #6c757d;
-    -fx-text-fill: white;
-    -fx-font-size: 11pt;
+/* Checkout Dialog Specific Styling */
+.checkout-header {
+    -fx-background-color: #f4d1d1;
+    -fx-border-color: #dee2e6;
+    -fx-border-width: 0 0 1 0;
+}
+
+.checkout-title {
+    -fx-font-size: 18pt !important;
+    -fx-font-family: "Bauhaus 93", "Arial Bold", sans-serif !important;
+    -fx-text-fill: #6e0808 !important;
+    -fx-font-weight: bold;
+}
+
+.checkout-footer {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #dee2e6;
+    -fx-border-width: 1 0 0 0;
+}
+
+.checkout-total-label {
+    -fx-font-size: 13pt;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
-    -fx-background-radius: 6;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+}
+
+.checkout-total-amount {
+    -fx-font-size: 13pt;
+    -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
+    -fx-text-fill: #28a745;
+    -fx-font-weight: bold;
+}
+
+.checkout-card-field {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-background-color: white;
+    -fx-border-color: #ced4da;
+    -fx-border-width: 1;
     -fx-border-radius: 6;
-    -fx-padding: 8 16 8 16;
-    -fx-min-width: 80;
+    -fx-background-radius: 6;
+    -fx-padding: 8 12 8 12;
+    -fx-text-fill: #495057;
+    -fx-prompt-text-fill: #b8b8b8;
 }
 
-.dialog-button:hover {
-    -fx-background-color: #5a6268;
-}
-
-.dialog-button:pressed {
-    -fx-background-color: #545b62;
+.checkout-card-field:focused {
+    -fx-border-color: #0619e9;
+    -fx-border-width: 2;
+    -fx-background-color: white;
+    -fx-prompt-text-fill: #cccccc;
 }

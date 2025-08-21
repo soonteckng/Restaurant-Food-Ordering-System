@@ -11,29 +11,20 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soonteck.view.TotalCaloriesOverviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" styleClass="cart-summary-container" stylesheets="@FoodTheme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soonteck.view.TotalCaloriesOverviewController">
     <children>
         <VBox spacing="15.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
             <children>
                 <!-- Title -->
-                <Label alignment="CENTER" text="🛒 CART SUMMARY" textFill="#0619e9" VBox.vgrow="NEVER">
-                    <font>
-                        <Font name="System Bold" size="20.0" />
-                    </font>
-                </Label>
+                <Label alignment="CENTER" styleClass="cart-summary-title" text="🛒 CALORIES SUMMARY" VBox.vgrow="NEVER" />
 
                 <Separator />
 
                 <!-- Summary Statistics -->
-                <VBox spacing="10.0" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 15;">
+                <VBox spacing="10.0" styleClass="cart-summary-section">
                     <children>
-                        <Label text="Order Summary" textFill="#333333">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
+                        <Label styleClass="summary-stats-title" text="Summary" />
 
                         <GridPane hgap="20.0" vgap="10.0">
                             <columnConstraints>
@@ -48,34 +39,18 @@
                             </rowConstraints>
                             <children>
                                 <!-- Row 1 -->
-                                <Label style="-fx-font-weight: bold;" text="Total Items:" textFill="#666666" />
-                                <Label fx:id="itemCountLabel" text="0" textFill="#333333" GridPane.columnIndex="1">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
+                                <Label styleClass="summary-stats-label" text="Total Items:" />
+                                <Label fx:id="itemCountLabel" styleClass="summary-stats-value" text="0" GridPane.columnIndex="1" />
 
-                                <Label style="-fx-font-weight: bold;" text="Total Calories:" textFill="#666666" GridPane.columnIndex="2" />
-                                <Label fx:id="totalCaloriesLabel" text="0 kcal" textFill="#333333" GridPane.columnIndex="3">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
+                                <Label styleClass="summary-stats-label" text="Total Calories:" GridPane.columnIndex="2" />
+                                <Label fx:id="totalCaloriesLabel" styleClass="summary-stats-value" text="0 kcal" GridPane.columnIndex="3" />
 
                                 <!-- Row 2 -->
-                                <Label style="-fx-font-weight: bold;" text="Total Price:" textFill="#666666" GridPane.rowIndex="1" />
-                                <Label fx:id="totalPriceLabel" text="RM 0.00" textFill="#333333" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
+                                <Label styleClass="summary-stats-label" text="Total Price:" GridPane.rowIndex="1" />
+                                <Label fx:id="totalPriceLabel" styleClass="summary-price" text="RM 0.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                                <Label style="-fx-font-weight: bold;" text="Avg Calories:" textFill="#666666" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                <Label fx:id="averageCaloriesLabel" text="0.0 kcal/food" textFill="#333333" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
+                                <Label styleClass="summary-stats-label" text="Avg Calories:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                <Label fx:id="averageCaloriesLabel" styleClass="summary-stats-value" text="0.0 kcal/food" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                             </children>
                         </GridPane>
                     </children>
@@ -84,11 +59,7 @@
                 <!-- Detailed Items Table -->
                 <VBox spacing="5.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <Label text="Item Breakdown" textFill="#333333">
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </Label>
+                        <Label styleClass="summary-stats-title" text="Items" />
 
                         <TableView fx:id="summaryTable" VBox.vgrow="ALWAYS">
                             <columns>
@@ -107,7 +78,7 @@
                 <!-- Close Button -->
                 <HBox alignment="CENTER_RIGHT" spacing="10.0">
                     <children>
-                        <Button fx:id="closeButton" defaultButton="true" mnemonicParsing="false" onAction="#handleClose" style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-min-width: 80px;" text="OK" />
+                        <Button fx:id="closeButton" defaultButton="true" mnemonicParsing="false" onAction="#handleClose" prefHeight="25.0" prefWidth="80.0" text="OK" />
                     </children>
                 </HBox>
             </children>
