@@ -117,7 +117,7 @@
                               <Spinner fx:id="quantitySpinner" editable="true" initialValue="1" max="10" min="1" prefWidth="70.0" />
                               <Button fx:id="addToCartButton" onAction="#handleAddToCart" prefWidth="120.0" text="Add to Cart 🛒" />
                               <Region HBox.hgrow="ALWAYS" />
-                              <Label fx:id="cartCountLabel" prefHeight="21.0" prefWidth="120.0" text="0 item(s) in Cart" textFill="#666666" />
+                              <Label fx:id="cartCountLabel" prefHeight="21.0" prefWidth="120.0" styleClass="cart-quantity" stylesheets="@FoodTheme.css" text="0 item(s) in Cart" textFill="#666666" />
                            </children>
                         </HBox>
                      </children>
@@ -176,7 +176,7 @@
 
                         <TableView fx:id="cartTable" maxWidth="Infinity" prefHeight="150.0" VBox.vgrow="ALWAYS">
                            <columns>
-                              <TableColumn fx:id="cartItemColumn" prefWidth="150.0" text="Food" />
+                              <TableColumn fx:id="cartItemColumn" prefWidth="150.0" text="Items" />
                               <TableColumn fx:id="cartQuantityColumn" prefWidth="70.0" text="Qty" />
                               <TableColumn fx:id="cartUnitPriceColumn" prefWidth="90.0" text="Unit Price (RM)" />
                               <TableColumn fx:id="cartCaloriesColumn" prefWidth="100.0" text="Total Calories" />

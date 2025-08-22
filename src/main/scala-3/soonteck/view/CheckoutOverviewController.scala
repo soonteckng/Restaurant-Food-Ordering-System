@@ -11,11 +11,11 @@ import javafx.beans.value.{ChangeListener, ObservableValue}
 import javafx.scene.layout.VBox
 
 class CheckoutOverviewController:
-  @FXML 
+  @FXML
   private var orderItemsTable: TableView[CartItem] = null
-  @FXML 
+  @FXML
   private var itemNameColumn: TableColumn[CartItem, String] = null
-  @FXML 
+  @FXML
   private var itemQuantityColumn: TableColumn[CartItem, java.lang.Integer] = null
   @FXML
   private var itemUnitPriceColumn: TableColumn[CartItem, java.lang.Double] = null
@@ -23,19 +23,19 @@ class CheckoutOverviewController:
   private var itemTotalPriceColumn: TableColumn[CartItem, java.lang.Double] = null
   @FXML
   private var totalItemsLabel: Label = null
-  @FXML 
+  @FXML
   private var totalCaloriesLabel: Label = null
   @FXML
   private var subtotalLabel: Label = null
-  @FXML 
+  @FXML
   private var taxLabel: Label = null
   @FXML
   private var totalAmountLabel: Label = null
-  @FXML 
+  @FXML
   private var paymentMethodComboBox: ComboBox[String] = null
-  @FXML 
+  @FXML
   private var cardNumberField: TextField = null
-  @FXML 
+  @FXML
   private var cardHolderField: TextField = null
   @FXML
   private var expiryField: TextField = null
@@ -109,15 +109,17 @@ class CheckoutOverviewController:
       expiryField.getText,
       cvvField.getText
     )
-    payment.validate() match {
-      case Left(error) =>
-        alerts.showWarningAlert("Validation Error", error.message)
-      case Right(_) =>
-        val orderNumber = s"QD${System.currentTimeMillis()}"
-        val totalAmount = totalAmountLabel.getText
-        val confirmationMessage = s"""Order Number: $orderNumber
+    val totalAmountText = totalAmountLabel.getText.replace("RM ", "")
+    val totalAmount = try {
+      totalAmountText.toDouble
+    } catch {
+      case _: NumberFormatException => 0.0
+    }
+    payment.processPayment(totalAmount) match {
+      case result if result.isSuccess =>
+        val confirmationMessage = s"""Order Number: ${result.asInstanceOf[soonteck.model.PaymentResult.Success].orderNumber}
                                      |Payment Method: ${paymentMethodComboBox.getValue}
-                                     |Total Amount: $totalAmount
+                                     |Total Amount: ${totalAmountLabel.getText}
                                      |
                                      |Thank you for your order!""".stripMargin
         alerts.showSuccessAlert("Payment Successful", confirmationMessage)
@@ -125,6 +127,8 @@ class CheckoutOverviewController:
           mainController.clearCartAfterCheckout()
         }
         dialogStage.close()
+      case result =>
+        alerts.showWarningAlert("Payment Failed", result.getMessage)
     }
   }
 

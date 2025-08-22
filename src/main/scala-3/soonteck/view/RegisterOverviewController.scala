@@ -9,6 +9,7 @@ import javafx.fxml.FXML
 import javafx.scene.control.{Button, Label, PasswordField, TextField}
 import scalafx.Includes.*
 import scalafx.stage.Stage
+import scala.util.{Try, Success, Failure}
 
 @FXML
 class RegisterOverviewController {
@@ -24,55 +25,23 @@ class RegisterOverviewController {
   private val authService = new AuthenticationService()
   var alerts = new Alerts(Main.stage)
   var isCreateAccountClicked = false
-  
+
   @FXML
   private def handleRegister(action: ActionEvent): Unit = {
     val username = usernameField.getText.trim
     val password = passwordField.getText
     val confirmPassword = confirmPasswordField.getText
 
-    if (!validateInput(username, password, confirmPassword)) return
-
-    val newUser = User(username, password)
-
-    if (authService.registerUser(newUser)) {
-      val confirmRegister = s"""Account created for $username!
-                               |You may login now.""".stripMargin
-    
-      alerts.showSuccessAlert("Registration Successful", confirmRegister)
-      clearFields()
-      handleBackToLogin(action)
-    } else {
-      alerts.showErrorAlert("Registration Failed", s"Username '$username' already exists.")
+    authService.registerUser(username, password, confirmPassword) match {
+      case Success(user) =>
+        val confirmRegister = s"""Account created for ${user.username.value}!
+                                 |You may login now.""".stripMargin
+        alerts.showSuccessAlert("Registration Successful", confirmRegister)
+        clearFields()
+        handleBackToLogin(action)
+      case Failure(e) =>
+        alerts.showErrorAlert("Registration Failed", e.getMessage)
     }
-  }
-
-  private def validateInput(username: String, password: String, confirmPassword: String): Boolean = {
-    if (username.isEmpty) {
-      alerts.showErrorAlert("Validation Error", "Username is required.")
-      return false
-    }
-
-    if (username.length < 3) {
-      alerts.showErrorAlert("Validation Error", "Username must be at least 3 characters long.")
-      return false
-    }
-
-    if (password.isEmpty) {
-      alerts.showErrorAlert("Validation Error", "Password is required.")
-      return false
-    }
-
-    if (password.length < 6) {
-      alerts.showErrorAlert("Validation Error", "Password must be at least 6 characters long.")
-      return false
-    }
-
-    if (password != confirmPassword) {
-      alerts.showErrorAlert("Validation Error", "Passwords do not match.")
-      return false
-    }
-    true
   }
 
   @FXML

@@ -1,5 +1,7 @@
 package soonteck
 import soonteck.view.{AboutOverviewController, HomePageOverviewController, LoginOverviewController, RegisterOverviewController}
+import soonteck.model.{FoodType, OrderHistory, User}
+import soonteck.util.Database
 import scalafx.application.JFXApp3
 import scalafx.application.JFXApp3.PrimaryStage
 import scalafx.scene.Scene
@@ -10,8 +12,6 @@ import scalafx.collections.ObservableBuffer
 import scalafx.scene.image.Image
 import scalafx.stage.Modality.ApplicationModal
 import scalafx.stage.{Modality, Stage}
-import soonteck.model.{FoodType, OrderHistory, User}
-import soonteck.util.Database
 
 object Main extends JFXApp3:
   Database.setupDB()
@@ -86,7 +86,6 @@ object Main extends JFXApp3:
 
     this.roots.get.center = registerRoot
 
-  // Display home page overview - following lecturer's pattern
   def showHomePageOverview(username: String = ""): Unit =
     val resource = getClass.getResource("view/HomePageOverview.fxml")
     val loader = new FXMLLoader(resource)
@@ -98,5 +97,4 @@ object Main extends JFXApp3:
       homeController.setCurrentUser(username)
     }
 
-    // Set center of root layout to home page
     this.roots.get.center = homeRoot

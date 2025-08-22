@@ -1,8 +1,8 @@
 package soonteck.model
 
+import soonteck.util.Database
 import scalafx.beans.property.{StringProperty, DoubleProperty, IntegerProperty}
 import scalikejdbc.*
-import soonteck.util.Database
 import scala.util.{Try, Success, Failure}
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -25,10 +25,9 @@ class OrderHistory(val orderIdS: String, val orderDateS: String, val itemsS: Str
     })
 
 object OrderHistory extends Database:
-
+  
   def initializeTable(): Unit =
     DB autoCommit { implicit session =>
-      // Check if table exists
       val tableExists = sql"""
         SELECT COUNT(*)
         FROM sys.systables
@@ -86,29 +85,9 @@ object OrderHistory extends Database:
         .list.apply()
     }
 
-  @deprecated("Use getOrdersForUser instead", "1.0")
-  def getAllOrders: List[OrderHistory] =
-    DB readOnly { implicit session =>
-      sql"select * from order_history ORDER BY id DESC"
-        .map(rs => new OrderHistory(
-          rs.string("order_id"),
-          rs.string("order_date"),
-          rs.string("items"),
-          rs.double("total"),
-          rs.string("status"),
-          rs.stringOpt("username").getOrElse("")
-        ))
-        .list.apply()
-    }
-
   def createOrderFromCart(cartItems: java.util.List[CartItem], username: String): OrderHistory = {
-    // Generate order ID
     val orderId = s"ORD-${System.currentTimeMillis()}"
-
-    // Format current date
     val orderDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
-
-    // Build items string
     val itemsBuilder = new StringBuilder()
     var totalPrice = 0.0
 

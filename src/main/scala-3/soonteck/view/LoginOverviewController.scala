@@ -31,18 +31,11 @@ class LoginOverviewController {
     val username = usernameField.getText.trim
     val password = passwordField.getText
 
-    User.getUserByUsername(username) match {
-      case Some(user) if user.password.value == password =>
-        Main.showHomePageOverview(user.username.value) 
-
-      case Some(user) =>
-        alerts.showErrorAlert("Login Failed", "Incorrect password. Please try again.")
-
-      case None =>
-        val failedLogin = s"""Username not found.
-                         |Please check your username or password.""".stripMargin
-
-        alerts.showErrorAlert("Login Failed", failedLogin)
+    authService.authenticateUser(username, password) match {
+      case result if result.isSuccess =>
+        Main.showHomePageOverview(username)
+      case result =>
+        alerts.showErrorAlert("Login Failed", result.getMessage)
     }
   }
 
@@ -58,4 +51,3 @@ class LoginOverviewController {
 
   def getAuthService: AuthenticationService = authService
 }
-

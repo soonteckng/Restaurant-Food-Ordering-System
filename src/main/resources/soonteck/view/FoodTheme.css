@@ -88,7 +88,7 @@
 
 .nav-button:hover {
     -fx-background-color: #d45f5f;
-    -fx-text-fill: #0619e9 !important;
+    -fx-text-fill: #000000 !important;
 }
 
 .nav-button:pressed {
@@ -680,7 +680,7 @@
 }
 
 .checkout-card-field {
-    -fx-font-size: 12pt;
+    -fx-font-size: 9pt;
     -fx-font-family: "Segoe UI", "Arial", sans-serif;
     -fx-background-color: white;
     -fx-border-color: #ced4da;
@@ -879,4 +879,9 @@
 }
 .alert.confirmation .header-panel .label {
     -fx-text-fill: white;
+}
+
+.cart-quantity{
+    -fx-text-fill: #666666;
+    -fx-font-size: 9pt;
 }
