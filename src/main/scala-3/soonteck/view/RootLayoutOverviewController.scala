@@ -5,7 +5,7 @@ import javafx.fxml.FXML
 import javafx.event.ActionEvent
 
 @FXML
-class RootLayoutController():
+class RootLayoutOverviewController():
   @FXML
   def handleClose(action: ActionEvent): Unit =
     Main.stage.close()
