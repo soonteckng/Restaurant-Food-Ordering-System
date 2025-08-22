@@ -29,7 +29,7 @@ class User(val usernameS: String, val passwordS: String, val userIdI: Int = 0) e
         """.update.apply()
       })
 
-  // Check if this user exists in the database  
+  // Check if this user exists in the database
   def isExist: Boolean =
     DB readOnly { implicit session =>
       sql"""

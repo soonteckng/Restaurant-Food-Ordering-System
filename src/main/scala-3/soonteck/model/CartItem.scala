@@ -7,7 +7,6 @@ class CartItem(val foodItem: FoodType, val quantityI: Int):
   var quantity = new IntegerProperty(this, "quantity", quantityI)
   var price = new DoubleProperty(this, "price", foodItem.price.value * quantityI)
 
-  // Update price when quantity changes
   quantity.onChange { (_, _, newValue) =>
     price.value = foodItem.price.value * newValue.intValue()
   }

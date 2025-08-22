@@ -12,7 +12,6 @@ import scalafx.stage.Stage
 
 @FXML
 class RegisterOverviewController {
-
   @FXML
   private var usernameField: TextField = null
   @FXML
@@ -22,22 +21,18 @@ class RegisterOverviewController {
   @FXML
   private var backToLoginButton: Button = null
 
-  // Service for authentication
   private val authService = new AuthenticationService()
   var alerts = new Alerts(Main.stage)
   var isCreateAccountClicked = false
   
-  // Handle registration
   @FXML
   private def handleRegister(action: ActionEvent): Unit = {
     val username = usernameField.getText.trim
     val password = passwordField.getText
     val confirmPassword = confirmPasswordField.getText
 
-    // Stop if validation fails
     if (!validateInput(username, password, confirmPassword)) return
 
-    // Create user
     val newUser = User(username, password)
 
     if (authService.registerUser(newUser)) {
@@ -52,7 +47,6 @@ class RegisterOverviewController {
     }
   }
 
-  // Validate input fields
   private def validateInput(username: String, password: String, confirmPassword: String): Boolean = {
     if (username.isEmpty) {
       alerts.showErrorAlert("Validation Error", "Username is required.")
@@ -80,14 +74,11 @@ class RegisterOverviewController {
     }
     true
   }
-  
-  // Handle back to login
+
   @FXML
   private def handleBackToLogin(action: ActionEvent): Unit =
     Main.showLoginOverview()
 
-
-  // Clear all input fields
   private def clearFields(): Unit = {
     usernameField.clear()
     passwordField.clear()

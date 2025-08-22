@@ -10,25 +10,41 @@ import javafx.stage.Stage
 import javafx.beans.value.{ChangeListener, ObservableValue}
 import javafx.scene.layout.VBox
 
-
 class CheckoutOverviewController:
-  @FXML private var orderItemsTable: TableView[CartItem] = null
-  @FXML private var itemNameColumn: TableColumn[CartItem, String] = null
-  @FXML private var itemQuantityColumn: TableColumn[CartItem, java.lang.Integer] = null
-  @FXML private var itemUnitPriceColumn: TableColumn[CartItem, java.lang.Double] = null
-  @FXML private var itemTotalPriceColumn: TableColumn[CartItem, java.lang.Double] = null
-  @FXML private var totalItemsLabel: Label = null
-  @FXML private var totalCaloriesLabel: Label = null
-  @FXML private var subtotalLabel: Label = null
-  @FXML private var taxLabel: Label = null
-  @FXML private var totalAmountLabel: Label = null
-  @FXML private var paymentMethodComboBox: ComboBox[String] = null
-  @FXML private var cardNumberField: TextField = null
-  @FXML private var cardHolderField: TextField = null
-  @FXML private var expiryField: TextField = null
-  @FXML private var cvvField: TextField = null
-  @FXML private var processPaymentButton: Button = null
-  @FXML private var cardDetailsSection: VBox = null
+  @FXML 
+  private var orderItemsTable: TableView[CartItem] = null
+  @FXML 
+  private var itemNameColumn: TableColumn[CartItem, String] = null
+  @FXML 
+  private var itemQuantityColumn: TableColumn[CartItem, java.lang.Integer] = null
+  @FXML
+  private var itemUnitPriceColumn: TableColumn[CartItem, java.lang.Double] = null
+  @FXML
+  private var itemTotalPriceColumn: TableColumn[CartItem, java.lang.Double] = null
+  @FXML
+  private var totalItemsLabel: Label = null
+  @FXML 
+  private var totalCaloriesLabel: Label = null
+  @FXML
+  private var subtotalLabel: Label = null
+  @FXML 
+  private var taxLabel: Label = null
+  @FXML
+  private var totalAmountLabel: Label = null
+  @FXML 
+  private var paymentMethodComboBox: ComboBox[String] = null
+  @FXML 
+  private var cardNumberField: TextField = null
+  @FXML 
+  private var cardHolderField: TextField = null
+  @FXML
+  private var expiryField: TextField = null
+  @FXML
+  private var cvvField: TextField = null
+  @FXML
+  private var processPaymentButton: Button = null
+  @FXML
+  private var cardDetailsSection: VBox = null
 
   private var dialogStage: Stage = null
   private var mainController: HomePageOverviewController = null

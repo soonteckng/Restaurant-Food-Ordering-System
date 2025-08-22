@@ -7,17 +7,28 @@ import javafx.scene.control.{Label, Button, Spinner}
 import javafx.stage.Stage
 
 class FoodDetailsOverviewController:
-  @FXML private var foodNameLabel: Label = null
-  @FXML private var categoryLabel: Label = null
-  @FXML private var priceLabel: Label = null
-  @FXML private var caloriesLabel: Label = null
-  @FXML private var healthRatingLabel: Label = null
-  @FXML private var servingSizeLabel: Label = null
-  @FXML private var ingredientsLabel: Label = null
-  @FXML private var descriptionLabel: Label = null
-  @FXML private var quickQuantitySpinner: Spinner[Int] = null
-  @FXML private var quickAddButton: Button = null
-  @FXML private var closeButton: Button = null
+  @FXML 
+  private var foodNameLabel: Label = null
+  @FXML 
+  private var categoryLabel: Label = null
+  @FXML
+  private var priceLabel: Label = null
+  @FXML
+  private var caloriesLabel: Label = null
+  @FXML
+  private var healthRatingLabel: Label = null
+  @FXML 
+  private var servingSizeLabel: Label = null
+  @FXML 
+  private var ingredientsLabel: Label = null
+  @FXML
+  private var descriptionLabel: Label = null
+  @FXML 
+  private var quickQuantitySpinner: Spinner[Int] = null
+  @FXML 
+  private var quickAddButton: Button = null
+  @FXML
+  private var closeButton: Button = null
 
   private var dialogStage: Stage = null
   private var currentFood: FoodType = null
@@ -40,17 +51,16 @@ class FoodDetailsOverviewController:
 
     setHealthRating(foodItem.calories.value)
     setServingSize(foodItem.category.value)
-    setIngredients(foodItem.name.value, foodItem.category.value)
+    setIngredients(foodItem.name.value)
 
   private def setHealthRating(calories: Int): Unit =
-    val (rating, style) = calories match
-      case c if c < 250 => ("Very Healthy", "-fx-text-fill: #28a745; -fx-font-weight: bold;")
-      case c if c < 400 => ("Moderately Healthy", "-fx-text-fill: #ffc107; -fx-font-weight: bold;")
-      case c if c < 600 => ("High Calorie", "-fx-text-fill: #fd7e14; -fx-font-weight: bold;")
-      case _ => ("Very High Calorie", "-fx-text-fill: #dc3545; -fx-font-weight: bold;")
+    val rating = calories match
+      case c if c < 300 => "Very Healthy"
+      case c if c < 500 => "Moderately Healthy"
+      case c if c < 650 => "High Calorie"
+      case _ => "Very High Calorie"
 
     healthRatingLabel.setText(rating)
-    healthRatingLabel.setStyle(style)
 
   private def setServingSize(category: String): Unit =
     val servingSize = category match
@@ -63,9 +73,8 @@ class FoodDetailsOverviewController:
 
     servingSizeLabel.setText(servingSize)
 
-  private def setIngredients(foodName: String, category: String): Unit =
+  private def setIngredients(foodName: String): Unit =
     val ingredients = foodName.toLowerCase match
-      // Italian Food
       case "margherita pizza" => "Pizza dough, tomato sauce, mozzarella cheese, fresh basil, olive oil"
       case "pepperoni pizza" => "Pizza dough, tomato sauce, mozzarella cheese, pepperoni, oregano"
       case "carbonara pasta" => "Spaghetti, eggs, bacon, parmesan cheese, black pepper, cream"
@@ -128,19 +137,8 @@ class FoodDetailsOverviewController:
       case "veggie smoothie bowl" => "Acai berries, banana, granola, fresh berries, coconut flakes"
       case "steamed vegetables" => "Broccoli, carrots, snap peas, cauliflower, herbs, olive oil"
       case "grilled chicken breast" => "Chicken breast, herbs, spices, olive oil, garlic, lemon"
-      case name if category == "Italian" => "Fresh herbs, olive oil, tomatoes, cheese"
-      case name if category == "Japanese" => "Fresh ingredients, rice, soy sauce, miso"
-      case name if category == "Fast Food" => "Processed ingredients, sauces, seasonings"
-      case name if category == "Chinese" => "Soy sauce, ginger, garlic, fresh vegetables"
-      case name if category == "Mexican" => "Spices, peppers, lime, cilantro, beans"
-      case name if category == "Indian" => "Aromatic spices, herbs, yogurt, rice"
-      case name if category == "Thai" => "Coconut milk, lemongrass, chili, fish sauce"
-      case name if category == "American" => "Fresh ingredients, herbs, seasonings"
-      case name if category == "Mediterranean" => "Olive oil, herbs, vegetables, cheese"
-      case name if category == "Healthy" => "Fresh vegetables, lean proteins, whole grains"
-      case _ => "Fresh ingredients, spices, seasonings"
-  
-      ingredientsLabel.setText(ingredients)
+      
+    ingredientsLabel.setText(ingredients)
 
   @FXML
   def handleQuickAdd(): Unit =

@@ -1,5 +1,6 @@
 package soonteck.view
 
+import javafx.beans.property.{SimpleDoubleProperty, SimpleIntegerProperty}
 import soonteck.Main
 import soonteck.model.{Cart, CartItem, FoodType, OrderHistory}
 import soonteck.alert.Alerts
@@ -12,51 +13,87 @@ import javafx.scene.{Parent, Scene}
 import javafx.collections.transformation.FilteredList
 import javafx.util.Callback
 import javafx.beans.value.{ChangeListener, ObservableValue}
+import javafx.collections.FXCollections.observableArrayList
+import javafx.collections.ObservableList
 import scalafx.scene.image.Image
 
 import scala.util.{Failure, Success, Try}
 
 @FXML
 class HomePageOverviewController:
-
-  @FXML private var foodTable: TableView[FoodType] = null
-  @FXML private var nameColumn: TableColumn[FoodType, String] = null
-  @FXML private var categoryColumn: TableColumn[FoodType, String] = null
-  @FXML private var priceColumn: TableColumn[FoodType, java.lang.Double] = null
-  @FXML private var caloriesColumn: TableColumn[FoodType, java.lang.Integer] = null
-  @FXML private var descriptionColumn: TableColumn[FoodType, String] = null
-  @FXML private var selectedItemLabel: Label = null
-  @FXML private var quantitySpinner: Spinner[Int] = null
-  @FXML private var addToCartButton: javafx.scene.control.Button = null
-  @FXML private var categoryComboBox: ComboBox[String] = null
-  @FXML private var searchField: TextField = null
-  @FXML private var healthyFilterButton: javafx.scene.control.Button = null
-  @FXML private var cartCountLabel: Label = null
-  @FXML private var cartTable: TableView[CartItem] = null
-  @FXML private var cartItemColumn: TableColumn[CartItem, String] = null
-  @FXML private var cartQuantityColumn: TableColumn[CartItem, java.lang.Integer] = null
-  @FXML private var cartPriceColumn: TableColumn[CartItem, java.lang.Double] = null
-  @FXML private var clearCartButton: javafx.scene.control.Button = null
-  @FXML private var cartUnitPriceColumn: TableColumn[CartItem, java.lang.Double] = null
-  @FXML private var cartCaloriesColumn: TableColumn[CartItem, java.lang.Integer] = null
-  @FXML private var cartSummaryItemsLabel: Label = null
-  @FXML private var cartSummaryCaloriesLabel: Label = null
-  @FXML private var cartSummaryPriceLabel: Label = null
-  @FXML private var cartHealthStatusLabel: Label = null
-  @FXML private var homeView: javafx.scene.layout.VBox = null
-  @FXML private var cartView: javafx.scene.layout.VBox = null
-  @FXML private var orderHistoryView: javafx.scene.layout.VBox = null
-  @FXML private var homeNavButton: javafx.scene.control.Button = null
-  @FXML private var cartNavButton: javafx.scene.control.Button = null
-  @FXML private var orderHistoryNavButton: javafx.scene.control.Button = null
-  @FXML private var orderHistoryTable: TableView[OrderHistory] = null
-  @FXML private var orderDateColumn: TableColumn[OrderHistory, String] = null
-  @FXML private var orderItemsColumn: TableColumn[OrderHistory, String] = null
-  @FXML private var orderTotalColumn: TableColumn[OrderHistory, java.lang.Double] = null
-  @FXML private var orderStatusColumn: TableColumn[OrderHistory, String] = null
+  @FXML 
+  private var foodTable: TableView[FoodType] = null
+  @FXML
+  private var nameColumn: TableColumn[FoodType, String] = null
+  @FXML 
+  private var categoryColumn: TableColumn[FoodType, String] = null
+  @FXML
+  private var priceColumn: TableColumn[FoodType, java.lang.Double] = null
+  @FXML 
+  private var caloriesColumn: TableColumn[FoodType, java.lang.Integer] = null
+  @FXML 
+  private var descriptionColumn: TableColumn[FoodType, String] = null
+  @FXML 
+  private var selectedItemLabel: Label = null
+  @FXML
+  private var quantitySpinner: Spinner[Int] = null
+  @FXML
+  private var addToCartButton: javafx.scene.control.Button = null
+  @FXML 
+  private var categoryComboBox: ComboBox[String] = null
+  @FXML 
+  private var searchField: TextField = null
+  @FXML 
+  private var healthyFilterButton: javafx.scene.control.Button = null
+  @FXML 
+  private var cartCountLabel: Label = null
+  @FXML 
+  private var cartTable: TableView[CartItem] = null
+  @FXML 
+  private var cartItemColumn: TableColumn[CartItem, String] = null
+  @FXML 
+  private var cartQuantityColumn: TableColumn[CartItem, java.lang.Integer] = null
+  @FXML 
+  private var cartPriceColumn: TableColumn[CartItem, java.lang.Double] = null
+  @FXML 
+  private var clearCartButton: javafx.scene.control.Button = null
+  @FXML
+  private var cartUnitPriceColumn: TableColumn[CartItem, java.lang.Double] = null
+  @FXML 
+  private var cartCaloriesColumn: TableColumn[CartItem, java.lang.Integer] = null
+  @FXML
+  private var cartSummaryItemsLabel: Label = null
+  @FXML 
+  private var cartSummaryCaloriesLabel: Label = null
+  @FXML 
+  private var cartSummaryPriceLabel: Label = null
+  @FXML 
+  private var cartHealthStatusLabel: Label = null
+  @FXML 
+  private var homeView: javafx.scene.layout.VBox = null
+  @FXML 
+  private var cartView: javafx.scene.layout.VBox = null
+  @FXML 
+  private var orderHistoryView: javafx.scene.layout.VBox = null
+  @FXML 
+  private var homeNavButton: javafx.scene.control.Button = null
+  @FXML 
+  private var cartNavButton: javafx.scene.control.Button = null
+  @FXML 
+  private var orderHistoryNavButton: javafx.scene.control.Button = null
+  @FXML 
+  private var orderHistoryTable: TableView[OrderHistory] = null
+  @FXML 
+  private var orderDateColumn: TableColumn[OrderHistory, String] = null
+  @FXML
+  private var orderItemsColumn: TableColumn[OrderHistory, String] = null
+  @FXML 
+  private var orderTotalColumn: TableColumn[OrderHistory, java.lang.Double] = null
+  @FXML
+  private var orderStatusColumn: TableColumn[OrderHistory, String] = null
 
   private val cart = new Cart()
-  private val orderHistoryItems: javafx.collections.ObservableList[OrderHistory] = javafx.collections.FXCollections.observableArrayList()
+  private val orderHistoryItems: ObservableList[OrderHistory] = observableArrayList()
   private var filteredFoodList: FilteredList[FoodType] = null
   private var selectedFood: FoodType = null
   private var isHealthyFilterActive = false
@@ -159,13 +196,13 @@ class HomePageOverviewController:
     cartItemColumn.cellValueFactory = { _.value.item }
     cartQuantityColumn.cellValueFactory = { c => c.value.quantity.delegate.asObject() }
     cartUnitPriceColumn.cellValueFactory = { c =>
-      new javafx.beans.property.SimpleDoubleProperty(c.value.foodItem.price.value).asObject()
+      new SimpleDoubleProperty(c.value.foodItem.price.value).asObject()
     }
     cartCaloriesColumn.cellValueFactory = { c =>
-      new javafx.beans.property.SimpleIntegerProperty(c.value.getCalories).asObject()
+      new SimpleIntegerProperty(c.value.getCalories).asObject()
     }
     cartPriceColumn.cellValueFactory = { c =>
-      new javafx.beans.property.SimpleDoubleProperty(c.value.getTotalPrice).asObject()
+      new SimpleDoubleProperty(c.value.getTotalPrice).asObject()
     }
   }
 

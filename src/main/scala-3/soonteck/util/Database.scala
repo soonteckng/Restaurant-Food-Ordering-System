@@ -7,11 +7,9 @@ trait Database:
   val derbyDriverClassname = "org.apache.derby.jdbc.EmbeddedDriver"
   val dbURL = "jdbc:derby:myDB;create=true"
 
-  // Initialize JDBC driver & connection pool
   Class.forName(derbyDriverClassname)
   ConnectionPool.singleton(dbURL, "me", "mine")
 
-  // Ad-hoc session provider - this is the key!
   given AutoSession = AutoSession
 
 object Database extends Database:

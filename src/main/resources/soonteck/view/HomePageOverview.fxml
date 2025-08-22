@@ -55,7 +55,7 @@
          <center>
             <StackPane BorderPane.alignment="CENTER">
                <children>
-                  <VBox fx:id="homeView" alignment="CENTER" spacing="10.0" visible="false">
+                  <VBox fx:id="homeView" alignment="CENTER" spacing="10.0">
                      <children>
                         <VBox alignment="CENTER" maxWidth="Infinity" prefHeight="80.0" spacing="8.0" style="-fx-background-color: #ffffff; -fx-border-color: #dee2e6; -fx-border-radius: 5; -fx-background-radius: 5;">
                            <children>
@@ -98,11 +98,11 @@
 
                         <TableView fx:id="foodTable" maxWidth="Infinity" prefHeight="181.0" VBox.vgrow="ALWAYS">
                            <columns>
-                              <TableColumn fx:id="nameColumn" prefWidth="119.33331048488617" text="Food" />
-                              <TableColumn fx:id="categoryColumn" prefWidth="96.66663360595703" text="Category" />
-                              <TableColumn fx:id="priceColumn" prefWidth="76.66667175292969" text="Price (RM)" />
-                              <TableColumn fx:id="caloriesColumn" prefWidth="88.6666259765625" text="Calories" />
-                              <TableColumn fx:id="descriptionColumn" prefWidth="121.33331298828125" text="Description" />
+                              <TableColumn fx:id="nameColumn" prefWidth="108.66660809516907" text="Food" />
+                              <TableColumn fx:id="categoryColumn" prefWidth="66.00000762939453" text="Category" />
+                              <TableColumn fx:id="priceColumn" prefWidth="57.33331298828125" text="Price (RM)" />
+                              <TableColumn fx:id="caloriesColumn" prefWidth="59.33329772949219" text="Calories" />
+                              <TableColumn fx:id="descriptionColumn" prefWidth="143.33340454101562" text="Description" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -126,7 +126,7 @@
                      </padding>
                   </VBox>
 
-                  <VBox fx:id="cartView" alignment="CENTER" spacing="10.0">
+                  <VBox fx:id="cartView" alignment="CENTER" spacing="10.0" visible="false">
                      <children>
                         <HBox alignment="CENTER" maxWidth="Infinity" spacing="20.0">
                            <children>

@@ -143,7 +143,6 @@ object FoodType extends Database:
         .list.apply()
     }
 
-  // Static method to filter foods, adjusted for FilteredList compatibility
   def filterFoods(foods: ObservableList[FoodType], search: String, category: String, healthyOnly: Boolean): FilteredList[FoodType] =
     val filteredList = new FilteredList[FoodType](foods)
     filteredList.setPredicate { food =>
