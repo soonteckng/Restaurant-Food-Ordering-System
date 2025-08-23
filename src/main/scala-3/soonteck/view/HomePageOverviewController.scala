@@ -1,6 +1,5 @@
 package soonteck.view
 
-
 import soonteck.Main
 import soonteck.model.{Cart, CartItem, FoodType, OrderHistory}
 import soonteck.service.{FoodService, OrderService}
@@ -138,7 +137,6 @@ class HomePageOverviewController:
   }
 
   private def initializeServices(): Unit = {
-    // Load data through services
     foodService.loadAllFoods()
   }
 
@@ -327,7 +325,6 @@ class HomePageOverviewController:
   }
 
   private def loadOrderHistory(): Unit = {
-    // Delegate to service
     orderService.getOrderHistoryForUser(currentUsername) match {
       case Success(orders) =>
         orderHistoryItems.clear()

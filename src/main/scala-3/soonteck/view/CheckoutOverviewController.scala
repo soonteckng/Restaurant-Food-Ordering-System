@@ -1,5 +1,6 @@
 package soonteck.view
 
+import javafx.beans.property.SimpleDoubleProperty
 import soonteck.Main
 import soonteck.model.{Cart, CartItem}
 import soonteck.alert.Alerts
@@ -82,10 +83,10 @@ class CheckoutOverviewController:
     itemNameColumn.cellValueFactory = { _.value.item }
     itemQuantityColumn.cellValueFactory = { c => c.value.quantity.delegate.asObject() }
     itemUnitPriceColumn.cellValueFactory = { c =>
-      new javafx.beans.property.SimpleDoubleProperty(c.value.foodItem.price.value).asObject()
+      new SimpleDoubleProperty(c.value.foodItem.price.value).asObject()
     }
     itemTotalPriceColumn.cellValueFactory = { c =>
-      new javafx.beans.property.SimpleDoubleProperty(c.value.getTotalPrice).asObject()
+      new SimpleDoubleProperty(c.value.getTotalPrice).asObject()
     }
     orderItemsTable.setItems(cart.getItems)
 

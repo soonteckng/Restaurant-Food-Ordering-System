@@ -25,7 +25,7 @@ class OrderHistory(val orderIdS: String, val orderDateS: String, val itemsS: Str
     })
 
 object OrderHistory extends Database:
-  
+
   def initializeTable(): Unit =
     DB autoCommit { implicit session =>
       val tableExists = sql"""
@@ -85,20 +85,4 @@ object OrderHistory extends Database:
         .list.apply()
     }
 
-  def createOrderFromCart(cartItems: java.util.List[CartItem], username: String): OrderHistory = {
-    val orderId = s"ORD-${System.currentTimeMillis()}"
-    val orderDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
-    val itemsBuilder = new StringBuilder()
-    var totalPrice = 0.0
-
-    for (i <- 0 until cartItems.size()) {
-      val item = cartItems.get(i)
-      val itemTotal = item.getTotalPrice
-      totalPrice += itemTotal
-
-      if (i > 0) itemsBuilder.append(", ")
-      itemsBuilder.append(s"${item.item.value} x${item.quantity.value}")
-    }
-
-    new OrderHistory(orderId, orderDate, itemsBuilder.toString(), totalPrice, "Completed", username)
-  }
+  
