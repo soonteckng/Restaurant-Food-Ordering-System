@@ -79,6 +79,4 @@ class Alerts(primaryStage: Stage) {
     val result = alert.showAndWait()
     result.contains(ButtonType.Yes)
   }
-
-
 }
