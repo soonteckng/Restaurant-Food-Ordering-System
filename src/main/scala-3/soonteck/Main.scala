@@ -1,4 +1,5 @@
 package soonteck
+
 import soonteck.view.{AboutOverviewController, HomePageOverviewController, LoginOverviewController, RegisterOverviewController}
 import soonteck.model.{FoodType, OrderHistory, User}
 import soonteck.util.Database
@@ -33,7 +34,7 @@ object Main extends JFXApp3:
         ex.printStackTrace()
     }
 
-    val rootResource = getClass.getResource("view/RootLayout.fxml")
+    val rootResource = getClass.getResource("view/RootLayoutOverview.fxml")
     val loader = new FXMLLoader(rootResource)
     loader.load()
 
