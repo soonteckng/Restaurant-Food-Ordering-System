@@ -1,5 +1,5 @@
 .root {
-    -fx-background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20231103/pngtree-high-resolution-photo-aesthetic-black-background-with-subtle-textured-pattern-image_13705313.png");
+    -fx-background-image: url("/images/background.png");
 }
 
 .background {
