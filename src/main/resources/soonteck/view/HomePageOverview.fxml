@@ -57,12 +57,12 @@
                <children>
                   <VBox fx:id="homeView" alignment="CENTER" spacing="10.0">
                      <children>
-                        <VBox alignment="CENTER" maxWidth="Infinity" prefHeight="80.0" spacing="8.0" style="-fx-background-color: #ffffff; -fx-border-color: #dee2e6; -fx-border-radius: 5; -fx-background-radius: 5;">
+                        <VBox alignment="CENTER" maxWidth="Infinity" prefHeight="80.0" spacing="8.0" styleClass="filter-bar">
                            <children>
                               <HBox alignment="CENTER" maxWidth="Infinity" spacing="15.0">
                                  <children>
                                     <Label minWidth="60.0" text="Category:" />
-                                    <ComboBox fx:id="categoryComboBox" prefHeight="25.0" prefWidth="100.0" />
+                                    <ComboBox fx:id="categoryComboBox" prefHeight="25.0" prefWidth="140.0" minWidth="120.0" maxWidth="200.0" />
                                     <Button onAction="#handleShowAll" prefWidth="90.0" styleClass="filter-button" text="Show All" />
                                     <Region prefWidth="20.0" />
                                     <Label minWidth="50.0" text="Search:" />

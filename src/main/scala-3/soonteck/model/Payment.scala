@@ -15,7 +15,7 @@ class Payment(val paymentMethod: String, val cardNumber: String = "", val cardHo
 
   private def validatePaymentMethod(): Either[PaymentValidationError, Unit] =
     if (paymentMethod == null || paymentMethod.isEmpty)
-      Left(PaymentValidationError("Payment method required"))
+      Left(PaymentValidationError("Payment method required."))
     else
       Right(())
 
@@ -50,10 +50,10 @@ class Payment(val paymentMethod: String, val cardNumber: String = "", val cardHo
     if (paymentMethod == "E-Wallet") return Right(())
 
     if (expiry.trim.isEmpty)
-      return Left(PaymentValidationError("Expiry date cannot be empty"))
+      return Left(PaymentValidationError("Expiry date cannot be empty."))
 
     if (!expiry.matches("^(0[1-9]|1[0-2])/\\d{2}$"))
-      return Left(PaymentValidationError("Expiry date must be in MM/YY format"))
+      return Left(PaymentValidationError("Expiry date must be in MM/YY format."))
 
     Try {
       val parts = expiry.split("/")

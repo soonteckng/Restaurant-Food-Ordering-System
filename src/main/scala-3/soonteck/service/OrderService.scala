@@ -9,10 +9,10 @@ import scala.jdk.CollectionConverters.*
 class OrderService:
   def createOrderFromCart(cart: Cart, username: String): Try[OrderHistory] =
     if (cart.isEmpty)
-      return Failure(new IllegalStateException("Cannot create order from empty cart"))
+      return Failure(new IllegalStateException("Cannot create order from empty cart."))
 
     if (username.trim.isEmpty)
-      return Failure(new IllegalArgumentException("Username is required"))
+      return Failure(new IllegalArgumentException("Username is required."))
 
     Try {
       val orderId = s"ORD-${System.currentTimeMillis()}"

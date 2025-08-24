@@ -11,10 +11,10 @@ class Cart:
 
   def addItem(food: FoodType, quantity: Int): CartOperationResult =
     if (quantity <= 0)
-      return CartOperationResult.failure("Quantity must be positive")
+      return CartOperationResult.failure("Quantity must be positive.")
 
     if (getTotalItems + quantity > maxTotalItems)
-      return CartOperationResult.failure(s"Cart limit of $maxTotalItems items exceeded")
+      return CartOperationResult.failure(s"Cart limit of $maxTotalItems items exceeded.")
 
     items.asScala.find(_.item.value == food.name.value) match
       case Some(existingItem) =>
@@ -22,7 +22,7 @@ class Cart:
         if (newQuantity > maxItemsPerFood)
           return CartOperationResult.failure(s"Maximum $maxItemsPerFood items allowed per food.")
         existingItem.quantity.value = newQuantity
-        CartOperationResult.success(s"Updated ${food.name.value} quantity to $newQuantity")
+        CartOperationResult.success(s"Updated ${food.name.value} quantity to $newQuantity.")
       case None =>
         if (quantity > maxItemsPerFood)
           return CartOperationResult.failure(s"Maximum $maxItemsPerFood items allowed per food item.")
@@ -39,10 +39,10 @@ class Cart:
     if (newQuantity <= 0)
       removeItem(item)
     else if (newQuantity > maxItemsPerFood)
-      CartOperationResult.failure(s"Maximum $maxItemsPerFood items allowed")
+      CartOperationResult.failure(s"Maximum $maxItemsPerFood items allowed.")
     else
       item.quantity.value = newQuantity
-      CartOperationResult.success("Quantity updated")
+      CartOperationResult.success("Quantity updated.")
 
   def clear(): Unit =
     items.clear()

@@ -1,45 +1,43 @@
 .root {
-    -fx-background-color: #f4d1d1;
+    -fx-background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20231103/pngtree-high-resolution-photo-aesthetic-black-background-with-subtle-textured-pattern-image_13705313.png");
 }
 
 .background {
-    -fx-background-color: #f4d1d1;
+    -fx-background-color: #2a2a2a;
 }
 
-/* Typography System */
 .label {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI", "Arial", sans-serif;
-    -fx-text-fill: #495057;
+    -fx-text-fill: #e0e0e0;
 }
 
 .label-bright {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
-    -fx-text-fill: #212529;
+    -fx-text-fill: #ffffff;
 }
 
 .login-label-header {
     -fx-font-size: 21pt;
     -fx-font-family: "Bauhaus 93", "Arial", sans-serif;
-    -fx-text-fill: #6e0808;
+    -fx-text-fill: #4fc3f7;
 }
 
 .register-label-header{
     -fx-font-size: 21pt;
     -fx-font-family: "Bauhaus 93", "Arial", sans-serif;
-    -fx-text-fill: #6e0808;
+    -fx-text-fill: #4fc3f7;
 }
 
 .label-subheader {
     -fx-font-size: 16pt;
     -fx-font-family: "Tempus Sans ITC", "Arial Bold", sans-serif;
-    -fx-text-fill: #6e0808
+    -fx-text-fill: #4fc3f7;
 }
 
-/* Navigation Sidebar - Enhanced and Aligned */
 .nav-sidebarVBox{
-    -fx-background-color: #dd6d6d;
+    -fx-background-color: #1e293b;
     -fx-alignment: center;
     -fx-padding: 8 2 8 2;
 }
@@ -70,8 +68,8 @@
 }
 
 .nav-sidebar {
-    -fx-background-color: #f6baba;
-    -fx-border-color: #dee2e6;
+    -fx-background-color: #334155;
+    -fx-border-color: #475569;
     -fx-border-width: 0 1 0 0;
 }
 
@@ -87,26 +85,25 @@
 }
 
 .nav-button:hover {
-    -fx-background-color: #d45f5f;
-    -fx-text-fill: #000000 !important;
+    -fx-background-color: #475569;
+    -fx-text-fill: #4fc3f7 !important;
 }
 
 .nav-button:pressed {
-    -fx-background-color: #dee2e6;
+    -fx-background-color: #64748b;
 }
 
 .nav-button-active {
-    -fx-background-color: #0619e9;
+    -fx-background-color: #0ea5e9;
     -fx-text-fill: white !important;
 }
 
 .nav-button-active:hover {
-    -fx-background-color: #0514c7;
+    -fx-background-color: #0284c7;
 }
 
-/* Special styling for logout button */
 .logout-button {
-    -fx-background-color: #dc3545;
+    -fx-background-color: #ef4444;
     -fx-text-fill: white !important;
     -fx-font-size: 10pt !important;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
@@ -117,39 +114,37 @@
 }
 
 .logout-button:hover {
-    -fx-background-color: #c82333;
+    -fx-background-color: #dc2626;
     -fx-text-fill: white !important;
 }
 
-/* Text Input Fields */
 .text-field, .password-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI", "Arial", sans-serif;
-    -fx-background-color: #bab3b3;
-    -fx-border-color: #000000;
+    -fx-background-color: #374151;
+    -fx-border-color: #6b7280;
     -fx-border-width: 1;
     -fx-border-radius: 6;
     -fx-background-radius: 6;
     -fx-padding: 8 12 8 12;
-    -fx-text-fill: #333232;
-    -fx-prompt-text-fill: #999999;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #9ca3af;
 }
 
 .text-field:focused, .password-field:focused {
-    -fx-border-color: #000000;
+    -fx-border-color: #4fc3f7;
     -fx-border-width: 2;
-    -fx-background-color: white;
-    -fx-prompt-text-fill: #aaaaaa;
+    -fx-background-color: #4b5563;
+    -fx-prompt-text-fill: #d1d5db;
 }
 
-/* Buttons */
 .button {
     -fx-padding: 8 12 8 12;
-    -fx-border-color: #ced4da;
+    -fx-border-color: #4b5563;
     -fx-border-width: 1;
     -fx-background-radius: 6;
     -fx-border-radius: 6;
-    -fx-background-color: #a83b3b;
+    -fx-background-color: #374151;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
     -fx-font-size: 10pt;
     -fx-text-fill: #ffffff;
@@ -157,23 +152,22 @@
 }
 
 .button:hover {
-    -fx-background-color: #ed6b6b;
-    -fx-border-color: #adb5bd;
+    -fx-background-color: #4b5563;
+    -fx-border-color: #6b7280;
 }
 
 .button:pressed {
-    -fx-background-color: #e09d9d;
-    -fx-border-color: #6c757d;
+    -fx-background-color: #6b7280;
+    -fx-border-color: #9ca3af;
 }
 
-/* Primary Button */
 .button-primary {
     -fx-padding: 8 12 8 12;
-    -fx-border-color: #ced4da;
+    -fx-border-color: #0284c7;
     -fx-border-width: 1;
     -fx-background-radius: 6;
     -fx-border-radius: 6;
-    -fx-background-color: #913320;
+    -fx-background-color: #0ea5e9;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
     -fx-font-size: 10pt;
     -fx-text-fill: #ffffff;
@@ -181,112 +175,106 @@
 }
 
 .button-primary:hover {
-    -fx-background-color: #ba4831;
-    -fx-border-color: #adb5bd;
+    -fx-background-color: #0284c7;
+    -fx-border-color: #0369a1;
 }
 
 .button-primary:pressed {
-    -fx-background-color: #d95b42;
-    -fx-border-color: #6c757d;
+    -fx-background-color: #0369a1;
+    -fx-border-color: #075985;
 }
 
-/* Success Button */
 .button-success {
-    -fx-background-color: #28a745;
+    -fx-background-color: #10b981;
     -fx-text-fill: white;
-    -fx-border-color: #28a745;
+    -fx-border-color: #059669;
     -fx-font-size: 10pt;
 }
 
 .button-success:hover {
-    -fx-background-color: #218838;
-    -fx-border-color: #218838;
+    -fx-background-color: #059669;
+    -fx-border-color: #047857;
 }
 
-/* Danger Button */
 .button-danger {
-    -fx-background-color: #dc3545;
+    -fx-background-color: #ef4444;
     -fx-text-fill: white;
-    -fx-border-color: #dc3545;
+    -fx-border-color: #dc2626;
     -fx-font-size: 10pt;
 }
 
 .button-danger:hover {
-    -fx-background-color: #c82333;
-    -fx-border-color: #c82333;
+    -fx-background-color: #dc2626;
+    -fx-border-color: #b91c1c;
 }
 
-/* Filter buttons */
 .filter-button {
     -fx-padding: 6 10 6 10;
     -fx-font-size: 9pt;
-    -fx-background-color: #a83b3b;
+    -fx-background-color: #374151;
     -fx-text-fill: white;
     -fx-border-radius: 6;
     -fx-background-radius: 6;
 }
 
 .filter-button:hover {
-    -fx-background-color: #ed6b6b;
+    -fx-background-color: #4b5563;
 }
 
-/* Special Healthy Options Button - Eye-catching green theme */
 #healthyFilterButton {
-    -fx-background-color: linear-gradient(to bottom, #28a745, #20903a) !important;
+    -fx-background-color: linear-gradient(to bottom, #10b981, #059669) !important;
     -fx-text-fill: white !important;
     -fx-font-weight: bold;
-    -fx-border-color: #1e7e34;
+    -fx-border-color: #047857;
     -fx-border-width: 1;
     -fx-border-radius: 6;
     -fx-background-radius: 6;
     -fx-padding: 6 10 6 10;
     -fx-font-size: 9pt;
-    -fx-effect: dropshadow(gaussian, rgba(40,167,69,0.4), 4, 0.0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(16,185,129,0.4), 4, 0.0, 0, 2);
 }
 
 #healthyFilterButton:hover {
-    -fx-background-color: linear-gradient(to bottom, #34ce57, #28a745) !important;
-    -fx-effect: dropshadow(gaussian, rgba(40,167,69,0.6), 6, 0.0, 0, 3);
+    -fx-background-color: linear-gradient(to bottom, #34d399, #10b981) !important;
+    -fx-effect: dropshadow(gaussian, rgba(16,185,129,0.6), 6, 0.0, 0, 3);
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
 }
 
 #healthyFilterButton:pressed {
-    -fx-background-color: #1e7e34 !important;
-    -fx-effect: dropshadow(gaussian, rgba(40,167,69,0.3), 2, 0.0, 0, 1);
+    -fx-background-color: #047857 !important;
+    -fx-effect: dropshadow(gaussian, rgba(16,185,129,0.3), 2, 0.0, 0, 1);
 }
 
-/* Cart action buttons */
 .cart-action-button {
     -fx-font-size: 9pt;
     -fx-padding: 8 10 8 10;
-    -fx-background-color: #913320;
+    -fx-background-color: #0ea5e9;
     -fx-text-fill: white;
 }
 
 .cart-action-button:hover {
-    -fx-background-color: #ba4831;
+    -fx-background-color: #0284c7;
 }
 
-/* Enhanced Table View with Colors */
 .table-view {
-    -fx-background-color: white;
-    -fx-border-color: #dee2e6;
+    -fx-background-color: #374151;
+    -fx-border-color: #4b5563;
     -fx-border-width: 2;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 6, 0.0, 0, 3);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6, 0.0, 0, 3);
 }
 
 .table-view .column-header-background {
-    -fx-background-color: linear-gradient(to bottom, #d45f5f, #b84545);
-    -fx-border-color: #a83b3b;
+    -fx-background-color: linear-gradient(to bottom, #1e293b, #0f172a);
+    -fx-border-color: #334155;
     -fx-border-width: 0 0 2 0;
 }
 
 .table-view .column-header {
     -fx-background-color: transparent;
-    -fx-border-color: rgba(255,255,255,0.3);
+    -fx-border-color: rgba(255,255,255,0.1);
     -fx-border-width: 0 1 0 0;
 }
 
@@ -299,89 +287,126 @@
 }
 
 .table-view .table-row-cell {
-    -fx-background-color: white;
-    -fx-border-color: #f0f0f0;
+    -fx-background-color: #374151;
+    -fx-border-color: #4b5563;
     -fx-border-width: 0 0 1 0;
 }
 
 .table-view .table-row-cell:odd {
-    -fx-background-color: #fdf8f8;
+    -fx-background-color: #2d3748;
 }
 
 .table-view .table-row-cell:selected {
-    -fx-background-color: linear-gradient(to bottom, #e3f2fd, #bbdefb);
-    -fx-text-fill: #1976d2;
-    -fx-border-color: #2196f3;
+    -fx-background-color: linear-gradient(to bottom, #0ea5e9, #0284c7);
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #4fc3f7;
     -fx-border-width: 0 0 2 0;
 }
 
 .table-view .table-row-cell:hover {
-    -fx-background-color: linear-gradient(to bottom, #fff3e0, #ffe0b2);
-    -fx-border-color: #ff9800;
+    -fx-background-color: linear-gradient(to bottom, #4b5563, #374151);
+    -fx-border-color: #6b7280;
     -fx-border-width: 0 0 1 0;
 }
 
 .table-view .table-cell {
-    -fx-text-fill: #495057;
+    -fx-text-fill: #e5e7eb;
     -fx-font-size: 10pt;
     -fx-padding: 8 8 8 8;
     -fx-alignment: center-left;
 }
 
 .table-view .table-row-cell:selected .table-cell {
-    -fx-text-fill: #1976d2;
+    -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
 }
 
-/* ComboBox */
 .combo-box {
-    -fx-background-color: white;
-    -fx-border-color: #ced4da;
+    -fx-background-color: #374151;
+    -fx-border-color: #4b5563;
     -fx-border-width: 1;
     -fx-border-radius: 6;
     -fx-background-radius: 6;
 }
 
 .combo-box:focused {
-    -fx-border-color: #0619e9;
+    -fx-border-color: #4fc3f7;
     -fx-border-width: 2;
 }
 
 .combo-box .list-cell {
-    -fx-background-color: white;
-    -fx-text-fill: #495057;
+    -fx-background-color: #374151;
+    -fx-text-fill: #e5e7eb;
     -fx-font-size: 10pt;
 }
 
 .combo-box .list-cell:hover {
-    -fx-background-color: #f8f9fa;
+    -fx-background-color: #4b5563;
 }
 
-/* Spinner */
+.combo-box .arrow-button {
+    -fx-background-color: #4b5563;
+    -fx-border-color: #6b7280;
+    -fx-border-width: 0 0 0 1;
+    -fx-background-radius: 0 6 6 0;
+}
+
+.combo-box:focused .arrow-button {
+    -fx-background-color: #6b7280;
+    -fx-border-color: #4fc3f7;
+}
+
+.combo-box .arrow-button:hover {
+    -fx-background-color: #6b7280;
+}
+
+/* ComboBox Arrow */
+.combo-box .arrow {
+    -fx-background-color: #e5e7eb;
+    -fx-shape: "M 0 0 L 4 4 L 8 0 Z";
+    -fx-scale-shape: true;
+    -fx-min-width: 8;
+    -fx-min-height: 6;
+    -fx-max-width: 8;
+    -fx-max-height: 6;
+}
+
+.combo-box:focused .arrow {
+    -fx-background-color: #4fc3f7;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #374151;
+    -fx-border-color: #4b5563;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0.0, 0, 2);
+}
+
 .spinner {
-    -fx-background-color: white;
-    -fx-border-color: #ced4da;
+    -fx-background-color: #374151;
+    -fx-border-color: #4b5563;
     -fx-border-width: 1;
     -fx-border-radius: 6;
     -fx-background-radius: 6;
 }
 
 .spinner:focused {
-    -fx-border-color: #0619e9;
+    -fx-border-color: #4fc3f7;
     -fx-border-width: 2;
 }
 
 .spinner .text-field {
     -fx-background-color: transparent;
     -fx-border-width: 0;
-    -fx-text-fill: #495057;
+    -fx-text-fill: #e5e7eb;
     -fx-font-size: 10pt;
 }
 
-/* Menu Bar */
 .menu-bar {
-    -fx-background-color: #db9393;
-    -fx-border-color: #dee2e6;
+    -fx-background-color: #1e293b;
+    -fx-border-color: #334155;
     -fx-border-width: 0 0 1 0;
 }
 
@@ -392,63 +417,79 @@
 }
 
 .menu .context-menu {
-    -fx-background-color: #a83b3b;
-    -fx-border-color: #dee2e6;
+    -fx-background-color: #374151;
+    -fx-border-color: #4b5563;
     -fx-border-width: 1;
     -fx-background-radius: 6;
     -fx-border-radius: 6;
 }
 
-/* Content Areas */
 .content-card {
-    -fx-background-color: white;
-    -fx-border-color: #dee2e6;
+    -fx-background-color: #374151;
+    -fx-border-color: #4b5563;
     -fx-border-width: 1;
     -fx-border-radius: 8;
     -fx-background-radius: 8;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0.0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0.0, 0, 2);
 }
 
 .filter-bar {
-    -fx-background-color: #f8f9fa;
-    -fx-border-color: #dee2e6;
+    -fx-background-color: #2d3748;
+    -fx-border-color: #4b5563;
     -fx-border-width: 1;
     -fx-border-radius: 8;
     -fx-background-radius: 8;
     -fx-padding: 15;
 }
 
-/* Status Colors */
+* {
+    -fx-background-color: inherit;
+}
+
+.root * {
+    -fx-background-color: inherit;
+}
+
+.border-pane .stack-pane .vbox .vbox {
+    -fx-background-color: #374151 !important;
+    -fx-border-color: #4b5563 !important;
+    -fx-border-radius: 5 !important;
+    -fx-background-radius: 5 !important;
+}
+
+.vbox[style*="background-color: #ffffff"] {
+    -fx-background-color: #374151 !important;
+    -fx-border-color: #4b5563 !important;
+}
+
 .status-healthy {
-    -fx-text-fill: #28a745;
+    -fx-text-fill: #10b981;
 }
 
 .status-warning {
-    -fx-text-fill: #ffc107;
+    -fx-text-fill: #f59e0b;
 }
 
 .status-danger {
-    -fx-text-fill: #dc3545;
+    -fx-text-fill: #ef4444;
 }
 
 .price-label {
-    -fx-text-fill: #28a745;
+    -fx-text-fill: #10b981;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
 }
 
-/* Login/Register specific styles */
 .welcome-container {
-    -fx-background-color: white;
+    -fx-background-color: #374151;
     -fx-border-radius: 12;
     -fx-background-radius: 12;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0.0, 0, 4);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 8, 0.0, 0, 4);
 }
 
 .brand-color {
-    -fx-text-fill: #0619e9;
+    -fx-text-fill: #4fc3f7;
 }
 
-/* Scroll Panes */
 .scroll-pane {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
@@ -459,166 +500,158 @@
 }
 
 .scroll-bar {
-    -fx-background-color: #f8f9fa;
-    -fx-border-color: #dee2e6;
+    -fx-background-color: #2d3748;
+    -fx-border-color: #4b5563;
     -fx-border-width: 1;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: #ced4da;
+    -fx-background-color: #6b7280;
     -fx-background-radius: 4;
 }
 
 .scroll-bar .thumb:hover {
-    -fx-background-color: #adb5bd;
+    -fx-background-color: #9ca3af;
 }
 
-/* Split Pane */
 .split-pane:horizontal > .split-pane-divider {
-    -fx-border-color: transparent #dee2e6 transparent #dee2e6;
-    -fx-background-color: transparent, #f8f9fa;
+    -fx-border-color: transparent #4b5563 transparent #4b5563;
+    -fx-background-color: transparent, #2d3748;
 }
 
 .split-pane {
     -fx-padding: 0;
 }
 
-/* Summary labels styling */
 .summary-title {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
-    -fx-text-fill: #666666;
+    -fx-text-fill: #9ca3af;
 }
 
 .summary-value {
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
-    -fx-text-fill: #333333;
+    -fx-text-fill: #e5e7eb;
 }
 
 .summary-price {
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
-    -fx-text-fill: #28a745;
+    -fx-text-fill: #10b981;
 }
 
 .summary-health {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
-    -fx-text-fill: #28a745;
+    -fx-text-fill: #10b981;
 }
 
-/* Food Details Dialog Styling */
 .food-details-container {
-    -fx-background-color: #f4d1d1;
+    -fx-background-color: #2a2a2a;
 }
 
 .food-details-container .label {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI", "Arial", sans-serif;
-    -fx-text-fill: #495057;
+    -fx-text-fill: #e5e7eb;
 }
 
 .food-details-container .scroll-pane {
     -fx-background-color: transparent;
-    -fx-border-color: #dee2e6;
+    -fx-border-color: #4b5563;
     -fx-border-width: 1;
     -fx-border-radius: 8;
     -fx-background-radius: 8;
 }
 
 .food-details-container .grid-pane {
-    -fx-background-color: white;
-    -fx-border-color: #dee2e6;
+    -fx-background-color: #374151;
+    -fx-border-color: #4b5563;
     -fx-border-width: 1;
     -fx-border-radius: 8;
     -fx-background-radius: 8;
     -fx-padding: 15;
 }
 
-/* Food Details Title */
 .food-details-title {
     -fx-font-size: 20pt !important;
     -fx-font-family: "Bauhaus 93", "Arial Bold", sans-serif !important;
-    -fx-text-fill: #6e0808 !important;
+    -fx-text-fill: #4fc3f7 !important;
     -fx-font-weight: bold;
 }
 
-/* Food Details Labels */
 .food-details-label {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
-    -fx-text-fill: #333333;
+    -fx-text-fill: #e5e7eb;
     -fx-font-weight: bold;
 }
 
 .food-details-value {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI", "Arial", sans-serif;
-    -fx-text-fill: #495057;
+    -fx-text-fill: #d1d5db;
 }
 
-/* Cart Summary Dialog Styling */
 .cart-summary-container {
-    -fx-background-color: #f4d1d1;
+    -fx-background-color: #2a2a2a;
 }
 
 .cart-summary-title {
     -fx-font-size: 20pt !important;
     -fx-font-family: "Bauhaus 93", "Arial Bold", sans-serif !important;
-    -fx-text-fill: #6e0808 !important;
+    -fx-text-fill: #4fc3f7 !important;
     -fx-font-weight: bold;
 }
 
 .cart-summary-section {
-    -fx-background-color: white;
-    -fx-border-color: #dee2e6;
+    -fx-background-color: #374151;
+    -fx-border-color: #4b5563;
     -fx-border-width: 1;
     -fx-border-radius: 8;
     -fx-background-radius: 8;
     -fx-padding: 15;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0.0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0.0, 0, 2);
 }
 
 .cart-summary-section .label {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI", "Arial", sans-serif;
-    -fx-text-fill: #495057;
+    -fx-text-fill: #e5e7eb;
 }
 
-/* Summary Statistics Styling */
 .summary-stats-title {
     -fx-font-size: 16pt !important;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif !important;
-    -fx-text-fill: #333333 !important;
+    -fx-text-fill: #e5e7eb !important;
     -fx-font-weight: bold;
 }
 
 .summary-stats-label {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
-    -fx-text-fill: #666666;
+    -fx-text-fill: #9ca3af;
     -fx-font-weight: bold;
 }
 
 .summary-stats-value {
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI", "Arial", sans-serif;
-    -fx-text-fill: #333333;
+    -fx-text-fill: #e5e7eb;
 }
 
-/* Table styling for dialogs */
 .cart-summary-container .table-view {
-    -fx-background-color: white;
-    -fx-border-color: #dee2e6;
+    -fx-background-color: #374151;
+    -fx-border-color: #4b5563;
     -fx-border-width: 1;
     -fx-border-radius: 8;
     -fx-background-radius: 8;
 }
 
 .cart-summary-container .table-view .column-header-background {
-    -fx-background-color: linear-gradient(to bottom, #d45f5f, #b84545);
-    -fx-border-color: #a83b3b;
+    -fx-background-color: linear-gradient(to bottom, #1e293b, #0f172a);
+    -fx-border-color: #334155;
     -fx-border-width: 0 0 2 0;
 }
 
@@ -630,73 +663,72 @@
 }
 
 .cart-summary-container .table-view .table-row-cell {
-    -fx-background-color: white;
-    -fx-border-color: #f0f0f0;
+    -fx-background-color: #374151;
+    -fx-border-color: #4b5563;
     -fx-border-width: 0 0 1 0;
 }
 
 .cart-summary-container .table-view .table-row-cell:odd {
-    -fx-background-color: #fdf8f8;
+    -fx-background-color: #2d3748;
 }
 
 .cart-summary-container .table-view .table-cell {
-    -fx-text-fill: #495057;
+    -fx-text-fill: #e5e7eb;
     -fx-font-size: 10pt;
     -fx-padding: 8 8 8 8;
 }
 
-/* Checkout Dialog Specific Styling */
 .checkout-header {
-    -fx-background-color: #f4d1d1;
-    -fx-border-color: #dee2e6;
+    -fx-background-color: #2a2a2a;
+    -fx-border-color: #4b5563;
     -fx-border-width: 0 0 1 0;
 }
 
 .checkout-title {
     -fx-font-size: 18pt !important;
     -fx-font-family: "Bauhaus 93", "Arial Bold", sans-serif !important;
-    -fx-text-fill: #6e0808 !important;
+    -fx-text-fill: #4fc3f7 !important;
     -fx-font-weight: bold;
 }
 
 .checkout-footer {
-    -fx-background-color: #f8f9fa;
-    -fx-border-color: #dee2e6;
+    -fx-background-color: #2d3748;
+    -fx-border-color: #4b5563;
     -fx-border-width: 1 0 0 0;
 }
 
 .checkout-total-label {
     -fx-font-size: 13pt;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
-    -fx-text-fill: #333333;
+    -fx-text-fill: #e5e7eb;
     -fx-font-weight: bold;
 }
 
 .checkout-total-amount {
     -fx-font-size: 13pt;
     -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
-    -fx-text-fill: #28a745;
+    -fx-text-fill: #10b981;
     -fx-font-weight: bold;
 }
 
 .checkout-card-field {
     -fx-font-size: 9pt;
     -fx-font-family: "Segoe UI", "Arial", sans-serif;
-    -fx-background-color: white;
-    -fx-border-color: #ced4da;
+    -fx-background-color: #374151;
+    -fx-border-color: #4b5563;
     -fx-border-width: 1;
     -fx-border-radius: 6;
     -fx-background-radius: 6;
     -fx-padding: 8 12 8 12;
-    -fx-text-fill: #495057;
-    -fx-prompt-text-fill: #b8b8b8;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #9ca3af;
 }
 
 .checkout-card-field:focused {
-    -fx-border-color: #0619e9;
+    -fx-border-color: #4fc3f7;
     -fx-border-width: 2;
-    -fx-background-color: white;
-    -fx-prompt-text-fill: #cccccc;
+    -fx-background-color: #4b5563;
+    -fx-prompt-text-fill: #d1d5db;
 }
 
 .dialog-pane {
@@ -714,174 +746,7 @@
     -fx-border-radius: 0;
 }
 
-/* WARNING ALERT */
-.dialog-pane.warning {
-    -fx-background-color: #fff3cd !important;
-    -fx-border-color: transparent !important;
-}
-
-.dialog-pane.warning .header-panel {
-    -fx-background-color: #facc15 !important;
-}
-
-.dialog-pane.warning .header-panel .label {
-    -fx-text-fill: #92400e !important;
-    -fx-font-weight: bold;
-}
-
-.dialog-pane.warning .content {
-    -fx-background-color: #fff3cd !important;
-}
-
-/* FIXED: Warning alert content label */
-.dialog-pane.warning .content .label {
-    -fx-text-fill: #92400e !important;
-    -fx-wrap-text: true;
-    -fx-max-width: infinity;
-    -fx-pref-width: -1;
-    -fx-min-height: -1;
-    -fx-pref-height: -1;
-    -fx-max-height: infinity;
-}/* Alert Dialog Styling - Fixed text cutoff issues */
-
-/* Base alert styling */
-.alert {
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0.0, 0, 4);
-}
-
-.alert .header-panel {
-    -fx-border-radius: 10px 10px 0 0;
-    -fx-background-radius: 10px 10px 0 0;
-}
-
-.alert .header-panel .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Semibold", "Arial Bold", sans-serif;
-    -fx-text-fill: white;
-}
-
-.alert .content {
-    -fx-padding: 20px;
-    -fx-border-radius: 0 0 10px 10px;
-    -fx-background-radius: 0 0 10px 10px;
-}
-
-/* FIXED: Content label styling - this is the main fix for text cutoff */
-.alert .content .label {
-    -fx-font-size: 12pt;
-    -fx-wrap-text: true;
-    -fx-text-fill: #212529;
-    /* Remove any width/height constraints that cause cutoff */
-    -fx-max-width: infinity;
-    -fx-pref-width: -1;
-    -fx-min-height: -1;
-    -fx-pref-height: -1;
-    -fx-max-height: infinity;
-}
-
-/* SUCCESS ALERT - Light green, no borders */
-.dialog-pane.success {
-    -fx-background-color: #c8f7c5 !important;
-    -fx-border-color: transparent !important;
-}
-
-.dialog-pane.success .header-panel {
-    -fx-background-color: #c8f7c5 !important;
-}
-
-.dialog-pane.success .header-panel .label {
-    -fx-text-fill: #15803d !important;
-    -fx-font-weight: bold;
-}
-
-.dialog-pane.success .content {
-    -fx-background-color: #c8f7c5 !important;
-}
-
-/* REMOVED the problematic styling - let it use default behavior like error alerts */
-.dialog-pane.success .content .label {
-    -fx-text-fill: #15803d !important;
-}
-
-/* INFORMATION ALERT - Same light green */
-.dialog-pane.information {
-    -fx-background-color: #c8f7c5 !important;
-    -fx-border-color: transparent !important;
-}
-
-.dialog-pane.information .header-panel {
-    -fx-background-color: #c8f7c5 !important;
-}
-
-.dialog-pane.information .header-panel .label {
-    -fx-text-fill: #15803d !important;
-    -fx-font-weight: bold;
-}
-
-.dialog-pane.information .content {
-    -fx-background-color: #c8f7c5 !important;
-}
-
-/* REMOVED the problematic styling - let it use default behavior like error alerts */
-.dialog-pane.information .content .label {
-    -fx-text-fill: #15803d !important;
-}
-
-/* ERROR ALERT */
-.dialog-pane.error {
-    -fx-background-color: #fee2e2 !important;
-    -fx-border-color: transparent !important;
-}
-
-.dialog-pane.error .header-panel {
-    -fx-background-color: #ef4444 !important;
-}
-
-.dialog-pane.error .header-panel .label {
-    -fx-text-fill: white !important;
-    -fx-font-weight: bold;
-}
-
-.dialog-pane.error .content {
-    -fx-background-color: #fee2e2 !important;
-}
-
-/* FIXED: Error alert content label */
-.dialog-pane.error .content .label {
-    -fx-text-fill: #dc2626 !important;
-    -fx-wrap-text: true;
-    -fx-max-width: infinity;
-    -fx-pref-width: -1;
-    -fx-min-height: -1;
-    -fx-pref-height: -1;
-    -fx-max-height: infinity;
-}
-
-/* WARNING ALERT */
-.alert.warning {
-    -fx-background-color: #fff3cd;
-}
-.alert.warning .header-panel {
-    -fx-background-color: #facc15;
-}
-.alert.warning .header-panel .label {
-    -fx-text-fill: black;
-}
-
-/* CONFIRMATION ALERT */
-.alert.confirmation {
-    -fx-background-color: #e0f7fa;
-}
-.alert.confirmation .header-panel {
-    -fx-background-color: #06b6d4;
-}
-.alert.confirmation .header-panel .label {
-    -fx-text-fill: white;
-}
-
 .cart-quantity{
-    -fx-text-fill: #666666;
+    -fx-text-fill: #9ca3af;
     -fx-font-size: 9pt;
 }

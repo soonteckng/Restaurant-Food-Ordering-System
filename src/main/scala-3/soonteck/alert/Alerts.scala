@@ -20,6 +20,10 @@ class Alerts(primaryStage: Stage) {
     alert.getDialogPane.setPrefHeight(Region.USE_COMPUTED_SIZE)
 
     alert.delegate.setResizable(true)
+
+    // Explicitly disable expandable content to prevent black regions
+    alert.getDialogPane.setExpandableContent(null)
+    alert.getDialogPane.setExpanded(false)
   }
 
   def showSuccessAlert(alertTitle: String, message: String): Unit = {
@@ -30,7 +34,7 @@ class Alerts(primaryStage: Stage) {
       contentText = message
     }
     alert.getButtonTypes.setAll(ButtonType.OK)
-    configureDialog(alert, "success")
+    configureDialog(alert, "information") // Changed from "success" to "information" to match CSS
     alert.showAndWait()
   }
 
