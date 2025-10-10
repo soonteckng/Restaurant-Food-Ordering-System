@@ -284,15 +284,6 @@ The system comes pre-loaded with 60+ food items including:
 **American** (4 items): BBQ Ribs, Mac and Cheese, Pancakes, etc.  
 **Mediterranean** (5 items): Caesar Salad, Lamb Souvlaki, Falafel Wrap, etc.
 
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 ## 📝 License
 
@@ -305,4 +296,3 @@ GitHub: [@soonteckng](https://github.com/soonteckng)
 
 ---
 
-**Built with ❤️ using Scala and ScalaFX**
