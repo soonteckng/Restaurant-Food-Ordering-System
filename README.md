@@ -200,17 +200,10 @@ CREATE TABLE order_history (
 - **Price Calculation**: Real-time price updates with tax (6%)
 
 ### Health Tracking
-The system categorizes food based on calorie content:
-
-| Calories per Serving | Health Rating | Badge Color |
-|---------------------|---------------|-------------|
-| < 300 kcal | Low Calorie | 🟢 Green |
-| 300-499 kcal | Moderate Calorie | 🟡 Yellow |
-| 500-699 kcal | High Calorie | 🟠 Orange |
-| ≥ 700 kcal | Very High Calorie | 🔴 Red |
+The system categorizes food based on calorie content.
 
 
-## 🔧 Configuration
+## Configuration
 
 ### Database Configuration
 Located in `Database.scala`:
@@ -232,7 +225,7 @@ private val maxItemsPerFood = 10
 private val maxTotalItems = 50
 ```
 
-## 🎨 Customization
+## Customization
 
 ### Adding New Food Categories
 Modify `FoodType.scala`:
@@ -254,7 +247,7 @@ Update validation methods in respective model classes:
 - `Payment.scala` - Payment validation
 - `Cart.scala` - Cart limits
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Database Issues
 - **Database locked**: Close all running instances of the application
@@ -269,7 +262,7 @@ Update validation methods in respective model classes:
 - **Expiry date**: Use MM/YY format (e.g., 12/25)
 - **CVV**: Must be exactly 3 digits
 
-## 📊 Sample Data
+## Sample Data
 
 The system comes pre-loaded with 60+ food items including:
 
@@ -285,11 +278,11 @@ The system comes pre-loaded with 60+ food items including:
 **Mediterranean** (5 items): Caesar Salad, Lamb Souvlaki, Falafel Wrap, etc.
 
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 👨‍💻 Developer
+## Developer
 
 **Soon Teck Ng**  
 GitHub: [@soonteckng](https://github.com/soonteckng)
