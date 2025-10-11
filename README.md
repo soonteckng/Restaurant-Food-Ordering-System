@@ -1,4 +1,4 @@
-# LeanBites - Restaurant Ordering System
+# LeanBites - Restaurant Food Ordering System
 
 A feature-rich restaurant ordering system built with Scala, ScalaFX, and Apache Derby database. LeanBites provides a complete food ordering experience with user authentication, cart management, calorie tracking, and order history.
 
