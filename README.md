@@ -4,7 +4,7 @@ A feature-rich restaurant ordering system built with Scala, ScalaFX, and Apache 
 
 ## Demo Video
 
-[![LeanBites Demo](https://img.youtube.com/vi/b9YZ4JzZ6Gg/maxresdefault.jpg)](https://www.youtube.com/watch?v=b9YZ4JzZ6Gg))
+[![LeanBites Demo](https://img.youtube.com/vi/b9YZ4JzZ6Gg/maxresdefault.jpg)](https://www.youtube.com/watch?v=b9YZ4JzZ6Gg)
 
 *Click the image above to watch the demo video*
 
