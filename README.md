@@ -2,6 +2,12 @@
 
 A feature-rich restaurant ordering system built with Scala, ScalaFX, and Apache Derby database. LeanBites provides a complete food ordering experience with user authentication, cart management, calorie tracking, and order history.
 
+## Demo Video
+
+[![LeanBites Demo](https://img.youtube.com/vi/abc123XYZ/0.jpg)](https://www.youtube.com/watch?v=b9YZ4JzZ6Gg))
+
+*Click the image above to watch the demo video*
+
 ## Features
 
 ### User Management
